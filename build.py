@@ -53,6 +53,7 @@ NAV = [
     ("Industries", "/industries/"),
     ("Blog", "/blog/"),
     ("About", "/about/"),
+    ("Payments", "/payment/"),
 ]
 
 PILLARS = [
@@ -171,8 +172,8 @@ def layout(path, title, desc, body, accent="emerald", nav_key=None, crumbs=None,
     <div class="ft-g">
       <div>
         <p class="brand">{MARK}Intellora Tech</p>
-        <p class="ft-about">Data engineering, cloud architecture, governance, security, machine learning and database engineering — delivered by the engineer you speak to.</p>
-        <p class="mt4"><a href="mailto:{EMAIL}">{EMAIL}</a><br>Kampala, Uganda · EAT (UTC+3)</p>
+        <p class="ft-about">A practice of specialists across data engineering, cloud architecture, governance, security, machine learning and databases — led by a principal engineer.</p>
+        <p class="mt4"><a href="mailto:{EMAIL}">{EMAIL}</a><br>Distributed team · delivery worldwide</p>
       </div>
       <div>
         <h2>Capabilities</h2>
@@ -192,11 +193,11 @@ def layout(path, title, desc, body, accent="emerald", nav_key=None, crumbs=None,
         <ul>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
-          <li><a href="/payment/">Pay an invoice</a></li>
+          <li><a href="/payment/">Payments</a></li>
         </ul>
       </div>
     </div>
-    <div class="ft-b"><span>© 2026 Intellora Tech</span><span>Kampala, Uganda · Delivered remotely worldwide</span></div>
+    <div class="ft-b"><span>© 2026 Intellora Tech</span><span>A distributed practice · delivered worldwide</span></div>
   </div>
 </footer>
 
@@ -235,9 +236,9 @@ home = f"""
 <section class="wrap page-head">
   <div class="hero">
     <div>
-      <p class="eyebrow">Senior-led engineering practice</p>
+      <p class="eyebrow">A practice of specialists</p>
       <h1>Data platforms that hold up when someone checks the numbers.</h1>
-      <p class="lead">Intellora Tech builds and repairs the layer underneath your reporting — databases, pipelines, cloud architecture, governance and machine learning. The person on your first call is the person who does the work.</p>
+      <p class="lead">Intellora Tech builds and repairs the layer underneath your reporting — databases, pipelines, cloud architecture, governance and machine learning. You speak to a hands-on engineer from the team that will do the work.</p>
       <div class="row mt6">
         <a href="/contact/" class="btn btn-p">Book a scoping call <span class="ar" aria-hidden="true">→</span></a>
         <a href="/tools/estimator/" class="btn btn-s">Estimate a programme</a>
@@ -246,8 +247,8 @@ home = f"""
     <aside class="panel">
       <p class="mono mb4">At a glance</p>
       <div class="rows">
-        <div><div><p class="n">Based in</p></div><p class="d">Kampala · EAT (UTC+3)</p></div>
-        <div><div><p class="n">Delivery</p></div><p class="d">Remote worldwide</p></div>
+        <div><div><p class="n">Structure</p></div><p class="d">Distributed specialists</p></div>
+        <div><div><p class="n">Delivery</p></div><p class="d">Remote, worldwide</p></div>
         <div><div><p class="n">First reply</p></div><p class="d">One business day</p></div>
         <div><div><p class="n">Pricing</p></div><p class="d">Fixed on signature</p></div>
         <div><div><p class="n">Scoping call</p></div><p class="d">Free · 20 minutes</p></div>
@@ -325,7 +326,7 @@ home = f"""
     <div class="stat rv"><p class="v">10+</p><p class="k">Years of production data engineering</p></div>
     <div class="stat rv"><p class="v">3</p><p class="k">Maximum engagements running at once</p></div>
     <div class="stat rv"><p class="v">6</p><p class="k">Capability pillars, sold separately or together</p></div>
-    <div class="stat rv"><p class="v">1</p><p class="k">Engineer between you and the work</p></div>
+    <div class="stat rv"><p class="v">0</p><p class="k">Account managers between you and the engineers</p></div>
   </div>
 </section>
 
@@ -335,7 +336,7 @@ home = f"""
       <div>
         <p class="eyebrow">Deliberately limited</p>
         <h2 style="max-width:18ch">Three engagements at a time. Never four.</h2>
-        <p class="lead">The thing we sell is undivided senior attention, and attention does not scale by taking on more work. So we cap the book, decline what we cannot do excellently, and finish what we start before opening the next slot.</p>
+        <p class="lead">What we sell is undivided specialist attention, and attention does not scale by taking on more work. So we cap the book, decline what we cannot do excellently, and finish what we start before opening the next slot.</p>
         <p class="mono mt6">Current engagement slots</p>
         <div class="slots" role="img" aria-label="Two of three engagement slots currently committed, one open.">
           <i></i><i></i><i class="open"></i>
@@ -343,7 +344,7 @@ home = f"""
         <p class="mono mt4">2 committed · 1 open</p>
       </div>
       <div class="grid" style="gap:var(--s4)">
-        <div class="card card-accent k-emerald"><h3>One engineer, start to finish</h3><p>No handover to a delivery team, no junior learning on your budget. The person on the scoping call writes the code and runs the handover.</p></div>
+        <div class="card card-accent k-emerald"><h3>Specialists, not generalists</h3><p>Each engagement is staffed with the people whose depth matches the work, and the principal reviews everything that ships. No junior learning on your budget.</p></div>
         <div class="card card-accent k-gold"><h3>We say no more than yes</h3><p>Work outside our depth, undefined scope, or a timeline that would force shortcuts — declined, with a suggestion of who is better placed.</p></div>
         <div class="card card-accent k-indigo"><h3>Narrow scope, finished properly</h3><p>A tightly drawn engagement delivered completely beats a broad one delivered to eighty per cent. Scope is fixed at signature and changes are quoted before work starts.</p></div>
       </div>
@@ -377,7 +378,7 @@ home = f"""
         <div class="onode" style="--a:324deg"><div class="ospin"><div class="opill">Semantic modelling</div></div></div>
       </div>
     </div>
-    <p class="orb-cap">Six pillars · one accountable practice · the engineer you speak to is the engineer who builds it</p>
+    <p class="orb-cap">Six pillars · one accountable practice · you speak to the engineers who build it</p>
   </div>
 </section>
 
@@ -409,8 +410,8 @@ home = f"""
 )
 
 write("", layout("/", "Intellora Tech — Data, Cloud &amp; AI Engineering",
-                 "Senior-led data engineering, cloud architecture, governance, security and machine learning. "
-                 "The engineer you speak to is the engineer who does the work.",
+                 "A practice of specialists in data engineering, cloud architecture, governance, security and "
+                 "machine learning, led by a principal engineer. You speak to hands-on engineers.",
                  home, accent="emerald"))
 
 # ----------------------------------------------------------- capabilities hub
@@ -580,8 +581,7 @@ pillar_page(
 # ------------------------------------------------------------------ industries
 tier1 = [
     ("Banking &amp; core banking", "Core banking database administration, high-availability configuration, performance tuning and recovery assurance. Reconciliation between core, ledger and reporting layers."),
-    ("Revenue &amp; tax administration", "Tax administration data warehousing, taxpayer register quality, compliance risk analytics and legacy platform migration."),
-    ("Customs &amp; trade", "Declaration lineage across transit and clearance regimes, consignment tracking from manifest to release, and integration with customs platforms including ASYCUDA."),
+    ("Revenue, tax &amp; customs administration", "Tax administration data warehousing, taxpayer register quality, compliance risk analytics and legacy platform migration. Customs and trade sits here too: declaration lineage across transit and clearance regimes, consignment tracking from manifest to release, and integration with customs platforms including ASYCUDA."),
     ("Humanitarian &amp; development", "Data and reporting operations for United Nations country programmes — constrained infrastructure, hard deadlines and capacity transfer as a deliverable."),
     ("Fintech &amp; payments", "Reconciliation pipelines, ledger integrity, settlement data, transaction enrichment and the regulatory reporting layer underneath."),
 ]
@@ -625,7 +625,7 @@ industries = f"""
           secondary=("See capabilities", "/capabilities/"))
 
 write("industries", layout("/industries/", "Industries — Intellora Tech",
-                          "Sector experience graded in three tiers: banking, revenue administration, customs, "
+                          "Sector experience graded in three tiers: banking, revenue and customs administration, "
                           "humanitarian operations and fintech at Tier 1.",
                           industries, accent="indigo", nav_key="Industries",
                           crumbs=[("Industries", None)]))
@@ -846,7 +846,7 @@ def post_page(p, body_html):
   <div class="post-meta">
     <time datetime="{p['date']}">{p['date_h']}</time>
     <span>·</span><span>{p['mins']} minute read</span>
-    <span>·</span><span>Musisi Ntege Simon Peter</span>
+    <span>·</span><span>Intellora Tech engineering team</span>
   </div>
   <div class="prose mt7">{body_html}</div>
 </article>
@@ -974,14 +974,14 @@ about = f"""
 <section class="wrap page-head">
   <p class="eyebrow">About</p>
   <h1>A senior-led practice, deliberately small.</h1>
-  <p class="lead">Intellora Tech is an engineering consultancy working across data, cloud, AI and security. The person you speak to on the first call is the person who does the work — no bench of juniors, no account manager between you and the engineer.</p>
+  <p class="lead">Intellora Tech is an engineering consultancy working across data, cloud, AI and security. A collective of specialists — database, cloud, analytics, machine learning, governance and security — led by a principal engineer who staffs each engagement and reviews what ships. You speak to hands-on engineers throughout, never an account manager.</p>
 </section>
 
 <section class="wrap section">
   <div class="capacity rv">
     <p class="eyebrow">How we stay small on purpose</p>
     <h2 style="max-width:24ch">A capped book is the quality control.</h2>
-    <p class="lead">We run at most three engagements concurrently. Not as a scarcity tactic — as the only honest way to promise that a senior engineer is genuinely thinking about your platform rather than rotating through six of them.</p>
+    <p class="lead">We run at most three engagements concurrently. Not as a scarcity tactic — as the only honest way to promise that the specialists on your platform are genuinely thinking about it, and that the principal can review every deliverable rather than signing off work nobody senior has read.</p>
     <div class="grid c3 mt6">
       <div><p class="mono mb3">We decline</p><p class="soft">Work outside our depth, scope that is genuinely undefined at contracting, and deadlines that would force us to cut the testing or the documentation.</p></div>
       <div><p class="mono mb3">We finish</p><p class="soft">An engagement is done when it is documented, handed over and running — not when the hours are used up. Overrun on a fixed price is our problem, not yours.</p></div>
@@ -999,10 +999,10 @@ about = f"""
       </picture>
     </div>
     <div class="rv">
-      <p class="mono mb3">Kampala, Uganda · calls across EU, UK, Gulf and US-East hours</p>
+      <p class="mono mb3">Principal engineer · practice lead</p>
       <h2>Musisi Ntege Simon Peter</h2>
-      <p class="soft mt4">Principal engineer. Roughly a decade of production data engineering across core banking, United Nations humanitarian operations and national revenue administration.</p>
-      <p class="soft mt4">Deepest experience in Oracle database internals, enterprise data warehouse architecture, ETL and ELT engineering, and customs and revenue systems. Holds an MBA from Uganda Management Institute and a BSc in Computer Engineering from Makerere University.</p>
+      <p class="soft mt4">Leads the practice: sets the engineering standards, staffs each engagement, and reviews what goes out the door. Roughly a decade of production data engineering across core banking, United Nations humanitarian operations, and revenue and customs administration.</p>
+      <p class="soft mt4">Deepest personally in Oracle database internals, enterprise data warehouse architecture and ETL and ELT engineering. Holds an MBA and a BSc in Computer Engineering, alongside the certifications listed below.</p>
       <div class="row mt5">
         <a href="/contact/" class="btn btn-p">Book a call</a>
         <a href="/capabilities/" class="btn btn-s">See capabilities</a>
@@ -1013,7 +1013,24 @@ about = f"""
 
 <section class="wrap section">
   <div class="rv">
-    <h2 class="mb5">Credentials</h2>
+    <h2 class="mb4">Specialists, matched to your stack</h2>
+    <p class="lead mb6">No single engineer is deepest at everything, and we do not pretend otherwise. The practice is organised around distinct specialisms, and an engagement is staffed with the people whose depth matches the work rather than whoever is free.</p>
+    <div class="grid c3">
+      <div class="card card-accent k-coral"><h3>Database engineering</h3><p>Oracle internals, PostgreSQL, SQL Server and MySQL. Modelling, tuning, high availability, migration and Oracle Data Integrator.</p></div>
+      <div class="card card-accent k-gold"><h3>Cloud &amp; platform</h3><p>AWS architecture, landing zones, infrastructure as code, CI/CD for data infrastructure, and cost engineering.</p></div>
+      <div class="card card-accent k-emerald"><h3>Analytics engineering</h3><p>Semantic modelling, dbt, Oracle Analytics and Power BI, and the metric governance that stops dashboards disagreeing.</p></div>
+      <div class="card card-accent k-plum"><h3>Machine learning</h3><p>Feature pipelines, training workflows, MLOps and retrieval systems — built by people who ship models, not only notebooks.</p></div>
+      <div class="card card-accent k-indigo"><h3>Governance &amp; data quality</h3><p>Lineage, cataloguing, quality enforcement and the evidence trail an auditor or regulator will eventually ask for.</p></div>
+      <div class="card card-accent k-deep"><h3>Platform security</h3><p>Access control design, encryption and key management, secrets, and audit logging for the data estate.</p></div>
+    </div>
+    <div class="callout mt6"><b>Who you actually speak to.</b> Every call is with a hands-on engineer from the team that would do the work — someone who reads execution plans and writes the code, not an account manager relaying questions back to a delivery team. The principal reviews every engagement regardless of who leads it.</div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="rv">
+    <h2 class="mb4">Principal engineer credentials</h2>
+    <p class="lead mb6">Held by the practice lead. Specialists on the team carry their own credentials in their stacks, available on request.</p>
     <div class="rows">
       <div><div><p class="n">AWS Certified Solutions Architect – Associate</p><p class="m">Amazon Web Services</p></div><p class="d">Oct 2024 – Oct 2027</p></div>
       <div><div><p class="n">ITIL 4 Foundation</p><p class="m">PeopleCert · IT service management</p></div><p class="d">Jul 2022</p></div>
@@ -1028,22 +1045,22 @@ about = f"""
 
 <section class="wrap section">
   <div class="rv">
-    <h2 class="mb5">How a remote senior practice works</h2>
+    <h2 class="mb5">How a distributed practice works</h2>
     <div class="grid c2">
-      <div class="card card-accent k-emerald"><h3>Weekly written update</h3><p>Every Friday: what shipped, what is next, what is blocked, and any change to the estimate — in writing, so it survives being forwarded to your board.</p></div>
+      <div class="card card-accent k-emerald"><h3>Weekly written update</h3><p>Every Friday from the engineer leading your work: what shipped, what is next, what is blocked, and any change to the estimate — in writing, so it survives being forwarded to your board.</p></div>
       <div class="card card-accent k-indigo"><h3>Working sessions, not status calls</h3><p>Calls are for decisions and joint work. Status arrives in writing beforehand so the call is not spent reading it aloud.</p></div>
-      <div class="card card-accent k-gold"><h3>Your tools</h3><p>We work in your Slack, your Jira, your repository and your cloud account, with access provisioned at least privilege and revoked on handover.</p></div>
-      <div class="card card-accent k-coral"><h3>Handover as a deliverable</h3><p>Documentation, runbooks and decision records, plus a live session with your engineers — so the work outlives the engagement.</p></div>
+      <div class="card card-accent k-gold"><h3>Your tools</h3><p>The team works in your Slack, your Jira, your repository and your cloud account, with access provisioned at least privilege and revoked on handover.</p></div>
+      <div class="card card-accent k-coral"><h3>Handover as a deliverable</h3><p>Documentation, runbooks and decision records, plus a live session between your engineers and ours — so the work outlives the engagement.</p></div>
     </div>
   </div>
 </section>
-""" + cta("Work with the engineer, not the org chart.",
+""" + cta("Work with the engineers, not the org chart.",
           "One paragraph about what is broken is enough to start.",
           secondary=("Read the insights", "/blog/"))
 
 write("about", layout("/about/", "About — Intellora Tech",
-                      "A senior-led engineering practice in Kampala, Uganda, delivering data, cloud, AI and "
-                      "security work remotely worldwide.",
+                      "A distributed engineering practice of specialists across data, cloud, AI and "
+                      "security, led by a principal engineer and delivering worldwide.",
                       about, accent="emerald", nav_key="About", crumbs=[("About", None)]))
 
 # --------------------------------------------------------------------- contact
@@ -1051,7 +1068,7 @@ contact = f"""
 <section class="wrap page-head">
   <p class="eyebrow">Contact</p>
   <h1>Start with a twenty-minute call.</h1>
-  <p class="lead">A diagnostic conversation about what is broken and whether we are the right people to fix it. If we are not, we will say so on the call and suggest what would actually help.</p>
+  <p class="lead">A diagnostic conversation with a hands-on engineer — not a salesperson — about what is broken and whether we are the right people to fix it. If we are not, we will say so on the call and suggest what would actually help.</p>
   <div class="row mt6">
     <a href="mailto:{EMAIL}?subject=Discovery%20call%20request" class="btn btn-p">Email to arrange a call <span class="ar" aria-hidden="true">→</span></a>
     <a href="/tools/estimator/" class="btn btn-s">Estimate a programme first</a>
@@ -1064,8 +1081,8 @@ contact = f"""
       <h2 class="mb5">How to reach us</h2>
       <div class="rows">
         <div><div><p class="n">Email</p><p class="m">Replies within one business day</p></div><p class="d"><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
-        <div><div><p class="n">Location</p><p class="m">Delivery is remote worldwide</p></div><p class="d">Kampala, Uganda</p></div>
-        <div><div><p class="n">Working hours</p><p class="m">Calls scheduled in your timezone</p></div><p class="d">EAT · UTC+3</p></div>
+        <div><div><p class="n">Structure</p><p class="m">Specialists matched to your stack</p></div><p class="d">Distributed team</p></div>
+        <div><div><p class="n">Working hours</p><p class="m">Calls scheduled in your timezone</p></div><p class="d">Your business hours</p></div>
         <div><div><p class="n">Languages</p><p class="m">Delivery and documentation</p></div><p class="d">English</p></div>
         <div><div><p class="n">Payments</p><p class="m">Card, or international wire</p></div><p class="d"><a href="/payment/">Pay an invoice</a></p></div>
       </div>
@@ -1076,7 +1093,7 @@ contact = f"""
         <li><b>Minutes 0–5 · What is actually broken</b><span>You describe the problem. We ask who feels it and what it costs each month it continues.</span></li>
         <li><b>Minutes 5–12 · Source system reality check</b><span>What data exists, how it is structured, and the state of the source systems. This is where estimates move most, so we do it early.</span></li>
         <li><b>Minutes 12–17 · Budget and sequencing</b><span>Whether your budget and our estimate are in the same range, and what order the work should happen in.</span></li>
-        <li><b>Minutes 17–20 · A direct answer on fit</b><span>Whether we can help, what we would propose, and when you would get a written proposal.</span></li>
+        <li><b>Minutes 17–20 · A direct answer on fit</b><span>Whether we can help, which specialists would lead it, what we would propose, and when you would get a written proposal.</span></li>
       </ul>
       <div class="callout mt6"><b>Bring nothing prepared.</b> An architecture diagram or a recent cloud bill speeds things up, but the call works fine without either.</div>
       <div class="callout mt5"><b>We run three engagements at a time.</b> If the slots are full when you write, we will tell you on the call and give you a realistic start date rather than taking the work and stretching it thin.</div>
@@ -1165,7 +1182,7 @@ payment = f"""
 write("payment", layout("/payment/", "Pay an invoice — Intellora Tech",
                         "Pay an Intellora Tech invoice or deposit securely by Visa or Mastercard through "
                         "Stripe's hosted checkout.",
-                        payment, accent="emerald", noindex=True, crumbs=[("Pay an invoice", None)]))
+                        payment, accent="emerald", nav_key="Payments", crumbs=[("Payments", None)]))
 
 success = """
 <section class="wrap page-head ctr">
@@ -1199,7 +1216,7 @@ write("payment/cancel", layout("/payment/cancel/", "Payment cancelled — Intell
                                cancel, accent="emerald", noindex=True))
 
 # ------------------------------------------------------------- sitemap & robots
-urls = ["/", "/capabilities/", "/industries/", "/blog/", "/about/", "/contact/",
+urls = ["/", "/capabilities/", "/industries/", "/blog/", "/about/", "/contact/", "/payment/",
         "/tools/estimator/", "/tools/maturity/"]
 urls += ["/capabilities/%s/" % s for s, _, _, _ in PILLARS]
 urls += ["/blog/%s/" % p["slug"] for p in POSTS]
@@ -1212,5 +1229,5 @@ with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as fh:
 print("wrote sitemap.xml")
 
 with open(os.path.join(ROOT, "robots.txt"), "w", encoding="utf-8") as fh:
-    fh.write("User-agent: *\nAllow: /\nDisallow: /payment/\n\nSitemap: %s/sitemap.xml\n" % SITE)
+    fh.write("User-agent: *\nAllow: /\nDisallow: /payment/success/\nDisallow: /payment/cancel/\n\nSitemap: %s/sitemap.xml\n" % SITE)
 print("wrote robots.txt")
