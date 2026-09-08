@@ -15,11 +15,23 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://intelloratech.com"
 EMAIL = "hello@intelloratech.com"
 
+# Logo — a lineage graph: scattered sources converge through one governed
+# transform into a single served truth. The shape data engineers draw on
+# whiteboards every week, and the shape of what the practice sells.
+LOGO_PATHS = (
+    '<path d="M8 8.5 L17 16 M8 23.5 L17 16 M17 16 L24.5 16" stroke="{fg}" '
+    'stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>'
+    '<circle cx="8" cy="8.5" r="2.5" fill="{fg}"/>'
+    '<circle cx="8" cy="23.5" r="2.5" fill="{fg}"/>'
+    '<circle cx="17" cy="16" r="2.1" fill="{fg}"/>'
+    '<circle cx="25" cy="16" r="3.3" fill="{accent}"/>'
+)
+
 FAVICON = (
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E"
-    "%3Crect width='32' height='32' rx='7' fill='%230E6E5E'/%3E%3Cpath d='M9 21 L15 12 L21 21' "
-    "stroke='%23FBF9F5' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E"
-    "%3Ccircle cx='23.5' cy='11.5' r='2.2' fill='%23D9982B'/%3E%3C/svg%3E"
+    "%3Crect width='32' height='32' rx='7' fill='%230E6E5E'/%3E"
+    + LOGO_PATHS.format(fg="%23FBF9F5", accent="%23F0C05A").replace('"', "'").replace("<", "%3C").replace(">", "%3E")
+    + "%3C/svg%3E"
 )
 
 FONTS = (
@@ -31,16 +43,15 @@ FONTS = (
 
 MARK = (
     '<span class="brand-mark" aria-hidden="true">'
-    '<svg width="16" height="16" viewBox="0 0 32 32">'
-    '<path d="M9 21 L15 12 L21 21" stroke="#FBF9F5" stroke-width="2.6" fill="none" '
-    'stroke-linecap="round" stroke-linejoin="round"/>'
-    '<circle cx="23.5" cy="11.5" r="2.2" fill="#F0C05A"/></svg></span>'
+    '<svg width="17" height="17" viewBox="0 0 32 32">'
+    + LOGO_PATHS.format(fg="#FBF9F5", accent="#F0C05A") +
+    '</svg></span>'
 )
 
 NAV = [
     ("Capabilities", "/capabilities/"),
     ("Industries", "/industries/"),
-    ("Insights", "/blog/"),
+    ("Blog", "/blog/"),
     ("About", "/about/"),
 ]
 
@@ -171,7 +182,7 @@ def layout(path, title, desc, body, accent="emerald", nav_key=None, crumbs=None,
         <h2>Explore</h2>
         <ul>
           <li><a href="/industries/">Industries</a></li>
-          <li><a href="/blog/">Insights</a></li>
+          <li><a href="/blog/">Blog</a></li>
           <li><a href="/tools/estimator/">Programme estimator</a></li>
           <li><a href="/tools/maturity/">Maturity check</a></li>
         </ul>
@@ -245,6 +256,47 @@ home = f"""
   </div>
 </section>
 
+<section class="wrap mb6">
+  <div class="pgfx rv" role="img" aria-label="Animated diagram. Four fragmented data sources — a stale CRM export, a payments ledger with three conflicting schemas, a manual operations spreadsheet and an unindexed object store — flow through a four-stage pipeline of ingest, validate, model and serve. They emerge as a single source of truth with twelve-minute data freshness, ninety-nine point six per cent pipeline reliability and one agreed metric definition. Figures illustrate a representative engagement.">
+    <div class="pgfx-hd">
+      <span>pipeline_view — representative engagement</span>
+      <span class="lv"><span class="dot-live"></span>running</span>
+      <span class="sweep"></span>
+    </div>
+    <div class="pgfx-bd">
+      <div class="flow" aria-hidden="true">
+        <span style="--y0:31%;--y1:26%;animation-delay:0s"></span>
+        <span style="--y0:44%;--y1:41%;animation-delay:-1.1s"></span>
+        <span style="--y0:57%;--y1:56%;animation-delay:-2.2s"></span>
+        <span style="--y0:70%;--y1:72%;animation-delay:-3.3s"></span>
+        <span style="--y0:38%;--y1:66%;animation-delay:-4.4s"></span>
+        <span style="--y0:63%;--y1:33%;animation-delay:-5.5s"></span>
+      </div>
+      <div>
+        <div class="pcol-l">Before <em>· 4 sources, 0 contracts</em></div>
+        <div class="src"><span class="sd"></span><span class="sn">CRM export</span><span class="sm">stale 6d</span></div>
+        <div class="src"><span class="sd"></span><span class="sn">Payments ledger</span><span class="sm">3 schemas</span></div>
+        <div class="src"><span class="sd"></span><span class="sn">Ops spreadsheet</span><span class="sm">manual</span></div>
+        <div class="src"><span class="sd"></span><span class="sn">Object store</span><span class="sm">unindexed</span></div>
+      </div>
+      <div>
+        <div class="pipe">
+          <div class="pipe-n">Intellora pipeline</div>
+          <div class="pipe-rail"><u></u><i></i><i></i><i></i></div>
+          <div class="pipe-st"><b>INGEST</b><b>VALIDATE</b><b>MODEL</b><b>SERVE</b></div>
+          <div class="pipe-tag">governed · tested · traced</div>
+        </div>
+      </div>
+      <div>
+        <div class="pcol-l">After <em class="ok">· 1 source of truth</em></div>
+        <div class="out"><span class="ol">Data freshness</span><span class="ov">12 min</span></div>
+        <div class="out"><span class="ol">Pipeline reliability</span><span class="ov">99.6%</span></div>
+        <div class="out"><span class="ol">Metric definitions</span><span class="ov">1 agreed</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="wrap">
   <div class="grid c3">
     <a href="/capabilities/" class="card card-accent k-emerald rv">
@@ -260,7 +312,7 @@ home = f"""
       <span class="go">Open the estimator →</span>
     </a>
     <a href="/blog/" class="card card-accent k-coral rv">
-      <p class="mono">Insights</p>
+      <p class="mono">Blog</p>
       <h3>Field notes</h3>
       <p>What actually goes wrong in data platforms, written from production experience rather than theory.</p>
       <span class="go">Read the blog →</span>
@@ -271,9 +323,61 @@ home = f"""
 <section class="wrap section">
   <div class="grid c4">
     <div class="stat rv"><p class="v">10+</p><p class="k">Years of production data engineering</p></div>
+    <div class="stat rv"><p class="v">3</p><p class="k">Maximum engagements running at once</p></div>
     <div class="stat rv"><p class="v">6</p><p class="k">Capability pillars, sold separately or together</p></div>
-    <div class="stat rv"><p class="v">4</p><p class="k">Regions covered in working hours</p></div>
     <div class="stat rv"><p class="v">1</p><p class="k">Engineer between you and the work</p></div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="capacity rv">
+    <div class="grid c2" style="align-items:center">
+      <div>
+        <p class="eyebrow">Deliberately limited</p>
+        <h2 style="max-width:18ch">Three engagements at a time. Never four.</h2>
+        <p class="lead">The thing we sell is undivided senior attention, and attention does not scale by taking on more work. So we cap the book, decline what we cannot do excellently, and finish what we start before opening the next slot.</p>
+        <p class="mono mt6">Current engagement slots</p>
+        <div class="slots" role="img" aria-label="Two of three engagement slots currently committed, one open.">
+          <i></i><i></i><i class="open"></i>
+        </div>
+        <p class="mono mt4">2 committed · 1 open</p>
+      </div>
+      <div class="grid" style="gap:var(--s4)">
+        <div class="card card-accent k-emerald"><h3>One engineer, start to finish</h3><p>No handover to a delivery team, no junior learning on your budget. The person on the scoping call writes the code and runs the handover.</p></div>
+        <div class="card card-accent k-gold"><h3>We say no more than yes</h3><p>Work outside our depth, undefined scope, or a timeline that would force shortcuts — declined, with a suggestion of who is better placed.</p></div>
+        <div class="card card-accent k-indigo"><h3>Narrow scope, finished properly</h3><p>A tightly drawn engagement delivered completely beats a broad one delivered to eighty per cent. Scope is fixed at signature and changes are quoted before work starts.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="orbit-w rv">
+    <div class="orbit" role="img" aria-label="Diagram showing Intellora Tech at the centre of two rotating rings. The inner ring holds the six capability pillars: analytics and business intelligence, governance, security, artificial intelligence and machine learning, database engineering, and AWS cloud architecture. The outer ring holds representative services including ETL and ELT pipelines, lineage tracing, feature pipelines, access control design, Oracle Analytics, Oracle Data Integrator, cost optimisation, semantic modelling, MLOps and performance tuning.">
+      <div class="orb-halo" aria-hidden="true"></div>
+      <div class="orb-core"><b>Intellora<br>Tech</b><i>6 pillars</i></div>
+      <div class="ring ring1">
+        <div class="onode p-analytics" style="--a:0deg"><div class="ospin"><div class="opill">Analytics &amp; BI</div></div></div>
+        <div class="onode p-governance" style="--a:60deg"><div class="ospin"><div class="opill">Governance</div></div></div>
+        <div class="onode p-security" style="--a:120deg"><div class="ospin"><div class="opill">Security</div></div></div>
+        <div class="onode p-ai" style="--a:180deg"><div class="ospin"><div class="opill">AI &amp; ML</div></div></div>
+        <div class="onode p-database" style="--a:240deg"><div class="ospin"><div class="opill">Databases</div></div></div>
+        <div class="onode p-cloud" style="--a:300deg"><div class="ospin"><div class="opill">AWS Cloud</div></div></div>
+      </div>
+      <div class="ring ring2">
+        <div class="onode" style="--a:0deg"><div class="ospin"><div class="opill">ETL &amp; ELT</div></div></div>
+        <div class="onode" style="--a:36deg"><div class="ospin"><div class="opill">Lineage tracing</div></div></div>
+        <div class="onode" style="--a:72deg"><div class="ospin"><div class="opill">Access control</div></div></div>
+        <div class="onode" style="--a:108deg"><div class="ospin"><div class="opill">Feature pipelines</div></div></div>
+        <div class="onode" style="--a:144deg"><div class="ospin"><div class="opill">MLOps</div></div></div>
+        <div class="onode" style="--a:180deg"><div class="ospin"><div class="opill">Oracle Data Integrator</div></div></div>
+        <div class="onode" style="--a:216deg"><div class="ospin"><div class="opill">Performance tuning</div></div></div>
+        <div class="onode" style="--a:252deg"><div class="ospin"><div class="opill">Cost optimisation</div></div></div>
+        <div class="onode" style="--a:288deg"><div class="ospin"><div class="opill">Oracle Analytics</div></div></div>
+        <div class="onode" style="--a:324deg"><div class="ospin"><div class="opill">Semantic modelling</div></div></div>
+      </div>
+    </div>
+    <p class="orb-cap">Six pillars · one accountable practice · the engineer you speak to is the engineer who builds it</p>
   </div>
 </section>
 
@@ -709,7 +813,7 @@ post_cards = "".join(f"""
 
 blog_index = f"""
 <section class="wrap page-head">
-  <p class="eyebrow">Insights</p>
+  <p class="eyebrow">Blog</p>
   <h1>Field notes from production systems.</h1>
   <p class="lead">Written from engagements and postmortems rather than vendor material. Short, specific, and useful whether or not you ever hire us.</p>
 </section>
@@ -720,10 +824,10 @@ blog_index = f"""
 """ + cta("Have a version of this problem?",
           "If one of these sounds like your platform, a twenty-minute call will tell you how deep it goes.")
 
-write("blog", layout("/blog/", "Insights — Intellora Tech",
+write("blog", layout("/blog/", "Blog — Intellora Tech",
                      "Field notes on data platforms: reporting definitions, database cost, and what has to be "
                      "true before a machine learning model ships.",
-                     blog_index, accent="coral", nav_key="Insights", crumbs=[("Insights", None)]))
+                     blog_index, accent="coral", nav_key="Blog", crumbs=[("Blog", None)]))
 
 
 def post_page(p, body_html):
@@ -748,15 +852,15 @@ def post_page(p, body_html):
 </article>
 
 <section class="wrap section article">
-  <h2 class="mb5">More field notes</h2>
+  <h2 class="mb5">More from the blog</h2>
   <div class="grid c2">{more}</div>
 </section>
 """ + cta("Recognise this in your own platform?",
           "Twenty minutes is usually enough to tell you whether it is a small fix or a structural one.")
 
     write("blog/" + p["slug"], layout("/blog/%s/" % p["slug"], "%s — Intellora Tech" % p["title"],
-                                      p["excerpt"], body, accent="coral", nav_key="Insights",
-                                      crumbs=[("Insights", "/blog/"), (p["title"], None)]))
+                                      p["excerpt"], body, accent="coral", nav_key="Blog",
+                                      crumbs=[("Blog", "/blog/"), (p["title"], None)]))
 
 
 post_page(POSTS[0], """
@@ -874,6 +978,19 @@ about = f"""
 </section>
 
 <section class="wrap section">
+  <div class="capacity rv">
+    <p class="eyebrow">How we stay small on purpose</p>
+    <h2 style="max-width:24ch">A capped book is the quality control.</h2>
+    <p class="lead">We run at most three engagements concurrently. Not as a scarcity tactic — as the only honest way to promise that a senior engineer is genuinely thinking about your platform rather than rotating through six of them.</p>
+    <div class="grid c3 mt6">
+      <div><p class="mono mb3">We decline</p><p class="soft">Work outside our depth, scope that is genuinely undefined at contracting, and deadlines that would force us to cut the testing or the documentation.</p></div>
+      <div><p class="mono mb3">We finish</p><p class="soft">An engagement is done when it is documented, handed over and running — not when the hours are used up. Overrun on a fixed price is our problem, not yours.</p></div>
+      <div><p class="mono mb3">We go narrow</p><p class="soft">One capability, delivered completely, beats a broad programme delivered to eighty per cent. If the right answer is a smaller engagement, we will propose the smaller one.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section">
   <div class="grid c2">
     <div class="rv">
       <picture>
@@ -962,6 +1079,7 @@ contact = f"""
         <li><b>Minutes 17–20 · A direct answer on fit</b><span>Whether we can help, what we would propose, and when you would get a written proposal.</span></li>
       </ul>
       <div class="callout mt6"><b>Bring nothing prepared.</b> An architecture diagram or a recent cloud bill speeds things up, but the call works fine without either.</div>
+      <div class="callout mt5"><b>We run three engagements at a time.</b> If the slots are full when you write, we will tell you on the call and give you a realistic start date rather than taking the work and stretching it thin.</div>
     </div>
   </div>
 </section>
