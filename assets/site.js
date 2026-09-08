@@ -1,8 +1,7 @@
-/* ============================================================
+/* ==========================================================
    INTELLORA TECH — SHARED BEHAVIOUR
-   Progressive enhancement only. Every feature degrades to
-   readable static content when JS is unavailable.
-   ============================================================ */
+   Progressive enhancement. Every page reads without JS.
+   ========================================================== */
 (function () {
   'use strict';
   var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -11,21 +10,19 @@
 
   /* ---------- theme ---------- */
   (function () {
-    var btn = $('#thm'); if (!btn) return;
+    var btn = $('#theme');
+    if (!btn) return;
     var KEY = 'intellora-theme';
-    var stored = null;
-    try { stored = localStorage.getItem(KEY); } catch (e) {}
-    if (stored) document.documentElement.setAttribute('data-theme', stored);
-    function label() {
+    function isDark() {
       var cur = document.documentElement.getAttribute('data-theme');
-      var dark = cur === 'dark' || (!cur && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+      return cur === 'dark' || (!cur && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+    function label() {
+      btn.setAttribute('aria-label', isDark() ? 'Switch to light theme' : 'Switch to dark theme');
     }
     label();
     btn.addEventListener('click', function () {
-      var cur = document.documentElement.getAttribute('data-theme');
-      var dark = cur === 'dark' || (!cur && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      var next = dark ? 'light' : 'dark';
+      var next = isDark() ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       try { localStorage.setItem(KEY, next); } catch (e) {}
       label();
@@ -34,7 +31,8 @@
 
   /* ---------- mobile nav ---------- */
   (function () {
-    var b = $('#burger'), m = $('#mnav'); if (!b || !m) return;
+    var b = $('#burger'), m = $('#mobile');
+    if (!b || !m) return;
     function shut() { m.classList.remove('open'); b.classList.remove('on'); b.setAttribute('aria-expanded', 'false'); }
     b.addEventListener('click', function () {
       var open = m.classList.toggle('open');
@@ -42,91 +40,33 @@
       b.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     m.addEventListener('click', function (e) { if (e.target.tagName === 'A') shut(); });
-    window.addEventListener('resize', function () { if (window.innerWidth > 1080) shut(); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 1000) shut(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') shut(); });
   })();
 
-  /* ---------- scroll: progress + sticky CTA ---------- */
-  (function () {
-    var sp = $('#sprog'), sc = $('#scta'), hero = $('[data-hero]'), end = $('#contact') || $('[data-cta-end]');
-    var tick = false;
-    function run() {
-      var d = document.documentElement;
-      if (sp) {
-        var max = d.scrollHeight - d.clientHeight;
-        sp.style.width = (max > 0 ? (d.scrollTop || document.body.scrollTop) / max * 100 : 0) + '%';
-      }
-      if (sc && hero) {
-        var past = (window.pageYOffset || d.scrollTop) > (hero.offsetTop + hero.offsetHeight);
-        var near = false;
-        if (end) near = end.getBoundingClientRect().top < window.innerHeight * 0.9;
-        sc.classList.toggle('on', past && !near);
-      }
-      tick = false;
-    }
-    function onScroll() { if (tick) return; tick = true; window.requestAnimationFrame(run); }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    run();
-  })();
-
-  /* ---------- reveals (one orchestrated moment per section) ---------- */
+  /* ---------- reveals ---------- */
   (function () {
     var els = $$('.rv');
     if (!els.length) return;
     if (RM || !('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('on'); }); return; }
     var io = new IntersectionObserver(function (en) {
       en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
     els.forEach(function (e) { io.observe(e); });
   })();
 
-  /* ---------- count-up ---------- */
-  (function () {
-    var els = $$('[data-to]');
-    if (!els.length) return;
-    function up(el) {
-      var to = parseFloat(el.dataset.to),
-          to2 = el.dataset.to2 ? parseFloat(el.dataset.to2) : null,
-          suf = el.dataset.suf || '', t0 = null, dur = 1200;
-      if (RM) { el.textContent = (to2 !== null ? to + '–' + to2 : to) + suf; return; }
-      function frame(ts) {
-        if (!t0) t0 = ts;
-        var p = Math.min((ts - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
-        el.textContent = (to2 !== null ? Math.round(to * e) + '–' + Math.round(to2 * e) : Math.round(to * e)) + suf;
-        if (p < 1) requestAnimationFrame(frame);
-        else el.textContent = (to2 !== null ? to + '–' + to2 : to) + suf;
-      }
-      requestAnimationFrame(frame);
-    }
-    if (!('IntersectionObserver' in window)) { els.forEach(up); return; }
-    var io = new IntersectionObserver(function (en) {
-      en.forEach(function (e) { if (e.isIntersecting) { up(e.target); io.unobserve(e.target); } });
-    }, { threshold: 0.5 });
-    els.forEach(function (e) { io.observe(e); });
-  })();
-
-  /* ---------- currency toggle ---------- */
+  /* ---------- currency ---------- */
   var CUR = { USD: { s: '$', r: 1 }, EUR: { s: '€', r: 0.92 }, GBP: { s: '£', r: 0.79 }, AED: { s: 'AED ', r: 3.67 } };
   var curCode = 'USD';
   function fmt(usd) {
     var c = CUR[curCode], v = Math.round(usd * c.r / 100) * 100;
     return c.s + v.toLocaleString('en-US');
   }
-  (function () {
-    var sel = $('#cur'); if (!sel) return;
-    function apply() {
-      curCode = sel.value;
-      $$('[data-usd]').forEach(function (el) { el.textContent = fmt(parseFloat(el.dataset.usd)); });
-      if (window.__reprice) window.__reprice();
-    }
-    sel.addEventListener('change', apply);
-    apply();
-  })();
 
   /* ---------- programme estimator ---------- */
   (function () {
-    var root = $('#est'); if (!root) return;
+    var root = $('#est');
+    if (!root) return;
 
     var BASE = {
       assess:   { p: 4200,  w: 3,  l: 'Assessment or proof of concept' },
@@ -155,13 +95,14 @@
       migrate:  [['Discovery and mapping', 25], ['Build and migrate', 38], ['Parallel validation', 24], ['Cutover and handover', 13]]
     };
 
-    var st = { type: null, pillar: null, cx: null, sz: null, gv: null, tl: null }, step = 1;
+    var st = { type: null, pillar: null, cx: null, sz: null, gv: null, tl: null };
+    var step = 1;
 
     function calc() {
       var b = BASE[st.type], pl = PILLAR[st.pillar];
       var p = b.p * pl.p * M.cx[st.cx].p * M.sz[st.sz].p * M.gv[st.gv].p * M.tl[st.tl].p;
       var w = b.w * pl.w * M.cx[st.cx].w * M.sz[st.sz].w * M.gv[st.gv].w * M.tl[st.tl].w;
-      return { lo: p * 0.84, hi: p * 1.18, mid: p, wLo: Math.max(2, Math.round(w * 0.85)), wHi: Math.round(w * 1.15) };
+      return { lo: p * 0.84, hi: p * 1.18, wLo: Math.max(2, Math.round(w * 0.85)), wHi: Math.round(w * 1.15) };
     }
 
     function paint() {
@@ -172,16 +113,10 @@
       $('#resTags').innerHTML = [b.l, PILLAR[st.pillar].l, M.cx[st.cx].l, M.sz[st.sz].l, M.gv[st.gv].l, M.tl[st.tl].l]
         .map(function (t) { return '<span class="chip">' + t + '</span>'; }).join('');
       $('#resPhases').innerHTML = PH[st.type].map(function (p) {
-        return '<div class="mb4"><div style="display:flex;justify-content:space-between;gap:.625rem;font-size:var(--t-sm);margin-bottom:.375rem">' +
-          '<b style="font-weight:500">' + p[0] + '</b><span class="mono dim">' + p[1] + '% · ' + fmt(r.lo * p[1] / 100) + '–' + fmt(r.hi * p[1] / 100) + '</span></div>' +
-          '<div style="height:7px;background:var(--paper-3);border-radius:4px;overflow:hidden"><i style="display:block;height:100%;width:' + p[1] + '%;background:var(--brand);border-radius:4px"></i></div></div>';
+        return '<div class="mb4"><div style="display:flex;justify-content:space-between;gap:.625rem;font-size:.875rem;margin-bottom:.375rem" class="ui">' +
+          '<b style="font-weight:600">' + p[0] + '</b><span class="mono">' + p[1] + '% · ' + fmt(r.lo * p[1] / 100) + '–' + fmt(r.hi * p[1] / 100) + '</span></div>' +
+          '<div class="bar"><i style="width:' + p[1] + '%"></i></div></div>';
       }).join('');
-
-      var cap = $('#resCap');
-      if (r.mid > 58000) {
-        cap.hidden = false;
-        cap.innerHTML = '<b>A programme this size needs a conversation before a number.</b> At this scale the work is either phased into sequenced engagements with their own fixed prices, or delivered with a partner team for capacity. We would rather say that now than quote a figure we cannot staff. Treat the range above as a total across phases, not a single contract.';
-      } else { cap.hidden = true; }
 
       var sum = 'Programme estimate — intelloratech.com\n\n' +
         'Objective: ' + b.l + '\nPrimary capability: ' + PILLAR[st.pillar].l + '\n' +
@@ -193,19 +128,23 @@
       var ml = $('#resMail');
       if (ml) ml.href = 'mailto:hello@intelloratech.com?subject=' + encodeURIComponent('Scoping call — ' + b.l) + '&body=' + encodeURIComponent(sum);
     }
-    window.__reprice = function () { if (step === 3) paint(); };
+
+    var sel = $('#cur');
+    if (sel) sel.addEventListener('change', function () {
+      curCode = sel.value;
+      if (step === 3) paint();
+    });
 
     function go(n) {
       step = n;
       $$('[data-pane]', root).forEach(function (p) { p.hidden = (+p.dataset.pane !== n); });
       $$('[data-stepname]', root).forEach(function (s) {
-        var on = +s.dataset.stepname === n;
-        s.style.color = on ? 'var(--brand)' : 'var(--tx-dim)';
-        s.setAttribute('aria-current', on ? 'step' : 'false');
+        s.setAttribute('aria-current', +s.dataset.stepname === n ? 'step' : 'false');
       });
-      var bar = $('#estBar'); if (bar) bar.style.width = (n * 33.34) + '%';
+      var bar = $('#estBar');
+      if (bar) bar.style.width = (n * 33.34) + '%';
       if (n === 3) paint();
-      var y = root.getBoundingClientRect().top + window.pageYOffset - 88;
+      var y = root.getBoundingClientRect().top + window.pageYOffset - 90;
       window.scrollTo({ top: y, behavior: RM ? 'auto' : 'smooth' });
     }
 
@@ -217,7 +156,8 @@
 
     $$('[data-grp]', root).forEach(function (g) {
       g.addEventListener('click', function (e) {
-        var c = e.target.closest('.opt'); if (!c) return;
+        var c = e.target.closest('.opt');
+        if (!c) return;
         $$('.opt', g).forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
         c.setAttribute('aria-pressed', 'true');
         st[g.dataset.grp] = c.dataset.v;
@@ -225,33 +165,39 @@
       });
     });
 
-    var n1 = $('#estN1'), n2 = $('#estN2');
+    var n1 = $('#estN1'), n2 = $('#estN2'), b2 = $('#estB2'), b3 = $('#estB3');
     if (n1) n1.addEventListener('click', function () { if (st.type && st.pillar) go(2); });
     if (n2) n2.addEventListener('click', function () { if (st.cx && st.sz && st.gv && st.tl) go(3); });
-    var b2 = $('#estB2'), b3 = $('#estB3');
     if (b2) b2.addEventListener('click', function () { go(1); });
     if (b3) b3.addEventListener('click', function () { go(2); });
 
     var cp = $('#resCopy');
     if (cp) cp.addEventListener('click', function () {
-      var t = window.__estSum || '', done = function () {
-        var c = $('#resCopied'); if (!c) return;
-        c.hidden = false; setTimeout(function () { c.hidden = true; }, 2600);
+      var t = window.__estSum || '';
+      var done = function () {
+        var c = $('#resCopied');
+        if (!c) return;
+        c.hidden = false;
+        setTimeout(function () { c.hidden = true; }, 2600);
       };
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, done);
       else {
         var ta = document.createElement('textarea');
-        ta.value = t; document.body.appendChild(ta); ta.select();
+        ta.value = t;
+        document.body.appendChild(ta);
+        ta.select();
         try { document.execCommand('copy'); } catch (e) {}
-        ta.remove(); done();
+        ta.remove();
+        done();
       }
     });
     gate();
   })();
 
-  /* ---------- maturity self-assessment ---------- */
+  /* ---------- maturity check ---------- */
   (function () {
-    var root = $('#mat'); if (!root) return;
+    var root = $('#mat');
+    if (!root) return;
     var qs = $$('[data-q]', root), out = $('#matOut'), btn = $('#matGo');
     var STAGE = [
       { max: 11, n: 'Ad hoc', d: 'Data lives in operational systems and spreadsheets. Reporting is manual and answers disagree depending on who produced them. The first win is a single reliable pipeline and one agreed set of definitions.', p: ['database', 'analytics'] },
@@ -259,8 +205,15 @@
       { max: 23, n: 'Governed', d: 'The platform is reliable and documented. The next constraints are cost efficiency, access control, and preparing the data layer to support models rather than dashboards alone.', p: ['cloud', 'security'] },
       { max: 99, n: 'Optimising', d: 'Strong foundations already in place. Value now comes from advanced workloads — machine learning in production, real-time decisioning, and formal model governance.', p: ['ai', 'governance'] }
     ];
-    var NAMES = { analytics: 'Analytics & BI', governance: 'Governance & compliance', security: 'Security & data protection', ai: 'AI & machine learning', database: 'Database engineering', cloud: 'AWS cloud architecture' };
-    var LINKS = { analytics: '../capabilities/', governance: '../capabilities/', security: '../capabilities/', ai: '../capabilities/ai-machine-learning.html', cloud: '../capabilities/aws-cloud-architecture.html', database: '../capabilities/' };
+    var NAMES = {
+      analytics: 'Analytics & BI', governance: 'Governance & compliance', security: 'Security & data protection',
+      ai: 'AI & machine learning', database: 'Database engineering', cloud: 'AWS cloud architecture'
+    };
+    var LINKS = {
+      analytics: '/capabilities/analytics-bi/', governance: '/capabilities/data-governance/',
+      security: '/capabilities/security/', ai: '/capabilities/ai-machine-learning/',
+      cloud: '/capabilities/aws-cloud/', database: '/capabilities/database-engineering/'
+    };
 
     if (btn) btn.addEventListener('click', function () {
       var total = 0, answered = 0;
@@ -268,38 +221,87 @@
         var sel = $('select', q);
         if (sel && sel.value !== '') { total += parseInt(sel.value, 10); answered++; }
       });
+      out.hidden = false;
       if (answered < qs.length) {
-        out.hidden = false;
-        out.innerHTML = '<div class="note">Answer all ' + qs.length + ' questions to see your result.</div>';
+        out.innerHTML = '<div class="alert">Answer all ' + qs.length + ' questions to see your result.</div>';
         return;
       }
       var s = STAGE.filter(function (x) { return total <= x.max; })[0];
-      out.hidden = false;
       out.innerHTML =
-        '<div class="card" style="border-color:var(--brand)">' +
-        '<div class="mono dim mb4">Result · score ' + total + ' of ' + (qs.length * 4) + '</div>' +
-        '<h3 style="color:var(--brand);margin-bottom:.5rem">' + s.n + '</h3>' +
+        '<div class="card" style="border-color:var(--accent)">' +
+        '<p class="mono mb4">Result · score ' + total + ' of ' + (qs.length * 4) + '</p>' +
+        '<h3 style="color:var(--accent)">' + s.n + '</h3>' +
         '<p class="mb5">' + s.d + '</p>' +
-        '<div class="mono dim mb4">Where we would start</div>' +
-        '<div class="row">' + s.p.map(function (k) {
-          return '<a class="chip" href="' + LINKS[k] + '" style="border-color:var(--p-' + k + ');color:var(--p-' + k + ')">' + NAMES[k] + '</a>';
+        '<p class="mono mb4">Where we would start</p>' +
+        '<div class="chips">' + s.p.map(function (k) {
+          return '<a class="chip" href="' + LINKS[k] + '">' + NAMES[k] + '</a>';
         }).join('') + '</div>' +
-        '<p class="mono dim mt5" style="font-size:var(--t-xs)">Indicative only. A scoping call replaces this with an assessment of your actual systems.</p>' +
         '</div>';
       out.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'nearest' });
     });
   })();
 
-  /* ---------- technology filter ---------- */
+  /* ---------- payment form ---------- */
   (function () {
-    var root = $('#techf'); if (!root) return;
-    var btns = $$('[data-tf]', root), items = $$('[data-tgroup]');
-    btns.forEach(function (b) {
-      b.addEventListener('click', function () {
-        var k = b.dataset.tf;
-        btns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-        items.forEach(function (it) { it.hidden = !(k === 'all' || it.dataset.tgroup === k); });
-      });
+    var form = $('#pay-form');
+    if (!form) return;
+    var btn = $('#pay-btn'), errBox = $('#pay-err'), btnLabel = btn.innerHTML;
+
+    function showError(msg) { errBox.textContent = msg; errBox.hidden = false; }
+    function clearError() { errBox.hidden = true; errBox.textContent = ''; }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      clearError();
+
+      var amount = parseFloat($('#pay-amount').value);
+      if (!isFinite(amount) || amount <= 0) { showError('Enter a valid amount greater than zero.'); return; }
+      if (amount > 250000) { showError('For amounts above USD 250,000 please email hello@intelloratech.com to arrange payment.'); return; }
+
+      var reference = $('#pay-reference').value.trim();
+      var description = $('#pay-description').value.trim();
+
+      btn.disabled = true;
+      btn.textContent = 'Redirecting to secure checkout…';
+
+      fetch('/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: amount, reference: reference, description: description })
+      })
+        .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+        .then(function (result) {
+          if (!result.ok || !result.data || !result.data.url) {
+            throw new Error((result.data && result.data.error) || 'Unable to start checkout. Please try again.');
+          }
+          window.location.href = result.data.url;
+        })
+        .catch(function (err) {
+          showError(err.message || 'Something went wrong. Please try again or email hello@intelloratech.com.');
+          btn.disabled = false;
+          btn.innerHTML = btnLabel;
+        });
     });
+  })();
+
+  /* ---------- payment confirmation ---------- */
+  (function () {
+    var box = $('#confirm-box');
+    if (!box) return;
+    var sessionId = new URLSearchParams(window.location.search).get('session_id');
+    if (!sessionId) return;
+    fetch('/verify-payment?session_id=' + encodeURIComponent(sessionId))
+      .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+      .then(function (result) {
+        if (!result.ok) return;
+        var d = result.data;
+        if (d.status !== 'paid' && d.status !== 'no_payment_required') return;
+        var amount = (d.amount_total / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        var text = 'Confirmed: ' + (d.currency || 'usd').toUpperCase() + ' ' + amount;
+        if (d.reference) text += ' · Ref ' + d.reference;
+        box.textContent = text;
+        box.hidden = false;
+      })
+      .catch(function () {});
   })();
 })();

@@ -5,7 +5,7 @@ The site accepts Visa, Mastercard and Amex through **Stripe Checkout**. Card num
 ## How it works
 
 1. `/payment/` — a form for amount, an optional invoice reference, and a description.
-2. `assets/payment.js` posts that to `/create-checkout-session` (a Cloudflare Pages Function).
+2. `assets/site.js` posts that to `/create-checkout-session` (a Cloudflare Pages Function).
 3. `functions/create-checkout-session.js` calls the Stripe API with the site's **secret key** and creates a Checkout Session, returning Stripe's hosted checkout URL.
 4. The browser is redirected to `checkout.stripe.com` to enter card details.
 5. Stripe redirects back to `/payment/success/` (or `/payment/cancel/` if abandoned). The success page calls `/verify-payment` to display a confirmation, but the payment itself already happened on Stripe's side by that point.

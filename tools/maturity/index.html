@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contact — Intellora Tech</title>
-<meta name="description" content="Book a twenty-minute scoping call with Intellora Tech. What happens on the call and how to reach us.">
+<title>Data maturity check — Intellora Tech</title>
+<meta name="description" content="Six questions that place your data platform on a maturity scale and name the two capabilities worth starting with.">
 
-<link rel="canonical" href="https://intelloratech.com/contact/">
+<link rel="canonical" href="https://intelloratech.com/tools/maturity/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Contact — Intellora Tech">
-<meta property="og:description" content="Book a twenty-minute scoping call with Intellora Tech. What happens on the call and how to reach us.">
-<meta property="og:url" content="https://intelloratech.com/contact/">
+<meta property="og:title" content="Data maturity check — Intellora Tech">
+<meta property="og:description" content="Six questions that place your data platform on a maturity scale and name the two capabilities worth starting with.">
+<meta property="og:url" content="https://intelloratech.com/tools/maturity/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E6E5E'/%3E%3Cpath d='M9 21 L15 12 L21 21' stroke='%23FBF9F5' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='23.5' cy='11.5' r='2.2' fill='%23D9982B'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/theme.js"></script>
 </head>
-<body data-accent="emerald">
+<body data-accent="gold">
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="hdr">
@@ -39,63 +39,56 @@
     <a href="/contact/" class="btn btn-p">Book a call</a>
   </div>
 </header>
-<div class="wrap"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Contact</span></nav></div>
+<div class="wrap"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Tools</span><span aria-hidden="true">/</span><span>Maturity check</span></nav></div>
 <main id="main">
 
 <section class="wrap page-head">
-  <p class="eyebrow">Contact</p>
-  <h1>Start with a twenty-minute call.</h1>
-  <p class="lead">A diagnostic conversation about what is broken and whether we are the right people to fix it. If we are not, we will say so on the call and suggest what would actually help.</p>
-  <div class="row mt6">
-    <a href="mailto:hello@intelloratech.com?subject=Discovery%20call%20request" class="btn btn-p">Email to arrange a call <span class="ar" aria-hidden="true">→</span></a>
-    <a href="/tools/estimator/" class="btn btn-s">Estimate a programme first</a>
-  </div>
+  <p class="eyebrow">Maturity check</p>
+  <h1>Six questions about your data platform.</h1>
+  <p class="lead">Answer honestly and you get a stage, a plain description of what usually blocks organisations there, and the two capabilities we would start with.</p>
 </section>
 
-<section class="wrap section">
+<section class="wrap" id="mat">
   <div class="grid c2">
     <div class="rv">
-      <h2 class="mb5">How to reach us</h2>
-      <div class="rows">
-        <div><div><p class="n">Email</p><p class="m">Replies within one business day</p></div><p class="d"><a href="mailto:hello@intelloratech.com">hello@intelloratech.com</a></p></div>
-        <div><div><p class="n">Location</p><p class="m">Delivery is remote worldwide</p></div><p class="d">Kampala, Uganda</p></div>
-        <div><div><p class="n">Working hours</p><p class="m">Calls scheduled in your timezone</p></div><p class="d">EAT · UTC+3</p></div>
-        <div><div><p class="n">Languages</p><p class="m">Delivery and documentation</p></div><p class="d">English</p></div>
-        <div><div><p class="n">Payments</p><p class="m">Card, or international wire</p></div><p class="d"><a href="/payment/">Pay an invoice</a></p></div>
-      </div>
-    </div>
-    <div class="rv">
-      <h2 class="mb5">What happens on the call</h2>
-      <ul class="svc">
-        <li><b>Minutes 0–5 · What is actually broken</b><span>You describe the problem. We ask who feels it and what it costs each month it continues.</span></li>
-        <li><b>Minutes 5–12 · Source system reality check</b><span>What data exists, how it is structured, and the state of the source systems. This is where estimates move most, so we do it early.</span></li>
-        <li><b>Minutes 12–17 · Budget and sequencing</b><span>Whether your budget and our estimate are in the same range, and what order the work should happen in.</span></li>
-        <li><b>Minutes 17–20 · A direct answer on fit</b><span>Whether we can help, what we would propose, and when you would get a written proposal.</span></li>
-      </ul>
-      <div class="callout mt6"><b>Bring nothing prepared.</b> An architecture diagram or a recent cloud bill speeds things up, but the call works fine without either.</div>
-    </div>
+  <div class="field" data-q>
+    <label for="q1">Where does reporting data come from today?</label>
+    <select id="q1"><option value="">Choose one</option><option value="1">Spreadsheets and direct queries on production</option><option value="2">A reporting database refreshed on a schedule</option><option value="3">A modelled warehouse with defined layers</option><option value="4">A governed platform with contracts between layers</option></select>
   </div>
-</section>
-
-<section class="wrap section">
-  <div class="rv narrow">
-    <h2 class="mb5">Before you write</h2>
-    <div class="rows">
-      <div><div><p class="n">What helps in a first email?</p><p class="m">One paragraph on the problem, your rough stack, and any timing constraint. Nothing formal.</p></div></div>
-      <div><div><p class="n">Will you sign an NDA before we talk?</p><p class="m">Yes — standard mutual NDAs usually within a day.</p></div></div>
-      <div><div><p class="n">Do you charge for the scoping call?</p><p class="m">No. Deeper discovery producing a written scoping document is a paid engagement, and we say so before that line is crossed.</p></div></div>
-      <div><div><p class="n">How do payments work internationally?</p><p class="m">Invoices in USD, EUR, GBP or AED, paid by card or international wire. Typically fifty per cent on signing for a first engagement.</p></div></div>
-    </div>
+  <div class="field" data-q>
+    <label for="q2">If a number looks wrong, how long to trace it to source?</label>
+    <select id="q2"><option value="">Choose one</option><option value="1">Days, and often inconclusive</option><option value="2">Hours, by asking the right person</option><option value="3">Minutes, with documentation</option><option value="4">Immediately, lineage is captured automatically</option></select>
   </div>
+  <div class="field" data-q>
+    <label for="q3">How are pipeline failures detected?</label>
+    <select id="q3"><option value="">Choose one</option><option value="1">Someone notices a stale dashboard</option><option value="2">Job failure alerts</option><option value="3">Job and freshness alerts</option><option value="4">Data quality tests fail before consumers see it</option></select>
+  </div>
+  <div class="field" data-q>
+    <label for="q4">Who can access sensitive data?</label>
+    <select id="q4"><option value="">Choose one</option><option value="1">Broad access, unclear boundaries</option><option value="2">Role-based, reviewed occasionally</option><option value="3">Least privilege with periodic review</option><option value="4">Least privilege, row/column controls, full access logs</option></select>
+  </div>
+  <div class="field" data-q>
+    <label for="q5">How is infrastructure provisioned?</label>
+    <select id="q5"><option value="">Choose one</option><option value="1">Manually, by hand</option><option value="2">Scripted in places</option><option value="3">Infrastructure as code for most of it</option><option value="4">Fully declarative with environment parity</option></select>
+  </div>
+  <div class="field" data-q>
+    <label for="q6">Where is machine learning today?</label>
+    <select id="q6"><option value="">Choose one</option><option value="1">Not started or exploratory only</option><option value="2">Notebooks, nothing in production</option><option value="3">One or two models deployed</option><option value="4">Models in production with monitoring and retraining</option></select>
+  </div>
+      <button class="btn btn-p" id="matGo" type="button">Show my result <span class="ar" aria-hidden="true">→</span></button>
+    </div>
+    <div class="rv"><div id="matOut" hidden></div></div>
+  </div>
+  <noscript><div class="callout mt6">This check needs JavaScript. <a href="/contact/">Book a call</a> and we will walk through the same questions with you.</div></noscript>
 </section>
 
 <section class="wrap section">
   <div class="section-tint ctr rv">
-    <h2 style="max-width:22ch;margin-inline:auto">Tell us what is broken.</h2>
-    <p class="lead" style="margin-inline:auto">One paragraph is enough. You will hear back within one business day.</p>
+    <h2 style="max-width:22ch;margin-inline:auto">Want the real version?</h2>
+    <p class="lead" style="margin-inline:auto">A scoping call replaces this with an assessment of your actual systems.</p>
     <div class="row ctr mt5" style="justify-content:center">
-      <a href="mailto:hello@intelloratech.com?subject=Discovery%20call%20request" class="btn btn-p">Email us <span class="ar" aria-hidden="true">→</span></a>
-      <a href="/payment/" class="btn btn-s">Pay an invoice</a>
+      <a href="/contact/" class="btn btn-p">Book a scoping call <span class="ar" aria-hidden="true">→</span></a>
+      <a href="/tools/estimator/" class="btn btn-s">Price a programme</a>
     </div>
   </div>
 </section>
