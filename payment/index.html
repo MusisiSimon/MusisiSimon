@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pay an invoice — Intellora Tech</title>
+<meta name="description" content="Pay an Intellora Tech invoice or deposit securely by Visa or Mastercard. Card details are handled entirely by Stripe and never touch our servers.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://intelloratech.com/payment/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230D1B2A'/%3E%3Cpath d='M8 20 L14 12 L20 20' stroke='%23CBEF4A' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='24' cy='12' r='2.4' fill='%23CBEF4A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sprog" id="sprog" aria-hidden="true"></div>
+
+<nav class="top" aria-label="Primary">
+  <div class="wrap nv">
+    <a href="../index.html" class="logo"><span class="logo-m" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 32 32"><path d="M8 20 L14 12 L20 20" stroke="#CBEF4A" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="12" r="2.4" fill="#CBEF4A"/></svg></span>Intellora Tech</a>
+    <div class="nlinks">
+      <a href="../capabilities/index.html">Capabilities</a>
+      <a href="../industries/index.html">Industries</a>
+      <a href="../index.html#reach">Global reach</a>
+      <a href="../index.html#estimator">Estimator</a>
+      <a href="../about/index.html">About</a>
+    </div>
+    <div class="nav-r">
+      <button class="thm" id="thm" type="button" aria-label="Switch theme"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+      <a href="../contact/index.html" class="btn btn-p">Talk with us</a>
+      <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+  <div class="mnav" id="mnav">
+    <a href="../capabilities/index.html">Capabilities</a>
+    <a href="../industries/index.html">Industries</a>
+    <a href="../index.html#reach">Global reach</a>
+    <a href="../index.html#estimator">Programme estimator</a>
+    <a href="../about/index.html">About</a>
+    <a href="../contact/index.html" class="btn btn-p">Book a call</a>
+  </div>
+</nav>
+
+<div class="wrap"><nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span>Pay an invoice</nav></div>
+
+<main id="main">
+
+<header class="sec-tight wrap" data-hero>
+  <h1 style="max-width:18ch">Pay securely by card.</h1>
+  <p class="lead mt5" style="max-width:70ch">For clients settling a deposit, milestone or final invoice. Checkout runs on Stripe's own payment page — your card number is entered there, not here, and Intellora Tech never sees or stores it.</p>
+</header>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="g g2" style="gap:var(--s7)">
+      <div class="rv">
+        <div class="card" style="max-width:34rem">
+          <form id="pay-form" novalidate>
+            <div id="pay-err" class="pay-err" role="alert" hidden></div>
+
+            <div class="field">
+              <label for="pay-amount">Amount (USD)</label>
+              <input type="number" id="pay-amount" name="amount" min="1" max="250000" step="0.01" inputmode="decimal" placeholder="1500.00" required>
+              <span class="hint">As stated on your invoice or proposal. Between $1.00 and $250,000.00.</span>
+            </div>
+
+            <div class="field">
+              <label for="pay-reference">Invoice or reference number <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+              <input type="text" id="pay-reference" name="reference" maxlength="100" placeholder="e.g. INV-0042">
+            </div>
+
+            <div class="field">
+              <label for="pay-description">What this payment is for <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+              <input type="text" id="pay-description" name="description" maxlength="200" placeholder="e.g. Deposit — data platform build">
+            </div>
+
+            <button type="submit" id="pay-btn" class="btn btn-p" style="width:100%;justify-content:center">Pay with Visa / Mastercard <span class="ar" aria-hidden="true">→</span></button>
+
+            <noscript><div class="note mt5">This page needs JavaScript to start a secure checkout session. Please enable it, or email <a href="mailto:hello@intelloratech.com" style="color:var(--brand)">hello@intelloratech.com</a> to arrange payment another way.</div></noscript>
+
+            <div class="trust-row">
+              <span>🔒 TLS encrypted</span>
+              <span>Processed by Stripe · PCI DSS Level 1</span>
+              <span>Visa · Mastercard · Amex accepted</span>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="rv">
+        <h2 class="mb5">How this works</h2>
+        <ol style="list-style:none">
+          <li class="mb5" style="border-top:2px solid var(--line);padding-top:var(--s4);position:relative"><span style="position:absolute;top:-2px;left:0;width:38px;height:2px;background:var(--signal)"></span><p class="mono" style="color:var(--brand)">1</p><h3 style="font-size:var(--t-md);margin:var(--s2) 0">Enter the amount</h3><p class="mid">Use the figure from your invoice or written proposal. Add the reference so we can match the payment.</p></li>
+          <li class="mb5" style="border-top:2px solid var(--line);padding-top:var(--s4);position:relative"><span style="position:absolute;top:-2px;left:0;width:38px;height:2px;background:var(--signal)"></span><p class="mono" style="color:var(--brand)">2</p><h3 style="font-size:var(--t-md);margin:var(--s2) 0">You're redirected to Stripe</h3><p class="mid">Stripe's own checkout page opens. Card number, expiry and CVC are entered there, over an encrypted connection Stripe controls end to end.</p></li>
+          <li style="border-top:2px solid var(--line);padding-top:var(--s4);position:relative"><span style="position:absolute;top:-2px;left:0;width:38px;height:2px;background:var(--signal)"></span><p class="mono" style="color:var(--brand)">3</p><h3 style="font-size:var(--t-md);margin:var(--s2) 0">Instant confirmation</h3><p class="mid">You're returned here with an on-screen confirmation, and a receipt is emailed by Stripe automatically.</p></li>
+        </ol>
+        <div class="note mt5"><b>Why we don't take card numbers directly.</b> Routing payment through Stripe's hosted checkout keeps Intellora Tech out of PCI-DSS scope entirely — the safest way to accept cards on a site this size, and the same standard used by companies far larger than us.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-g">
+      <div>
+        <p class="ft-logo"><span class="logo-m" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 32 32"><path d="M8 20 L14 12 L20 20" stroke="#CBEF4A" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="12" r="2.4" fill="#CBEF4A"/></svg></span>Intellora Tech</p>
+        <p class="ft-ab">Data engineering, cloud architecture, governance, security, machine learning and database engineering.</p>
+        <p class="mono" style="line-height:1.9"><a href="mailto:hello@intelloratech.com">hello@intelloratech.com</a><br>Kampala, Uganda · EAT (UTC+3)</p>
+      </div>
+      <div><h2>Capabilities</h2><ul><li><a href="../capabilities/index.html#analytics">Analytics &amp; BI</a></li><li><a href="../capabilities/index.html#governance">Governance</a></li><li><a href="../capabilities/index.html#security">Security</a></li><li><a href="../capabilities/ai-machine-learning.html">AI &amp; ML</a></li><li><a href="../capabilities/index.html#database">Databases</a></li><li><a href="../capabilities/aws-cloud-architecture.html">AWS cloud</a></li></ul></div>
+      <div><h2>Explore</h2><ul><li><a href="../industries/index.html">Industries</a></li><li><a href="../index.html#reach">Global reach</a></li><li><a href="../index.html#maturity">Maturity check</a></li><li><a href="../index.html#estimator">Estimator</a></li><li><a href="../index.html#compare">Compare options</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="../about/index.html">About</a></li><li><a href="../about/index.html#credentials">Credentials</a></li><li><a href="../about/index.html#conflicts">Conflicts of interest</a></li><li><a href="../contact/index.html">Contact</a></li><li><a href="index.html" aria-current="page">Pay an invoice</a></li></ul></div>
+    </div>
+    <div class="ft-b"><span>© 2026 Intellora Tech</span><span>Registration pending · Kampala, Uganda</span></div>
+  </div>
+</footer>
+
+<script src="../assets/main.js" defer></script>
+<script src="../assets/payment.js" defer></script>
+</body>
+</html>
