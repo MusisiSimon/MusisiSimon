@@ -657,20 +657,30 @@ PROJECTS = [
 # only with the owner's permission.
 ORGS = [
     {"name": "Uganda Revenue Authority", "short": "URA", "logo": "ura.png"},
-    {"name": "FINCA", "short": "FINCA", "logo": "finca.png"},
-    {"name": "UN World Food Programme", "short": "UN WFP", "logo": "wfp.png"},
-    {"name": "Guaranty Trust Bank", "short": "GTBank", "logo": "gtbank.png"},
+    {"name": "FINCA", "short": "FINCA", "logo": "finca.jpg"},
+    {"name": "UN World Food Programme", "short": "WFP", "logo": "wfp.png"},
+    {"name": "Guaranty Trust Bank", "short": "GTB", "logo": "gtbank.png"},
 ]
 
 LOGO_DIR = os.path.join(ROOT, "assets", "img", "logos")
 
 
 def org_tile(o):
+    """One organisation tile: a square badge plus the name.
+
+    Badges sit on a white plate because the supplied marks are a mix — some are
+    free-standing with transparent backgrounds, others are solid-colour blocks —
+    and the plate is what makes them line up and stay legible in dark mode. A
+    missing file falls back to initials on the same plate, so the row keeps its
+    shape whether or not every logo has arrived.
+    """
     have_file = o["logo"] and os.path.exists(os.path.join(LOGO_DIR, o["logo"]))
-    inner = ('<img src="/assets/img/logos/%s" alt="%s logo" loading="lazy" decoding="async">'
-             % (o["logo"], o["name"])
-             if have_file else '<span class="logo-word">%s</span>' % o["short"])
-    return '<div class="logo-tile" title="%s">%s</div>' % (o["name"], inner)
+    if have_file:
+        badge = ('<span class="logo-badge">'
+                 '<img src="/assets/img/logos/%s" alt="" loading="lazy" decoding="async"></span>' % o["logo"])
+    else:
+        badge = '<span class="logo-badge is-empty">%s</span>' % o["short"]
+    return ('<div class="logo-tile">%s<span class="logo-name">%s</span></div>') % (badge, o["name"])
 
 
 proj_cards = "".join("""
@@ -696,7 +706,7 @@ projects = f"""
 
 <section class="wrap section">
   <div class="logo-band rv">
-    <p class="mono ctr mb5">Organisations this work was delivered for</p>
+    <p class="mono ctr mb5">Where our people have delivered this work</p>
     <div class="logo-wall">{"".join(org_tile(o) for o in ORGS)}</div>
   </div>
 </section>
