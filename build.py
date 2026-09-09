@@ -647,22 +647,31 @@ PROJECTS = [
 
 # Organisations where the work above was delivered.
 #
-# `logo` is the filename of an official logo in /assets/img/logos/. Leave it as
-# None and the tile falls back to a clean wordmark — which is what ships today,
-# because official logos are third-party trademarks we do not hold files or
-# written permission for. Drop an approved file in and set the name here; the
-# tile switches to the image with no other change.
+# `logo` names a file in assets/img/logos/. Drop the file in with that exact
+# name and re-run this script — the tile switches from a wordmark to the image
+# automatically. A missing file is not an error: the tile just falls back to the
+# wordmark, so the page never shows a broken image.
+#
+# Format: SVG if you have it, otherwise PNG with a transparent background,
+# roughly 400px on the long edge. Logos are third-party trademarks — use them
+# only with the owner's permission.
 ORGS = [
-    {"name": "Uganda Revenue Authority", "short": "URA", "logo": None},
-    {"name": "FINCA", "short": "FINCA", "logo": None},
-    {"name": "UN World Food Programme", "short": "UN WFP", "logo": None},
-    {"name": "Guaranty Trust Bank", "short": "GTBank", "logo": None},
+    {"name": "Uganda Revenue Authority", "short": "URA", "logo": "ura.png"},
+    {"name": "FINCA", "short": "FINCA", "logo": "finca.png"},
+    {"name": "UN World Food Programme", "short": "UN WFP", "logo": "wfp.png"},
+    {"name": "Guaranty Trust Bank", "short": "GTBank", "logo": "gtbank.png"},
 ]
 
+LOGO_DIR = os.path.join(ROOT, "assets", "img", "logos")
+
+
 def org_tile(o):
-    inner = ('<img src="/assets/img/logos/%s" alt="%s logo" loading="lazy" decoding="async">' % (o["logo"], o["name"])
-             if o["logo"] else '<span class="logo-word">%s</span>' % o["short"])
+    have_file = o["logo"] and os.path.exists(os.path.join(LOGO_DIR, o["logo"]))
+    inner = ('<img src="/assets/img/logos/%s" alt="%s logo" loading="lazy" decoding="async">'
+             % (o["logo"], o["name"])
+             if have_file else '<span class="logo-word">%s</span>' % o["short"])
     return '<div class="logo-tile" title="%s">%s</div>' % (o["name"], inner)
+
 
 proj_cards = "".join("""
       <div class="card card-accent k-{colour} rv">
