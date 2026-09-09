@@ -403,6 +403,21 @@ a.chip:hover{border-color:var(--accent);color:var(--accent)}
   .flow{display:none}
 }
 
+/* ---------- organisation logo wall ---------- */
+.logo-band{background:color-mix(in srgb,var(--surface) 70%,transparent);border:1px solid var(--line);border-radius:var(--r-xl);padding:var(--s6) var(--s5)}
+.logo-wall{display:grid;gap:var(--s4);grid-template-columns:repeat(2,1fr)}
+@media(min-width:760px){.logo-wall{grid-template-columns:repeat(4,1fr)}}
+.logo-tile{
+  display:grid;place-items:center;min-height:5.5rem;padding:var(--s4);
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  transition:border-color var(--d),transform var(--d) var(--e);
+}
+.logo-tile:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:translateY(-2px)}
+.logo-tile img{max-height:2.75rem;width:auto;object-fit:contain;filter:grayscale(1);opacity:.85;transition:filter var(--d),opacity var(--d)}
+.logo-tile:hover img{filter:none;opacity:1}
+.logo-word{font-family:var(--f-dsp);font-weight:700;font-size:1.125rem;letter-spacing:-.01em;color:var(--ink-soft);text-align:center}
+.logo-tile:hover .logo-word{color:var(--ink)}
+
 /* ---------- capacity / limited scope ---------- */
 .capacity{
   background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 12%,var(--surface)),color-mix(in srgb,var(--gold) 8%,var(--surface)));

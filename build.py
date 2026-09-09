@@ -589,94 +589,88 @@ product_page(
 # -------------------------------------------------------------------- projects
 PROJECTS = [
     {
-        "name": "ETAX2 — national tax system replacement",
-        "org": "Uganda Revenue Authority",
-        "when": "2025 – present",
-        "role": "Data governance and migration lead",
+        "name": "National tax administration system rebuild",
         "colour": "indigo",
-        "body": "A country-wide replacement of the national tax system. Our lead set the data quality rules "
-                "across every old and new system, decided who owns which data, put lineage and access controls "
-                "in place, and wrote the plan for moving the data — a move that runs over two to three years.",
+        "body": "Set the data quality rules across every old and new system, decided who owns which data, "
+                "put lineage and access controls in place, and wrote the plan for moving the data — a move "
+                "spanning several years.",
         "tags": ["Data governance", "Migration planning", "Data quality"],
     },
     {
-        "name": "Data Lake House — pipeline architecture",
-        "org": "Uganda Revenue Authority",
-        "when": "2024 – present",
-        "role": "Lead data engineer",
+        "name": "Data lake house — pipeline architecture",
         "colour": "emerald",
         "body": "Built the pipelines that fill a central data store: Apache Airflow to schedule the work, Kafka "
                 "for live data, PySpark for the heavy lifting. Data from several separate systems now lands in "
-                "one place that the Power BI reports read from.",
+                "one place that the reports read from.",
         "tags": ["Airflow", "Kafka", "PySpark", "Power BI"],
     },
     {
-        "name": "Customs data warehouse — pipeline rebuild",
-        "org": "Uganda Revenue Authority",
-        "when": "2024",
-        "role": "Pipeline redesign",
+        "name": "Data warehouse rebuild",
         "colour": "gold",
-        "body": "Rebuilt the customs loading pipelines so they process far more data in the same window, and "
-                "added automatic quality checks, alerting and schema enforcement — so a broken load is caught "
-                "before it reaches a report rather than after someone queries it.",
+        "body": "Rebuilt the loading pipelines so they process far more data in the same window, and added "
+                "automatic quality checks, alerting and schema enforcement — so a broken load is caught before "
+                "it reaches a report rather than after someone queries it.",
         "tags": ["ELT redesign", "Data quality", "Alerting"],
     },
     {
         "name": "Core banking upgrade — Oracle 12c to 19c",
-        "org": "FINCA",
-        "when": "2023",
-        "role": "Lead database administrator",
         "colour": "coral",
-        "body": "Moved the core banking and mobile banking databases onto a new Oracle version with no downtime "
-                "and no data lost. Performance tuning and stress testing were done on the new environment before "
-                "anyone was switched over to it.",
+        "body": "Moved core banking and mobile banking databases onto a new Oracle version with no downtime and "
+                "no data lost. Performance tuning and stress testing were done on the new setup before anyone "
+                "was switched over to it.",
         "tags": ["Oracle 19c", "Zero downtime", "Performance tuning"],
     },
     {
         "name": "Disaster recovery and emergency failover",
-        "org": "FINCA",
-        "when": "2025",
-        "role": "Database consultant",
         "colour": "deep",
         "body": "Designed an Oracle Data Guard cascading standby setup across several recovery sites, then led "
-                "the emergency failover that brought the bank back up after a critical infrastructure failure — "
+                "the emergency failover that brought a bank back up after a critical infrastructure failure — "
                 "with no data lost.",
         "tags": ["Data Guard", "Disaster recovery", "Failover"],
     },
     {
-        "name": "Refugee biometric records — 2M+ people",
-        "org": "UN World Food Project",
-        "when": "2018 – 2021",
-        "role": "IT operations",
+        "name": "Biometric records for two million people",
         "colour": "plum",
-        "body": "Looked after the databases holding more than two million biometric records used for refugee food "
-                "and cash distribution, keeping them accurate, secure and available across field sites with "
-                "limited infrastructure. Included working with the Office of the Prime Minister to check and "
-                "correct the national refugee register. The WFP team received the 2020 Nobel Peace Prize.",
+        "body": "Kept the databases holding more than two million biometric records accurate, secure and "
+                "available across field sites with limited infrastructure — the records behind food and cash "
+                "distribution — including checking and correcting a national register.",
         "tags": ["Data integrity", "Access security", "Field operations"],
     },
     {
         "name": "Core banking databases and reporting",
-        "org": "Guaranty Trust Bank",
-        "when": "2015 – 2018",
-        "role": "Database administrator",
         "colour": "emerald",
-        "body": "Kept core banking databases available and fast, managed who could reach what, and built the ETL "
-                "processes feeding reporting across several business units.",
+        "body": "Kept core banking databases fast and available, managed who could reach what, and built the "
+                "ETL processes feeding reporting across several business units.",
         "tags": ["Core banking", "ETL", "Access control"],
     },
 ]
 
+# Organisations where the work above was delivered.
+#
+# `logo` is the filename of an official logo in /assets/img/logos/. Leave it as
+# None and the tile falls back to a clean wordmark — which is what ships today,
+# because official logos are third-party trademarks we do not hold files or
+# written permission for. Drop an approved file in and set the name here; the
+# tile switches to the image with no other change.
+ORGS = [
+    {"name": "Uganda Revenue Authority", "short": "URA", "logo": None},
+    {"name": "FINCA", "short": "FINCA", "logo": None},
+    {"name": "UN World Food Programme", "short": "UN WFP", "logo": None},
+    {"name": "Guaranty Trust Bank", "short": "GTBank", "logo": None},
+]
+
+def org_tile(o):
+    inner = ('<img src="/assets/img/logos/%s" alt="%s logo" loading="lazy" decoding="async">' % (o["logo"], o["name"])
+             if o["logo"] else '<span class="logo-word">%s</span>' % o["short"])
+    return '<div class="logo-tile" title="%s">%s</div>' % (o["name"], inner)
+
 proj_cards = "".join("""
       <div class="card card-accent k-{colour} rv">
-        <p class="mono">{when} · {role}</p>
         <h3>{name}</h3>
-        <p class="proj-org">{org}</p>
         <p>{body}</p>
         <div class="chips mt4">{chips}</div>
       </div>""".format(
-        colour=p["colour"], when=p["when"], role=p["role"], name=p["name"],
-        org=p["org"], body=p["body"],
+        colour=p["colour"], name=p["name"], body=p["body"],
         chips="".join('<span class="chip">%s</span>' % t for t in p["tags"]))
     for p in PROJECTS)
 
@@ -684,7 +678,7 @@ projects = f"""
 <section class="wrap page-head">
   <p class="eyebrow">Projects</p>
   <h1>Work we have actually done.</h1>
-  <p class="lead">Real projects, named organisations, and what the work involved. These were delivered by our people in the roles they held at the time — in-house and under contract — not anonymous case studies.</p>
+  <p class="lead">Real work, described plainly. Each of these was delivered by our people in the roles they held at the time.</p>
 </section>
 
 <section class="wrap">
@@ -692,9 +686,16 @@ projects = f"""
 </section>
 
 <section class="wrap section">
+  <div class="logo-band rv">
+    <p class="mono ctr mb5">Organisations this work was delivered for</p>
+    <div class="logo-wall">{"".join(org_tile(o) for o in ORGS)}</div>
+  </div>
+</section>
+
+<section class="wrap section">
   <div class="rv narrow">
     <h2 class="mb4">What this adds up to</h2>
-    <p class="lead">Tax and customs systems, core banking, and humanitarian operations — places where a wrong number has consequences and someone eventually checks. That is the kind of work we are quick at: regulated data, reconciliation, audit trails, and moves that cannot afford a bad switch-over.</p>
+    <p class="lead">Tax and customs systems, core banking, and humanitarian operations — places where a wrong number has consequences and someone eventually checks. That is the kind of work we are quick at: regulated data, matching numbers that must agree, audit trails, and moves that cannot afford a bad switch-over.</p>
     <p class="mono mt6 mb3">We also work in</p>
     <div class="chips">{"".join('<span class="chip">%s</span>' % t for t in [
       "Lending &amp; credit", "Insurance", "Payments &amp; fintech", "Capital markets",
@@ -707,8 +708,9 @@ projects = f"""
           secondary=("See what we sell", "/products/"))
 
 write("projects", layout("/projects/", "Projects — Intellora Tech",
-                         "Real project work: national tax system data governance, data lake pipelines, customs "
-                         "warehouse rebuild, core banking upgrades, disaster recovery and humanitarian data operations.",
+                         "Real project work: a national tax administration system rebuild, data lake pipelines, "
+                         "a data warehouse rebuild, core banking upgrades, disaster recovery and large-scale "
+                         "biometric data operations.",
                          projects, accent="indigo", nav_key="Projects",
                          crumbs=[("Projects", None)]))
 
@@ -1096,7 +1098,7 @@ about = f"""
     <p class="lead">We run at most three projects concurrently. Not as a scarcity tactic — as the only honest way to promise that the specialists on your platform are genuinely thinking about it, and that the principal can review every piece of work rather than signing off work nobody senior has read.</p>
     <div class="grid c3 mt6">
       <div><p class="mono mb3">We decline</p><p class="soft">Work outside our depth, scope that is genuinely undefined at contracting, and deadlines that would force us to cut the testing or the documentation.</p></div>
-      <div><p class="mono mb3">We finish</p><p class="soft">An project is done when it is documented, handed over and running — not when the hours are used up. Overrun on a fixed price is our problem, not yours.</p></div>
+      <div><p class="mono mb3">We finish</p><p class="soft">A project is done when it is documented, handed over and running — not when the hours are used up. Overrun on a fixed price is our problem, not yours.</p></div>
       <div><p class="mono mb3">We go narrow</p><p class="soft">One capability, delivered completely, beats a broad project delivered to eighty per cent. If the right answer is a smaller project, we will propose the smaller one.</p></div>
     </div>
   </div>
@@ -1114,7 +1116,9 @@ about = f"""
       <p class="mono mb3">Principal engineer · practice lead</p>
       <h2>Musisi Ntege Simon Peter</h2>
       <p class="soft mt4">Leads the practice: sets the engineering standards, staffs each project, and reviews what goes out the door. Roughly a decade of production data engineering across core banking, United Nations humanitarian operations, and revenue and customs administration.</p>
-      <p class="soft mt4">Deepest personally in Oracle database internals, enterprise data warehouse architecture and ETL and ELT engineering. Holds an MBA and a BSc in Computer Engineering, alongside the certifications listed below.</p>
+      <p class="soft mt4">Deepest personally in Oracle database internals, enterprise data warehouse architecture and ETL and ELT engineering. Holds an MBA and a BSc in Computer Engineering.</p>
+      <p class="mono mt6 mb3">Certified in</p>
+      <div class="chips"><span class="chip">AWS Solutions Architect</span><span class="chip">Oracle Data Integrator</span><span class="chip">ITIL 4 Foundation</span><span class="chip">PRINCE2 Practitioner</span><span class="chip">Agile Scrum Master</span><span class="chip">COBIT 5 Foundation</span></div>
       <div class="row mt5">
         <a href="/contact/" class="btn btn-p">Book a call</a>
         <a href="/products/" class="btn btn-s">See the products</a>
@@ -1126,7 +1130,7 @@ about = f"""
 <section class="wrap section">
   <div class="rv">
     <h2 class="mb4">Specialists, matched to your stack</h2>
-    <p class="lead mb6">No single engineer is deepest at everything, and we do not pretend otherwise. The practice is organised around distinct specialisms, and an project is staffed with the people whose depth matches the work rather than whoever is free.</p>
+    <p class="lead mb6">No single engineer is deepest at everything, and we do not pretend otherwise. The practice is organised around distinct specialisms, and a project is staffed with the people whose depth matches the work rather than whoever is free.</p>
     <div class="grid c3">
       <div class="card card-accent k-coral"><h3>Database engineering</h3><p>Oracle internals, PostgreSQL, SQL Server and MySQL. Modelling, tuning, high availability, migration and Oracle Data Integrator.</p></div>
       <div class="card card-accent k-gold"><h3>Cloud &amp; platform</h3><p>AWS architecture, landing zones, infrastructure as code, CI/CD for data infrastructure, and cost engineering.</p></div>
@@ -1136,22 +1140,6 @@ about = f"""
       <div class="card card-accent k-deep"><h3>Platform security</h3><p>Access control design, encryption and key management, secrets, and audit logging for the data estate.</p></div>
     </div>
     <div class="callout mt6"><b>Who you actually speak to.</b> Every call is with a hands-on engineer from the team that would do the work — someone who reads execution plans and writes the code, not an account manager relaying questions back to a delivery team. The principal reviews every project regardless of who leads it.</div>
-  </div>
-</section>
-
-<section class="wrap section">
-  <div class="rv">
-    <h2 class="mb4">Principal engineer credentials</h2>
-    <p class="lead mb6">Held by the practice lead. Specialists on the team carry their own credentials in their stacks, available on request.</p>
-    <div class="rows">
-      <div><div><p class="n">AWS Certified Solutions Architect – Associate</p><p class="m">Amazon Web Services</p></div><p class="d">Oct 2024 – Oct 2027</p></div>
-      <div><div><p class="n">ITIL 4 Foundation</p><p class="m">PeopleCert · IT service management</p></div><p class="d">Jul 2022</p></div>
-      <div><div><p class="n">COBIT 5 Foundation</p><p class="m">PeopleCert · ISACA</p></div><p class="d">Apr 2020</p></div>
-      <div><div><p class="n">PRINCE2 Foundation</p><p class="m">PeopleCert · project management</p></div><p class="d">Jan 2020</p></div>
-      <div><div><p class="n">EXIN Agile Scrum Master</p><p class="m">EXIN</p></div><p class="d">Jun 2020</p></div>
-      <div><div><p class="n">Oracle Data Integrator 12c</p><p class="m">Oracle University · 40 hours</p></div><p class="d">Dec 2024</p></div>
-      <div><div><p class="n">Data Scientist Masters Program</p><p class="m">Simplilearn · summa cum laude</p></div><p class="d">Jan 2019</p></div>
-    </div>
   </div>
 </section>
 
