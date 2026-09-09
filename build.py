@@ -49,14 +49,21 @@ MARK = (
 )
 
 NAV = [
-    ("Capabilities", "/capabilities/"),
-    ("Industries", "/industries/"),
+    ("Products", "/products/"),
+    ("Projects", "/projects/"),
+    ("Tools", "/tools/"),
     ("Blog", "/blog/"),
     ("About", "/about/"),
     ("Payments", "/payment/"),
 ]
 
-PILLARS = [
+# What a 60-minute technical consultation costs, and the free intro that
+# precedes it. Senior data-architecture consulting sits at roughly
+# USD 150-350 an hour; 250 is mid-range and credited back on signing.
+CONSULT_FEE = 250
+INTRO_MINS = 15
+
+PRODUCTS = [
     ("analytics-bi", "Analytics &amp; BI", "emerald",
      "Numbers your board can act on without arguing about them first."),
     ("data-governance", "Data Governance", "indigo",
@@ -158,7 +165,7 @@ def layout(path, title, desc, body, accent="emerald", nav_key=None, crumbs=None,
   </div>
   <div class="mobile" id="mobile">
     {mobile_html}
-    <a href="/tools/estimator/">Programme estimator</a>
+    <a href="/tools/estimator/">Price estimator</a>
     <a href="/contact/" class="btn btn-p">Book a call</a>
   </div>
 </header>
@@ -176,16 +183,16 @@ def layout(path, title, desc, body, accent="emerald", nav_key=None, crumbs=None,
         <p class="mt4"><a href="mailto:{EMAIL}">{EMAIL}</a><br>Distributed team · delivery worldwide</p>
       </div>
       <div>
-        <h2>Capabilities</h2>
-        <ul>{"".join('<li><a href="/capabilities/%s/">%s</a></li>' % (s, n) for s, n, _, _ in PILLARS)}</ul>
+        <h2>Products</h2>
+        <ul>{"".join('<li><a href="/products/%s/">%s</a></li>' % (s, n) for s, n, _, _ in PRODUCTS)}</ul>
       </div>
       <div>
         <h2>Explore</h2>
         <ul>
-          <li><a href="/industries/">Industries</a></li>
+          <li><a href="/projects/">Projects</a></li>
           <li><a href="/blog/">Blog</a></li>
-          <li><a href="/tools/estimator/">Programme estimator</a></li>
-          <li><a href="/tools/maturity/">Maturity check</a></li>
+          <li><a href="/tools/estimator/">Price estimator</a></li>
+          <li><a href="/tools/maturity/">Data health check</a></li>
         </ul>
       </div>
       <div>
@@ -216,7 +223,7 @@ def write(path, html):
     print("wrote", os.path.relpath(out, ROOT))
 
 
-def cta(title, text, primary=("Book a scoping call", "/contact/"), secondary=None):
+def cta(title, text, primary=("Book a call", "/contact/"), secondary=None):
     sec = ('<a href="%s" class="btn btn-s">%s</a>' % (secondary[1], secondary[0])) if secondary else ""
     return f"""
 <section class="wrap section">
@@ -238,10 +245,10 @@ home = f"""
     <div>
       <p class="eyebrow">A practice of specialists</p>
       <h1>Data platforms that hold up when someone checks the numbers.</h1>
-      <p class="lead">Intellora Tech builds and repairs the layer underneath your reporting — databases, pipelines, cloud architecture, governance and machine learning. You speak to a hands-on engineer from the team that will do the work.</p>
+      <p class="lead">We build and fix the systems underneath your reports — databases, data pipelines, cloud setups, and the rules that keep the numbers trustworthy. You speak to a hands-on engineer from the team that will do the work.</p>
       <div class="row mt6">
-        <a href="/contact/" class="btn btn-p">Book a scoping call <span class="ar" aria-hidden="true">→</span></a>
-        <a href="/tools/estimator/" class="btn btn-s">Estimate a programme</a>
+        <a href="/contact/" class="btn btn-p">Book a call <span class="ar" aria-hidden="true">→</span></a>
+        <a href="/tools/estimator/" class="btn btn-s">Estimate the cost</a>
       </div>
     </div>
     <aside class="panel">
@@ -249,18 +256,19 @@ home = f"""
       <div class="rows">
         <div><div><p class="n">Structure</p></div><p class="d">Distributed specialists</p></div>
         <div><div><p class="n">Delivery</p></div><p class="d">Remote, worldwide</p></div>
-        <div><div><p class="n">First reply</p></div><p class="d">One business day</p></div>
+        <div><div><p class="n">First reply</p></div><p class="d">One working day</p></div>
         <div><div><p class="n">Pricing</p></div><p class="d">Fixed on signature</p></div>
-        <div><div><p class="n">Scoping call</p></div><p class="d">Free · 20 minutes</p></div>
+        <div><div><p class="n">Intro call</p></div><p class="d">Free · 15 minutes</p></div>
+        <div><div><p class="n">Deep-dive session</p></div><p class="d">USD 250 · 60 minutes</p></div>
       </div>
     </aside>
   </div>
 </section>
 
 <section class="wrap mb6">
-  <div class="pgfx rv" role="img" aria-label="Animated diagram. Four fragmented data sources — a stale CRM export, a payments ledger with three conflicting schemas, a manual operations spreadsheet and an unindexed object store — flow through a four-stage pipeline of ingest, validate, model and serve. They emerge as a single source of truth with twelve-minute data freshness, ninety-nine point six per cent pipeline reliability and one agreed metric definition. Figures illustrate a representative engagement.">
+  <div class="pgfx rv" role="img" aria-label="Animated diagram. Four fragmented data sources — a stale CRM export, a payments ledger with three conflicting schemas, a manual operations spreadsheet and an unindexed object store — flow through a four-stage pipeline of ingest, validate, model and serve. They emerge as a single source of truth with twelve-minute data freshness, ninety-nine point six per cent pipeline reliability and one agreed metric definition. Figures illustrate a representative project.">
     <div class="pgfx-hd">
-      <span>pipeline_view — representative engagement</span>
+      <span>pipeline_view — representative project</span>
       <span class="lv"><span class="dot-live"></span>running</span>
       <span class="sweep"></span>
     </div>
@@ -300,22 +308,22 @@ home = f"""
 
 <section class="wrap">
   <div class="grid c3">
-    <a href="/capabilities/" class="card card-accent k-emerald rv">
+    <a href="/products/" class="card card-accent k-emerald rv">
       <p class="mono">Start here</p>
-      <h3>Six capabilities</h3>
-      <p>Analytics, governance, security, AI, databases and AWS — each one buyable on its own.</p>
-      <span class="go">Browse capabilities →</span>
+      <h3>Six products</h3>
+      <p>Reporting, governance, security, AI, databases and AWS — buy one or several.</p>
+      <span class="go">See the products →</span>
     </a>
     <a href="/tools/estimator/" class="card card-accent k-gold rv">
       <p class="mono">Two minutes</p>
-      <h3>Price a programme</h3>
-      <p>Six questions gives you an indicative range, a duration and a phase breakdown you can forward.</p>
+      <h3>Estimate the cost</h3>
+      <p>Six questions gives you a price range, a timeline and a breakdown you can forward.</p>
       <span class="go">Open the estimator →</span>
     </a>
     <a href="/blog/" class="card card-accent k-coral rv">
       <p class="mono">Blog</p>
       <h3>Field notes</h3>
-      <p>What actually goes wrong in data platforms, written from production experience rather than theory.</p>
+      <p>What actually goes wrong with company data, written from real jobs rather than theory.</p>
       <span class="go">Read the blog →</span>
     </a>
   </div>
@@ -324,8 +332,8 @@ home = f"""
 <section class="wrap section">
   <div class="grid c4">
     <div class="stat rv"><p class="v">10+</p><p class="k">Years of production data engineering</p></div>
-    <div class="stat rv"><p class="v">3</p><p class="k">Maximum engagements running at once</p></div>
-    <div class="stat rv"><p class="v">6</p><p class="k">Capability pillars, sold separately or together</p></div>
+    <div class="stat rv"><p class="v">3</p><p class="k">Most projects we run at once</p></div>
+    <div class="stat rv"><p class="v">6</p><p class="k">Products, sold separately or together</p></div>
     <div class="stat rv"><p class="v">0</p><p class="k">Account managers between you and the engineers</p></div>
   </div>
 </section>
@@ -335,18 +343,18 @@ home = f"""
     <div class="grid c2" style="align-items:center">
       <div>
         <p class="eyebrow">Deliberately limited</p>
-        <h2 style="max-width:18ch">Three engagements at a time. Never four.</h2>
+        <h2 style="max-width:18ch">Three projects at a time. Never four.</h2>
         <p class="lead">What we sell is undivided specialist attention, and attention does not scale by taking on more work. So we cap the book, decline what we cannot do excellently, and finish what we start before opening the next slot.</p>
-        <p class="mono mt6">Current engagement slots</p>
-        <div class="slots" role="img" aria-label="Two of three engagement slots currently committed, one open.">
+        <p class="mono mt6">Projects we can take right now</p>
+        <div class="slots" role="img" aria-label="Two of three project slots currently committed, one open.">
           <i></i><i></i><i class="open"></i>
         </div>
         <p class="mono mt4">2 committed · 1 open</p>
       </div>
       <div class="grid" style="gap:var(--s4)">
-        <div class="card card-accent k-emerald"><h3>Specialists, not generalists</h3><p>Each engagement is staffed with the people whose depth matches the work, and the principal reviews everything that ships. No junior learning on your budget.</p></div>
+        <div class="card card-accent k-emerald"><h3>Specialists, not generalists</h3><p>Each project is staffed with the people whose depth matches the work, and the principal reviews everything that ships. No junior learning on your budget.</p></div>
         <div class="card card-accent k-gold"><h3>We say no more than yes</h3><p>Work outside our depth, undefined scope, or a timeline that would force shortcuts — declined, with a suggestion of who is better placed.</p></div>
-        <div class="card card-accent k-indigo"><h3>Narrow scope, finished properly</h3><p>A tightly drawn engagement delivered completely beats a broad one delivered to eighty per cent. Scope is fixed at signature and changes are quoted before work starts.</p></div>
+        <div class="card card-accent k-indigo"><h3>Narrow scope, finished properly</h3><p>A tightly drawn project delivered completely beats a broad one delivered to eighty per cent. Scope is fixed at signature and changes are quoted before work starts.</p></div>
       </div>
     </div>
   </div>
@@ -354,9 +362,9 @@ home = f"""
 
 <section class="wrap section">
   <div class="orbit-w rv">
-    <div class="orbit" role="img" aria-label="Diagram showing Intellora Tech at the centre of two rotating rings. The inner ring holds the six capability pillars: analytics and business intelligence, governance, security, artificial intelligence and machine learning, database engineering, and AWS cloud architecture. The outer ring holds representative services including ETL and ELT pipelines, lineage tracing, feature pipelines, access control design, Oracle Analytics, Oracle Data Integrator, cost optimisation, semantic modelling, MLOps and performance tuning.">
+    <div class="orbit" role="img" aria-label="Diagram showing Intellora Tech at the centre of two rotating rings. The inner ring holds the six products: analytics and business intelligence, governance, security, artificial intelligence and machine learning, database engineering, and AWS cloud architecture. The outer ring holds representative services including ETL and ELT pipelines, lineage tracing, feature pipelines, access control design, Oracle Analytics, Oracle Data Integrator, cost optimisation, semantic modelling, MLOps and performance tuning.">
       <div class="orb-halo" aria-hidden="true"></div>
-      <div class="orb-core"><b>Intellora<br>Tech</b><i>6 pillars</i></div>
+      <div class="orb-core"><b>Intellora<br>Tech</b><i>6 products</i></div>
       <div class="ring ring1">
         <div class="onode p-analytics" style="--a:0deg"><div class="ospin"><div class="opill">Analytics &amp; BI</div></div></div>
         <div class="onode p-governance" style="--a:60deg"><div class="ospin"><div class="opill">Governance</div></div></div>
@@ -378,35 +386,35 @@ home = f"""
         <div class="onode" style="--a:324deg"><div class="ospin"><div class="opill">Semantic modelling</div></div></div>
       </div>
     </div>
-    <p class="orb-cap">Six pillars · one accountable practice · you speak to the engineers who build it</p>
+    <p class="orb-cap">Six products · one team · you speak to the engineers who build it</p>
   </div>
 </section>
 
 <section class="wrap section">
   <div class="grid c2">
     <div class="rv">
-      <h2>Where we are strongest</h2>
-      <p class="lead">A decade inside core banking, United Nations humanitarian operations and national revenue administration. That history shapes what we are quick at: regulated data, reconciliation, audit trails and migrations that cannot afford a bad cutover.</p>
+      <h2>What we are best at</h2>
+      <p class="lead">A decade inside core banking, United Nations humanitarian work, and national tax and customs systems. That is what we are fast at: regulated data, matching numbers that must agree, audit trails, and moves that cannot afford a bad switch-over.</p>
       <div class="row mt5">
-        <a href="/industries/" class="btn btn-s">See sector experience</a>
+        <a href="/projects/" class="btn btn-s">See our projects</a>
         <a href="/about/" class="btn btn-g">About the practice →</a>
       </div>
     </div>
     <div class="rv">
-      <h2>How engagements run</h2>
+      <h2>How a project runs</h2>
       <div class="rows mt4">
-        <div><div><p class="n">Written proposal</p><p class="m">One page: problem, scope, price, timeline</p></div><p class="d">48 hours</p></div>
-        <div><div><p class="n">Fixed price on signature</p><p class="m">Scope changes quoted before work starts</p></div><p class="d">Always</p></div>
-        <div><div><p class="n">Written update</p><p class="m">Shipped, next, blocked, estimate movement</p></div><p class="d">Every Friday</p></div>
-        <div><div><p class="n">Handover</p><p class="m">Runbooks, decision records, live session</p></div><p class="d">Final week</p></div>
+        <div><div><p class="n">Written proposal</p><p class="m">One page: the problem, the work, the price, the dates</p></div><p class="d">48 hours</p></div>
+        <div><div><p class="n">Fixed price on signature</p><p class="m">Any change is priced before work starts</p></div><p class="d">Always</p></div>
+        <div><div><p class="n">Written update</p><p class="m">What is done, what is next, what is stuck</p></div><p class="d">Every Friday</p></div>
+        <div><div><p class="n">Handover</p><p class="m">Guides, decisions written down, a live session</p></div><p class="d">Final week</p></div>
       </div>
     </div>
   </div>
 </section>
 """ + cta(
     "Tell us what is broken.",
-    "One paragraph is enough to start. You will hear back within one business day.",
-    secondary=("Check your data maturity", "/tools/maturity/"),
+    "One paragraph is enough. You will hear back within one working day.",
+    secondary=("Run the health check", "/tools/maturity/"),
 )
 
 write("", layout("/", "Intellora Tech — Data, Cloud &amp; AI Engineering",
@@ -415,38 +423,38 @@ write("", layout("/", "Intellora Tech — Data, Cloud &amp; AI Engineering",
                  home, accent="emerald"))
 
 # ----------------------------------------------------------- capabilities hub
-cap_cards = "".join(f"""
-    <a href="/capabilities/{slug}/" class="card card-accent k-{colour} rv">
+prod_cards = "".join(f"""
+    <a href="/products/{slug}/" class="card card-accent k-{colour} rv">
       <p class="mono">{i:02d}</p>
       <h3>{name}</h3>
       <p>{line}</p>
       <span class="go">Read more →</span>
-    </a>""" for i, (slug, name, colour, line) in enumerate(PILLARS, 1))
+    </a>""" for i, (slug, name, colour, line) in enumerate(PRODUCTS, 1))
 
-cap_hub = f"""
+prod_hub = f"""
 <section class="wrap page-head">
-  <p class="eyebrow">Capabilities</p>
-  <h1>Six capabilities, bought separately or together.</h1>
-  <p class="lead">Each pillar stands on its own as a credible engagement. Most clients start with one and expand once the first piece proves out.</p>
+  <p class="eyebrow">Products</p>
+  <h1>Six products, bought separately or together.</h1>
+  <p class="lead">Each one is a complete piece of work on its own. Most clients buy one, see it land, then buy the next.</p>
 </section>
 
 <section class="wrap">
-  <div class="grid c3">{cap_cards}</div>
+  <div class="grid c3">{prod_cards}</div>
 </section>
-""" + cta("Not sure which pillar you need?",
-          "The maturity check takes two minutes and points at the constraint most likely holding you back.",
-          primary=("Run the maturity check", "/tools/maturity/"),
-          secondary=("Book a scoping call", "/contact/"))
+""" + cta("Not sure which one you need?",
+          "The health check takes two minutes and points at what is most likely holding you back.",
+          primary=("Run the health check", "/tools/maturity/"),
+          secondary=("Book a call", "/contact/"))
 
-write("capabilities", layout("/capabilities/", "Capabilities — Intellora Tech",
-                            "Six engineering capabilities: analytics and BI, data governance, security, "
-                            "AI and machine learning, database engineering and AWS cloud architecture.",
-                            cap_hub, accent="emerald", nav_key="Capabilities",
-                            crumbs=[("Capabilities", None)]))
+write("products", layout("/products/", "Products — Intellora Tech",
+                            "Six products: reporting and BI, data governance, security, AI and machine "
+                            "learning, database engineering and AWS cloud work.",
+                            prod_hub, accent="emerald", nav_key="Products",
+                            crumbs=[("Products", None)]))
 
 
 # --------------------------------------------------------------- pillar pages
-def pillar_page(slug, name, colour, accent, headline, intro, services, tech, budget, triggers):
+def product_page(slug, name, colour, accent, headline, intro, services, tech, budget, triggers):
     svc = "".join('<li><b>%s</b><span>%s</span></li>' % (t, d) for t, d in services)
     chips = "".join('<span class="chip">%s</span>' % t for t in tech)
     trg = "".join('<li><b>%s</b></li>' % t for t in triggers)
@@ -477,14 +485,14 @@ def pillar_page(slug, name, colour, accent, headline, intro, services, tech, bud
 </section>
 """ + cta("Is this the piece you need?",
           "Twenty minutes on a call is usually enough to know whether this is the right starting point.",
-          secondary=("Estimate a programme", "/tools/estimator/"))
-    write("capabilities/" + slug,
-          layout("/capabilities/%s/" % slug, "%s — Intellora Tech" % re.sub("&amp;", "&", name),
-                 intro[:155], body, accent=accent, nav_key="Capabilities",
-                 crumbs=[("Capabilities", "/capabilities/"), (name, None)]))
+          secondary=("Estimate the cost", "/tools/estimator/"))
+    write("products/" + slug,
+          layout("/products/%s/" % slug, "%s — Intellora Tech" % re.sub("&amp;", "&", name),
+                 intro[:155], body, accent=accent, nav_key="Products",
+                 crumbs=[("Products", "/products/"), (name, None)]))
 
 
-pillar_page(
+product_page(
     "analytics-bi", "Analytics &amp; BI", "emerald", "emerald",
     "Numbers your board can act on without arguing about them first.",
     "Most reporting problems are definition problems wearing a technical costume. We model each metric once, govern the definition, and build the reporting layer on top of it — so the argument moves from whose number is right to what to do about it.",
@@ -499,7 +507,7 @@ pillar_page(
      "A regulator or auditor has asked how a reported figure was derived",
      "Analysts spend more time assembling data than analysing it"])
 
-pillar_page(
+product_page(
     "data-governance", "Data Governance", "indigo", "indigo",
     "Evidence you can produce in minutes, not weeks.",
     "Governance fails when it is written as policy and never wired into the pipeline. We implement it as running infrastructure: lineage captured automatically, quality enforced at the boundary, ownership recorded where the data lives.",
@@ -515,7 +523,7 @@ pillar_page(
      "A schema change broke a downstream report nobody knew existed",
      "New privacy obligations require a defensible processing record"])
 
-pillar_page(
+product_page(
     "security", "Security &amp; Data Protection", "deep", "emerald",
     "Security designed into the platform, not bolted on after the finding.",
     "This is data-platform security specifically — how your warehouse, pipelines and analytics layer are protected, segmented, encrypted and evidenced.",
@@ -531,7 +539,7 @@ pillar_page(
      "Credentials are sitting in code and nobody is sure where else they are",
      "You cannot evidence who accessed which data, when"])
 
-pillar_page(
+product_page(
     "ai-machine-learning", "AI &amp; Machine Learning", "plum", "plum",
     "Models that reach production, on data you can defend.",
     "We approach machine learning from the data side first. Most organisations asking for models actually need the layer underneath fixed — and we will tell you that rather than build something impressive on unreliable inputs.",
@@ -546,7 +554,7 @@ pillar_page(
      "A deployed model has quietly degraded and nobody noticed",
      "An AI initiative was announced before the data layer was ready"])
 
-pillar_page(
+product_page(
     "database-engineering", "Database Engineering", "coral", "coral",
     "The deepest part of our practice.",
     "A decade of production database work across core banking, humanitarian operations and revenue administration. This is where our experience is longest and where the fastest wins usually are — tuning a query is almost always cheaper than buying more hardware.",
@@ -562,14 +570,14 @@ pillar_page(
      "An unsupported database version is becoming an audit finding",
      "Nobody has tested whether the backups actually restore"])
 
-pillar_page(
+product_page(
     "aws-cloud", "AWS Cloud Architecture", "gold", "gold",
     "Architecture you can defend, and a bill you can predict.",
-    "Certified on AWS and opinionated about it, while staying vendor-neutral above the platform layer. Most cloud cost problems are architecture problems, which is why the review and the savings work are the same engagement.",
+    "Certified on AWS and opinionated about it, while staying vendor-neutral above the platform layer. Most cloud cost problems are architecture problems, which is why the review and the savings work are the same project.",
     [("Well-Architected review", "Structured review across operational excellence, security, reliability, performance, cost and sustainability, with a prioritised remediation plan."),
      ("Landing zone &amp; multi-account design", "Account structure, organisational units, guardrails, network topology and centralised logging built for growth."),
      ("Cloud migration", "On-premise to AWS planning and execution, including hybrid cutover with shadow validation for low-downtime moves."),
-     ("FinOps &amp; cost optimisation", "Line-by-line spend audit, quick wins implemented during the engagement, and structural recommendations with quantified savings."),
+     ("FinOps &amp; cost optimisation", "Line-by-line spend audit, quick wins implemented during the project, and structural recommendations with quantified savings."),
      ("Infrastructure as code", "Terraform and CloudFormation provisioning, environment parity, CI/CD for data infrastructure and automated testing."),
      ("Resilience &amp; disaster recovery", "Recovery objectives agreed with the business, failover design and tested restore procedures.")],
     ["AWS", "Terraform", "CloudFormation", "S3", "Glue", "Redshift", "Lambda", "EKS"],
@@ -578,57 +586,163 @@ pillar_page(
      "A migration has stalled halfway and both estates now need running",
      "Nobody can say what happens if the primary region goes down"])
 
-# ------------------------------------------------------------------ industries
-tier1 = [
-    ("Banking &amp; core banking", "Core banking database administration, high-availability configuration, performance tuning and recovery assurance. Reconciliation between core, ledger and reporting layers."),
-    ("Revenue, tax &amp; customs administration", "Tax administration data warehousing, taxpayer register quality, compliance risk analytics and legacy platform migration. Customs and trade sits here too: declaration lineage across transit and clearance regimes, consignment tracking from manifest to release, and integration with customs platforms including ASYCUDA."),
-    ("Humanitarian &amp; development", "Data and reporting operations for United Nations country programmes — constrained infrastructure, hard deadlines and capacity transfer as a deliverable."),
-    ("Fintech &amp; payments", "Reconciliation pipelines, ledger integrity, settlement data, transaction enrichment and the regulatory reporting layer underneath."),
+# -------------------------------------------------------------------- projects
+PROJECTS = [
+    {
+        "name": "ETAX2 — national tax system replacement",
+        "org": "Uganda Revenue Authority",
+        "when": "2025 – present",
+        "role": "Data governance and migration lead",
+        "colour": "indigo",
+        "body": "A country-wide replacement of the national tax system. Our lead set the data quality rules "
+                "across every old and new system, decided who owns which data, put lineage and access controls "
+                "in place, and wrote the plan for moving the data — a move that runs over two to three years.",
+        "tags": ["Data governance", "Migration planning", "Data quality"],
+    },
+    {
+        "name": "Data Lake House — pipeline architecture",
+        "org": "Uganda Revenue Authority",
+        "when": "2024 – present",
+        "role": "Lead data engineer",
+        "colour": "emerald",
+        "body": "Built the pipelines that fill a central data store: Apache Airflow to schedule the work, Kafka "
+                "for live data, PySpark for the heavy lifting. Data from several separate systems now lands in "
+                "one place that the Power BI reports read from.",
+        "tags": ["Airflow", "Kafka", "PySpark", "Power BI"],
+    },
+    {
+        "name": "Customs data warehouse — pipeline rebuild",
+        "org": "Uganda Revenue Authority",
+        "when": "2024",
+        "role": "Pipeline redesign",
+        "colour": "gold",
+        "body": "Rebuilt the customs loading pipelines so they process far more data in the same window, and "
+                "added automatic quality checks, alerting and schema enforcement — so a broken load is caught "
+                "before it reaches a report rather than after someone queries it.",
+        "tags": ["ELT redesign", "Data quality", "Alerting"],
+    },
+    {
+        "name": "Core banking upgrade — Oracle 12c to 19c",
+        "org": "FINCA",
+        "when": "2023",
+        "role": "Lead database administrator",
+        "colour": "coral",
+        "body": "Moved the core banking and mobile banking databases onto a new Oracle version with no downtime "
+                "and no data lost. Performance tuning and stress testing were done on the new environment before "
+                "anyone was switched over to it.",
+        "tags": ["Oracle 19c", "Zero downtime", "Performance tuning"],
+    },
+    {
+        "name": "Disaster recovery and emergency failover",
+        "org": "FINCA",
+        "when": "2025",
+        "role": "Database consultant",
+        "colour": "deep",
+        "body": "Designed an Oracle Data Guard cascading standby setup across several recovery sites, then led "
+                "the emergency failover that brought the bank back up after a critical infrastructure failure — "
+                "with no data lost.",
+        "tags": ["Data Guard", "Disaster recovery", "Failover"],
+    },
+    {
+        "name": "Refugee biometric records — 2M+ people",
+        "org": "UN World Food Project",
+        "when": "2018 – 2021",
+        "role": "IT operations",
+        "colour": "plum",
+        "body": "Looked after the databases holding more than two million biometric records used for refugee food "
+                "and cash distribution, keeping them accurate, secure and available across field sites with "
+                "limited infrastructure. Included working with the Office of the Prime Minister to check and "
+                "correct the national refugee register. The WFP team received the 2020 Nobel Peace Prize.",
+        "tags": ["Data integrity", "Access security", "Field operations"],
+    },
+    {
+        "name": "Core banking databases and reporting",
+        "org": "Guaranty Trust Bank",
+        "when": "2015 – 2018",
+        "role": "Database administrator",
+        "colour": "emerald",
+        "body": "Kept core banking databases available and fast, managed who could reach what, and built the ETL "
+                "processes feeding reporting across several business units.",
+        "tags": ["Core banking", "ETL", "Access control"],
+    },
 ]
-tier2 = ["Lending &amp; credit", "Insurance &amp; insurtech", "Capital markets", "Wealth &amp; private banking",
-         "Regtech &amp; compliance", "Logistics &amp; supply chain", "Telecommunications",
-         "Public sector &amp; government", "Energy &amp; utilities", "Healthcare administration"]
 
-industries = f"""
+proj_cards = "".join("""
+      <div class="card card-accent k-{colour} rv">
+        <p class="mono">{when} · {role}</p>
+        <h3>{name}</h3>
+        <p class="proj-org">{org}</p>
+        <p>{body}</p>
+        <div class="chips mt4">{chips}</div>
+      </div>""".format(
+        colour=p["colour"], when=p["when"], role=p["role"], name=p["name"],
+        org=p["org"], body=p["body"],
+        chips="".join('<span class="chip">%s</span>' % t for t in p["tags"]))
+    for p in PROJECTS)
+
+projects = f"""
 <section class="wrap page-head">
-  <p class="eyebrow">Industries</p>
-  <h1>Sectors, graded by how well we actually know them.</h1>
-  <p class="lead">Three tiers, stated plainly: where we have production history, where the patterns transfer, and where we are strong engineers without claiming domain depth.</p>
+  <p class="eyebrow">Projects</p>
+  <h1>Work we have actually done.</h1>
+  <p class="lead">Real projects, named organisations, and what the work involved. These were delivered by our people in the roles they held at the time — in-house and under contract — not anonymous case studies.</p>
+</section>
+
+<section class="wrap">
+  <div class="grid c2">{proj_cards}</div>
 </section>
 
 <section class="wrap section">
-  <div class="rv">
-    <div class="row mb5"><span class="chip" style="border-color:var(--brand);color:var(--brand)">Tier 1</span><h2>Deep domain experience</h2></div>
-    <p class="lead mb6">Years of production work inside these sectors. We know the entities, the regulations, the reporting obligations and the ways these systems typically fail.</p>
-    <div class="grid c2">
-      {"".join('<div class="card card-accent k-emerald"><h3>%s</h3><p>%s</p></div>' % (n, d) for n, d in tier1)}
-    </div>
+  <div class="rv narrow">
+    <h2 class="mb4">What this adds up to</h2>
+    <p class="lead">Tax and customs systems, core banking, and humanitarian operations — places where a wrong number has consequences and someone eventually checks. That is the kind of work we are quick at: regulated data, reconciliation, audit trails, and moves that cannot afford a bad switch-over.</p>
+    <p class="mono mt6 mb3">We also work in</p>
+    <div class="chips">{"".join('<span class="chip">%s</span>' % t for t in [
+      "Lending &amp; credit", "Insurance", "Payments &amp; fintech", "Capital markets",
+      "Logistics &amp; supply chain", "Telecoms", "Public sector", "Energy &amp; utilities",
+      "Healthcare administration", "Retail &amp; e-commerce"])}</div>
   </div>
 </section>
+""" + cta("Have a project like one of these?",
+          "Tell us what is broken in a paragraph. We will tell you honestly whether we are the right people.",
+          secondary=("See what we sell", "/products/"))
 
-<section class="wrap section">
-  <div class="rv">
-    <div class="row mb5"><span class="chip" style="border-color:var(--indigo);color:var(--indigo)">Tier 2</span><h2>Strong adjacency</h2></div>
-    <p class="lead mb5">The same data patterns as our Tier 1 work — regulated entities, audit trails, reconciliation, transactional volume — in a sector we have not spent years inside. We ramp quickly here and price without a learning premium.</p>
-    <div class="chips">{"".join('<span class="chip">%s</span>' % t for t in tier2)}</div>
-  </div>
+write("projects", layout("/projects/", "Projects — Intellora Tech",
+                         "Real project work: national tax system data governance, data lake pipelines, customs "
+                         "warehouse rebuild, core banking upgrades, disaster recovery and humanitarian data operations.",
+                         projects, accent="indigo", nav_key="Projects",
+                         crumbs=[("Projects", None)]))
+
+
+# ------------------------------------------------------------------ tools hub
+tools_hub = """
+<section class="wrap page-head">
+  <p class="eyebrow">Tools</p>
+  <h1>Two free tools, two minutes each.</h1>
+  <p class="lead">Both are free, need no sign-up, and give you something you can act on — or forward to whoever holds the budget.</p>
 </section>
 
-<section class="wrap section">
-  <div class="rv">
-    <div class="row mb5"><span class="chip">Tier 3</span><h2>Served</h2></div>
-    <p class="lead">Sectors where the engineering is well within our capability and you bring the domain knowledge. Retail and e-commerce, media, education, manufacturing, professional services, agriculture and non-profits all sit here — the data problems are familiar even where the vocabulary is not.</p>
+<section class="wrap">
+  <div class="grid c2">
+    <a href="/tools/estimator/" class="card card-accent k-gold rv">
+      <p class="mono">Six questions</p>
+      <h3>Price estimator</h3>
+      <p>Answer six questions about the job and get a price range, how long it should take, and how the work splits into stages. Built from our own rate card.</p>
+      <span class="go">Open the estimator →</span>
+    </a>
+    <a href="/tools/maturity/" class="card card-accent k-emerald rv">
+      <p class="mono">Six questions</p>
+      <h3>Data health check</h3>
+      <p>Answer six questions about your setup and get a plain description of where you stand, plus the two things worth fixing first.</p>
+      <span class="go">Start the check →</span>
+    </a>
   </div>
 </section>
-""" + cta("Your sector is on the list. What is the problem?",
-          "Sector experience shortens discovery. It does not replace it — the first call is still about your systems.",
-          secondary=("See capabilities", "/capabilities/"))
+""" + cta("Want a real number instead of an estimate?",
+          "A short call and a look at your systems turns an estimate into a fixed price.")
 
-write("industries", layout("/industries/", "Industries — Intellora Tech",
-                          "Sector experience graded in three tiers: banking, revenue and customs administration, "
-                          "humanitarian operations and fintech at Tier 1.",
-                          industries, accent="indigo", nav_key="Industries",
-                          crumbs=[("Industries", None)]))
+write("tools", layout("/tools/", "Tools — Intellora Tech",
+                      "Two free tools: a price estimator for data, cloud and AI work, and a data health check.",
+                      tools_hub, accent="gold", nav_key="Tools", crumbs=[("Tools", None)]))
 
 # ------------------------------------------------------------------- estimator
 def opts(group, items, cols="g2"):
@@ -640,9 +754,9 @@ def opts(group, items, cols="g2"):
 
 estimator = f"""
 <section class="wrap page-head">
-  <p class="eyebrow">Programme estimator</p>
-  <h1>Six questions, one indicative range.</h1>
-  <p class="lead">Built from our own rate card and delivery history. It gives you a range, a duration and a phase breakdown you can paste into an email.</p>
+  <p class="eyebrow">Price estimator</p>
+  <h1>Six questions, one price range.</h1>
+  <p class="lead">Built from our own rate card and past work. You get a price range, how long it should take, and how the work splits into stages — all of it copyable into an email.</p>
 </section>
 
 <section class="wrap" id="est">
@@ -661,7 +775,7 @@ estimator = f"""
         ("build", "Build", "A new platform, pipeline or product capability."),
         ("migrate", "Migrate", "Move or modernise an existing estate."),
     ])}
-    <p class="q-h mt6">Which capability leads?</p>
+    <p class="q-h mt6">Which product is the main one?</p>
     {opts("pillar", [
         ("analytics", "Analytics &amp; BI", "Reporting, semantic models, dashboards."),
         ("governance", "Governance", "Lineage, quality, catalogue, privacy."),
@@ -708,7 +822,7 @@ estimator = f"""
     <div class="grid c2">
       <div>
         <div class="row mb4" style="justify-content:space-between">
-          <p class="mono">Indicative range</p>
+          <p class="mono">Estimated range</p>
           <label class="mono" for="cur" style="display:flex;gap:.5rem;align-items:center">Currency
             <select id="cur" style="width:auto"><option>USD</option><option>EUR</option><option>GBP</option><option>AED</option></select>
           </label>
@@ -732,17 +846,16 @@ estimator = f"""
 </section>
 
 <section class="wrap">
-  <noscript><div class="callout">The estimator needs JavaScript. Engagements typically start at $4,200 for an assessment and $15,000 for a platform build — <a href="/contact/">email us</a> and we will price your case properly.</div></noscript>
+  <noscript><div class="callout">The estimator needs JavaScript. Projects typically start at $4,200 for an assessment and $15,000 for a platform build — <a href="/contact/">email us</a> and we will price your case properly.</div></noscript>
 </section>
-""" + cta("Numbers look workable?",
-          "The estimate becomes a fixed price after one call and a look at your actual systems.",
-          secondary=("Check your maturity", "/tools/maturity/"))
+""" + cta("Does the number work?",
+          "After one call and a look at your systems, the estimate becomes a fixed price.",
+          secondary=("Run the health check", "/tools/maturity/"))
 
-write("tools/estimator", layout("/tools/estimator/", "Programme estimator — Intellora Tech",
-                               "Six questions gives an indicative price range, duration and phase breakdown "
-                               "for a data, cloud or AI engagement.",
-                               estimator, accent="gold",
-                               crumbs=[("Tools", None), ("Estimator", None)]))
+write("tools/estimator", layout("/tools/estimator/", "Price estimator — Intellora Tech",
+                               "Six questions gives a price range, a timeline and a stage-by-stage breakdown for data, cloud or AI work.",
+                               estimator, accent="gold", nav_key="Tools",
+                               crumbs=[("Tools", "/tools/"), ("Price estimator", None)]))
 
 # -------------------------------------------------------------------- maturity
 QUESTIONS = [
@@ -776,9 +889,9 @@ q_html = "".join(f"""
 
 maturity = f"""
 <section class="wrap page-head">
-  <p class="eyebrow">Maturity check</p>
-  <h1>Six questions about your data platform.</h1>
-  <p class="lead">Answer honestly and you get a stage, a plain description of what usually blocks organisations there, and the two capabilities we would start with.</p>
+  <p class="eyebrow">Data health check</p>
+  <h1>Six questions about your data setup.</h1>
+  <p class="lead">Answer honestly and you get a plain description of where you stand, what usually holds companies back at that point, and the two things we would fix first.</p>
 </section>
 
 <section class="wrap" id="mat">
@@ -790,15 +903,14 @@ maturity = f"""
   </div>
   <noscript><div class="callout mt6">This check needs JavaScript. <a href="/contact/">Book a call</a> and we will walk through the same questions with you.</div></noscript>
 </section>
-""" + cta("Want the real version?",
-          "A scoping call replaces this with an assessment of your actual systems.",
-          secondary=("Price a programme", "/tools/estimator/"))
+""" + cta("Want the proper version?",
+          "A call replaces this with a real look at your systems.",
+          secondary=("Estimate the cost", "/tools/estimator/"))
 
-write("tools/maturity", layout("/tools/maturity/", "Data maturity check — Intellora Tech",
-                              "Six questions that place your data platform on a maturity scale and name the "
-                              "two capabilities worth starting with.",
-                              maturity, accent="gold",
-                              crumbs=[("Tools", None), ("Maturity check", None)]))
+write("tools/maturity", layout("/tools/maturity/", "Data data health check — Intellora Tech",
+                              "Six questions that show where your data setup stands and what is worth fixing first.",
+                              maturity, accent="gold", nav_key="Tools",
+                              crumbs=[("Tools", "/tools/"), ("Data health check", None)]))
 
 # ------------------------------------------------------------------------ blog
 post_cards = "".join(f"""
@@ -815,7 +927,7 @@ blog_index = f"""
 <section class="wrap page-head">
   <p class="eyebrow">Blog</p>
   <h1>Field notes from production systems.</h1>
-  <p class="lead">Written from engagements and postmortems rather than vendor material. Short, specific, and useful whether or not you ever hire us.</p>
+  <p class="lead">Written from real jobs and things that went wrong, not vendor material. Short, specific, and useful whether or not you ever hire us.</p>
 </section>
 
 <section class="wrap">
@@ -974,18 +1086,18 @@ about = f"""
 <section class="wrap page-head">
   <p class="eyebrow">About</p>
   <h1>A senior-led practice, deliberately small.</h1>
-  <p class="lead">Intellora Tech is an engineering consultancy working across data, cloud, AI and security. A collective of specialists — database, cloud, analytics, machine learning, governance and security — led by a principal engineer who staffs each engagement and reviews what ships. You speak to hands-on engineers throughout, never an account manager.</p>
+  <p class="lead">Intellora Tech is an engineering consultancy working across data, cloud, AI and security. A collective of specialists — database, cloud, analytics, machine learning, governance and security — led by a principal engineer who staffs each project and reviews what ships. You speak to hands-on engineers throughout, never an account manager.</p>
 </section>
 
 <section class="wrap section">
   <div class="capacity rv">
     <p class="eyebrow">How we stay small on purpose</p>
     <h2 style="max-width:24ch">A capped book is the quality control.</h2>
-    <p class="lead">We run at most three engagements concurrently. Not as a scarcity tactic — as the only honest way to promise that the specialists on your platform are genuinely thinking about it, and that the principal can review every deliverable rather than signing off work nobody senior has read.</p>
+    <p class="lead">We run at most three projects concurrently. Not as a scarcity tactic — as the only honest way to promise that the specialists on your platform are genuinely thinking about it, and that the principal can review every piece of work rather than signing off work nobody senior has read.</p>
     <div class="grid c3 mt6">
       <div><p class="mono mb3">We decline</p><p class="soft">Work outside our depth, scope that is genuinely undefined at contracting, and deadlines that would force us to cut the testing or the documentation.</p></div>
-      <div><p class="mono mb3">We finish</p><p class="soft">An engagement is done when it is documented, handed over and running — not when the hours are used up. Overrun on a fixed price is our problem, not yours.</p></div>
-      <div><p class="mono mb3">We go narrow</p><p class="soft">One capability, delivered completely, beats a broad programme delivered to eighty per cent. If the right answer is a smaller engagement, we will propose the smaller one.</p></div>
+      <div><p class="mono mb3">We finish</p><p class="soft">An project is done when it is documented, handed over and running — not when the hours are used up. Overrun on a fixed price is our problem, not yours.</p></div>
+      <div><p class="mono mb3">We go narrow</p><p class="soft">One capability, delivered completely, beats a broad project delivered to eighty per cent. If the right answer is a smaller project, we will propose the smaller one.</p></div>
     </div>
   </div>
 </section>
@@ -1001,11 +1113,11 @@ about = f"""
     <div class="rv">
       <p class="mono mb3">Principal engineer · practice lead</p>
       <h2>Musisi Ntege Simon Peter</h2>
-      <p class="soft mt4">Leads the practice: sets the engineering standards, staffs each engagement, and reviews what goes out the door. Roughly a decade of production data engineering across core banking, United Nations humanitarian operations, and revenue and customs administration.</p>
+      <p class="soft mt4">Leads the practice: sets the engineering standards, staffs each project, and reviews what goes out the door. Roughly a decade of production data engineering across core banking, United Nations humanitarian operations, and revenue and customs administration.</p>
       <p class="soft mt4">Deepest personally in Oracle database internals, enterprise data warehouse architecture and ETL and ELT engineering. Holds an MBA and a BSc in Computer Engineering, alongside the certifications listed below.</p>
       <div class="row mt5">
         <a href="/contact/" class="btn btn-p">Book a call</a>
-        <a href="/capabilities/" class="btn btn-s">See capabilities</a>
+        <a href="/products/" class="btn btn-s">See the products</a>
       </div>
     </div>
   </div>
@@ -1014,7 +1126,7 @@ about = f"""
 <section class="wrap section">
   <div class="rv">
     <h2 class="mb4">Specialists, matched to your stack</h2>
-    <p class="lead mb6">No single engineer is deepest at everything, and we do not pretend otherwise. The practice is organised around distinct specialisms, and an engagement is staffed with the people whose depth matches the work rather than whoever is free.</p>
+    <p class="lead mb6">No single engineer is deepest at everything, and we do not pretend otherwise. The practice is organised around distinct specialisms, and an project is staffed with the people whose depth matches the work rather than whoever is free.</p>
     <div class="grid c3">
       <div class="card card-accent k-coral"><h3>Database engineering</h3><p>Oracle internals, PostgreSQL, SQL Server and MySQL. Modelling, tuning, high availability, migration and Oracle Data Integrator.</p></div>
       <div class="card card-accent k-gold"><h3>Cloud &amp; platform</h3><p>AWS architecture, landing zones, infrastructure as code, CI/CD for data infrastructure, and cost engineering.</p></div>
@@ -1023,7 +1135,7 @@ about = f"""
       <div class="card card-accent k-indigo"><h3>Governance &amp; data quality</h3><p>Lineage, cataloguing, quality enforcement and the evidence trail an auditor or regulator will eventually ask for.</p></div>
       <div class="card card-accent k-deep"><h3>Platform security</h3><p>Access control design, encryption and key management, secrets, and audit logging for the data estate.</p></div>
     </div>
-    <div class="callout mt6"><b>Who you actually speak to.</b> Every call is with a hands-on engineer from the team that would do the work — someone who reads execution plans and writes the code, not an account manager relaying questions back to a delivery team. The principal reviews every engagement regardless of who leads it.</div>
+    <div class="callout mt6"><b>Who you actually speak to.</b> Every call is with a hands-on engineer from the team that would do the work — someone who reads execution plans and writes the code, not an account manager relaying questions back to a delivery team. The principal reviews every project regardless of who leads it.</div>
   </div>
 </section>
 
@@ -1050,7 +1162,7 @@ about = f"""
       <div class="card card-accent k-emerald"><h3>Weekly written update</h3><p>Every Friday from the engineer leading your work: what shipped, what is next, what is blocked, and any change to the estimate — in writing, so it survives being forwarded to your board.</p></div>
       <div class="card card-accent k-indigo"><h3>Working sessions, not status calls</h3><p>Calls are for decisions and joint work. Status arrives in writing beforehand so the call is not spent reading it aloud.</p></div>
       <div class="card card-accent k-gold"><h3>Your tools</h3><p>The team works in your Slack, your Jira, your repository and your cloud account, with access provisioned at least privilege and revoked on handover.</p></div>
-      <div class="card card-accent k-coral"><h3>Handover as a deliverable</h3><p>Documentation, runbooks and decision records, plus a live session between your engineers and ours — so the work outlives the engagement.</p></div>
+      <div class="card card-accent k-coral"><h3>Handover as a piece of work</h3><p>Documentation, runbooks and decision records, plus a live session between your engineers and ours — so the work outlives the project.</p></div>
     </div>
   </div>
 </section>
@@ -1066,13 +1178,35 @@ write("about", layout("/about/", "About — Intellora Tech",
 # --------------------------------------------------------------------- contact
 contact = f"""
 <section class="wrap page-head">
-  <p class="eyebrow">Contact</p>
-  <h1>Start with a twenty-minute call.</h1>
-  <p class="lead">A diagnostic conversation with a hands-on engineer — not a salesperson — about what is broken and whether we are the right people to fix it. If we are not, we will say so on the call and suggest what would actually help.</p>
-  <div class="row mt6">
-    <a href="mailto:{EMAIL}?subject=Discovery%20call%20request" class="btn btn-p">Email to arrange a call <span class="ar" aria-hidden="true">→</span></a>
-    <a href="/tools/estimator/" class="btn btn-s">Estimate a programme first</a>
+  <p class="eyebrow">Book a call</p>
+  <h1>Two ways to start.</h1>
+  <p class="lead">Both are with a hands-on engineer — someone who writes the code, not a salesperson. Pick whichever fits where you are.</p>
+</section>
+
+<section class="wrap">
+  <div class="grid c2">
+    <div class="card card-accent k-emerald rv" style="padding:var(--s6)">
+      <p class="mono">Free · {INTRO_MINS} minutes</p>
+      <h3>Intro call</h3>
+      <p style="font-size:var(--t-bd)">Tell us what is broken. We tell you whether we are the right people, roughly what it would cost, and what we would do first. If we are not right for it, we say so and point you somewhere better.</p>
+      <p class="mt4"><b class="ui">Good for:</b> <span class="soft">working out whether to take this further at all.</span></p>
+      <div class="row mt5">
+        <a href="mailto:{EMAIL}?subject=Intro%20call%20request" class="btn btn-p">Book the free call <span class="ar" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <div class="card card-accent k-gold rv" style="padding:var(--s6)">
+      <p class="mono">USD {CONSULT_FEE} · 60 minutes</p>
+      <h3>Technical consultation</h3>
+      <p style="font-size:var(--t-bd)">A working session, not a sales call. We look at your actual setup — schemas, pipelines, cloud bill, whatever is relevant — and you leave with specific answers and a written summary of what we found and what we would do about it.</p>
+      <p class="mt4"><b class="ui">Free if you hire us:</b> <span class="soft">the full fee comes off your first invoice.</span></p>
+      <div class="row mt5">
+        <a href="/payment/?amount={CONSULT_FEE}&amp;for=Technical+consultation+%2860+minutes%29" class="btn btn-p">Book and pay <span class="ar" aria-hidden="true">→</span></a>
+        <a href="mailto:{EMAIL}?subject=Technical%20consultation" class="btn btn-s">Ask first</a>
+      </div>
+    </div>
   </div>
+  <div class="callout mt6"><b>Why the paid session has a price at all.</b> An hour of senior engineering time spent reading your systems properly is worth more to you than a free chat, and charging for it means we prepare for it. Independent senior data engineers typically charge USD 150–350 an hour; we sit in the middle of that, and give it back if you go ahead.</div>
 </section>
 
 <section class="wrap section">
@@ -1084,19 +1218,19 @@ contact = f"""
         <div><div><p class="n">Structure</p><p class="m">Specialists matched to your stack</p></div><p class="d">Distributed team</p></div>
         <div><div><p class="n">Working hours</p><p class="m">Calls scheduled in your timezone</p></div><p class="d">Your business hours</p></div>
         <div><div><p class="n">Languages</p><p class="m">Delivery and documentation</p></div><p class="d">English</p></div>
-        <div><div><p class="n">Payments</p><p class="m">Card, or international wire</p></div><p class="d"><a href="/payment/">Pay an invoice</a></p></div>
+        <div><div><p class="n">Payments</p><p class="m">Card, or bank transfer</p></div><p class="d"><a href="/payment/">Payments</a></p></div>
       </div>
     </div>
     <div class="rv">
-      <h2 class="mb5">What happens on the call</h2>
+      <h2 class="mb5">What happens on the free call</h2>
       <ul class="svc">
-        <li><b>Minutes 0–5 · What is actually broken</b><span>You describe the problem. We ask who feels it and what it costs each month it continues.</span></li>
-        <li><b>Minutes 5–12 · Source system reality check</b><span>What data exists, how it is structured, and the state of the source systems. This is where estimates move most, so we do it early.</span></li>
-        <li><b>Minutes 12–17 · Budget and sequencing</b><span>Whether your budget and our estimate are in the same range, and what order the work should happen in.</span></li>
-        <li><b>Minutes 17–20 · A direct answer on fit</b><span>Whether we can help, which specialists would lead it, what we would propose, and when you would get a written proposal.</span></li>
+        <li><b>First few minutes · What is broken</b><span>You describe the problem. We ask who it hurts and what it costs every month it continues.</span></li>
+        <li><b>Middle · What you already have</b><span>What data exists, how it is organised, and what state the systems are in. This is what moves the price most, so we ask early.</span></li>
+        <li><b>Then · Money and order of work</b><span>Whether your budget and our price are in the same range, and what should be done first.</span></li>
+        <li><b>Last few minutes · A straight answer</b><span>Whether we can help, who would lead it, what we would suggest, and when you would get it in writing.</span></li>
       </ul>
       <div class="callout mt6"><b>Bring nothing prepared.</b> An architecture diagram or a recent cloud bill speeds things up, but the call works fine without either.</div>
-      <div class="callout mt5"><b>We run three engagements at a time.</b> If the slots are full when you write, we will tell you on the call and give you a realistic start date rather than taking the work and stretching it thin.</div>
+      <div class="callout mt5"><b>We run three projects at a time.</b> If they are all full when you write, we will say so on the call and give you a real start date rather than taking the work and spreading ourselves thin.</div>
     </div>
   </div>
 </section>
@@ -1105,10 +1239,10 @@ contact = f"""
   <div class="rv narrow">
     <h2 class="mb5">Before you write</h2>
     <div class="rows">
-      <div><div><p class="n">What helps in a first email?</p><p class="m">One paragraph on the problem, your rough stack, and any timing constraint. Nothing formal.</p></div></div>
+      <div><div><p class="n">What should a first email say?</p><p class="m">One paragraph on the problem, roughly what you run it on, and any deadline. Nothing formal.</p></div></div>
       <div><div><p class="n">Will you sign an NDA before we talk?</p><p class="m">Yes — standard mutual NDAs usually within a day.</p></div></div>
-      <div><div><p class="n">Do you charge for the scoping call?</p><p class="m">No. Deeper discovery producing a written scoping document is a paid engagement, and we say so before that line is crossed.</p></div></div>
-      <div><div><p class="n">How do payments work internationally?</p><p class="m">Invoices in USD, EUR, GBP or AED, paid by card or international wire. Typically fifty per cent on signing for a first engagement.</p></div></div>
+      <div><div><p class="n">Do you charge for the call?</p><p class="m">The 15-minute intro call is free. The 60-minute technical session is USD 250, and it comes off your first invoice if you hire us.</p></div></div>
+      <div><div><p class="n">How do payments work?</p><p class="m">Invoices in USD, EUR, GBP or AED, paid by card or bank transfer. Usually half up front on a first project.</p></div></div>
     </div>
   </div>
 </section>
@@ -1118,8 +1252,8 @@ contact = f"""
           secondary=("Pay an invoice", "/payment/"))
 
 write("contact", layout("/contact/", "Contact — Intellora Tech",
-                        "Book a twenty-minute scoping call with Intellora Tech. What happens on the call and "
-                        "how to reach us.",
+                        "Two ways to start: a free 15-minute intro call, or a paid 60-minute technical session with a "
+                        "senior engineer, refunded against your first invoice.",
                         contact, accent="emerald", crumbs=[("Contact", None)]))
 
 # --------------------------------------------------------------------- payment
@@ -1127,7 +1261,7 @@ payment = f"""
 <section class="wrap page-head">
   <p class="eyebrow">Secure payment</p>
   <h1>Pay securely by card.</h1>
-  <p class="lead">For clients settling a deposit, milestone or final invoice. Checkout runs on Stripe's own payment page — your card number is entered there, not here.</p>
+  <p class="lead">For paying an invoice, a deposit, or a booked technical session. Payment happens on Stripe's own page — your card number is typed there, never here.</p>
 </section>
 
 <section class="wrap">
@@ -1140,7 +1274,7 @@ payment = f"""
           <div class="field">
             <label for="pay-amount">Amount (USD)</label>
             <input type="number" id="pay-amount" name="amount" min="1" max="250000" step="0.01" inputmode="decimal" placeholder="1500.00" required>
-            <span class="hint">As stated on your invoice or proposal.</span>
+            <span class="hint">The figure on your invoice, proposal, or USD 250 for a technical session.</span>
           </div>
 
           <div class="field">
@@ -1180,8 +1314,7 @@ payment = f"""
 """
 
 write("payment", layout("/payment/", "Pay an invoice — Intellora Tech",
-                        "Pay an Intellora Tech invoice or deposit securely by Visa or Mastercard through "
-                        "Stripe's hosted checkout.",
+                        "Pay an invoice, deposit or booked technical session securely by Visa or Mastercard.",
                         payment, accent="emerald", nav_key="Payments", crumbs=[("Payments", None)]))
 
 success = """
@@ -1216,9 +1349,9 @@ write("payment/cancel", layout("/payment/cancel/", "Payment cancelled — Intell
                                cancel, accent="emerald", noindex=True))
 
 # ------------------------------------------------------------- sitemap & robots
-urls = ["/", "/capabilities/", "/industries/", "/blog/", "/about/", "/contact/", "/payment/",
-        "/tools/estimator/", "/tools/maturity/"]
-urls += ["/capabilities/%s/" % s for s, _, _, _ in PILLARS]
+urls = ["/", "/products/", "/projects/", "/blog/", "/about/", "/contact/", "/payment/",
+        "/tools/", "/tools/estimator/", "/tools/maturity/"]
+urls += ["/products/%s/" % s for s, _, _, _ in PRODUCTS]
 urls += ["/blog/%s/" % p["slug"] for p in POSTS]
 
 sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

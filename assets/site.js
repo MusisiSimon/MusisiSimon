@@ -40,7 +40,7 @@
       b.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     m.addEventListener('click', function (e) { if (e.target.tagName === 'A') shut(); });
-    window.addEventListener('resize', function () { if (window.innerWidth > 1000) shut(); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 1140) shut(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') shut(); });
   })();
 
@@ -109,7 +109,7 @@
       if (!st.type || !st.pillar || !st.cx || !st.sz || !st.gv || !st.tl) return;
       var r = calc(), b = BASE[st.type];
       $('#resRange').textContent = fmt(r.lo) + ' – ' + fmt(r.hi);
-      $('#resDur').textContent = r.wLo + '–' + r.wHi + ' weeks · delivered remotely · fixed price on signature';
+      $('#resDur').textContent = r.wLo + '–' + r.wHi + ' weeks · done remotely · fixed price once signed';
       $('#resTags').innerHTML = [b.l, PILLAR[st.pillar].l, M.cx[st.cx].l, M.sz[st.sz].l, M.gv[st.gv].l, M.tl[st.tl].l]
         .map(function (t) { return '<span class="chip">' + t + '</span>'; }).join('');
       $('#resPhases').innerHTML = PH[st.type].map(function (p) {
@@ -118,15 +118,15 @@
           '<div class="bar"><i style="width:' + p[1] + '%"></i></div></div>';
       }).join('');
 
-      var sum = 'Programme estimate — intelloratech.com\n\n' +
-        'Objective: ' + b.l + '\nPrimary capability: ' + PILLAR[st.pillar].l + '\n' +
-        'Complexity: ' + M.cx[st.cx].l + '\nScope: ' + M.sz[st.sz].l + '\n' +
-        'Governance: ' + M.gv[st.gv].l + '\nTimeline: ' + M.tl[st.tl].l + '\n\n' +
-        'Indicative range: ' + fmt(r.lo) + ' – ' + fmt(r.hi) + ' (' + curCode + ')\n' +
-        'Indicative duration: ' + r.wLo + '–' + r.wHi + ' weeks\n\nOur situation:\n';
+      var sum = 'Price estimate — intelloratech.com\n\n' +
+        'What we want: ' + b.l + '\nMain product: ' + PILLAR[st.pillar].l + '\n' +
+        'How complex: ' + M.cx[st.cx].l + '\nHow big: ' + M.sz[st.sz].l + '\n' +
+        'Rules to satisfy: ' + M.gv[st.gv].l + '\nTiming: ' + M.tl[st.tl].l + '\n\n' +
+        'Estimated price: ' + fmt(r.lo) + ' – ' + fmt(r.hi) + ' (' + curCode + ')\n' +
+        'Estimated time: ' + r.wLo + '–' + r.wHi + ' weeks\n\nOur situation:\n';
       window.__estSum = sum;
       var ml = $('#resMail');
-      if (ml) ml.href = 'mailto:hello@intelloratech.com?subject=' + encodeURIComponent('Scoping call — ' + b.l) + '&body=' + encodeURIComponent(sum);
+      if (ml) ml.href = 'mailto:hello@intelloratech.com?subject=' + encodeURIComponent('Call request — ' + b.l) + '&body=' + encodeURIComponent(sum);
     }
 
     var sel = $('#cur');
@@ -210,9 +210,9 @@
       ai: 'AI & machine learning', database: 'Database engineering', cloud: 'AWS cloud architecture'
     };
     var LINKS = {
-      analytics: '/capabilities/analytics-bi/', governance: '/capabilities/data-governance/',
-      security: '/capabilities/security/', ai: '/capabilities/ai-machine-learning/',
-      cloud: '/capabilities/aws-cloud/', database: '/capabilities/database-engineering/'
+      analytics: '/products/analytics-bi/', governance: '/products/data-governance/',
+      security: '/products/security/', ai: '/products/ai-machine-learning/',
+      cloud: '/products/aws-cloud/', database: '/products/database-engineering/'
     };
 
     if (btn) btn.addEventListener('click', function () {
@@ -246,6 +246,17 @@
     var form = $('#pay-form');
     if (!form) return;
     var btn = $('#pay-btn'), errBox = $('#pay-err'), btnLabel = btn.innerHTML;
+
+    /* let a link prefill the form, e.g. /payment/?amount=250&for=Consultation */
+    (function () {
+      var q = new URLSearchParams(window.location.search);
+      var amount = parseFloat(q.get('amount'));
+      if (isFinite(amount) && amount > 0 && amount <= 250000) $('#pay-amount').value = amount.toFixed(2);
+      var what = q.get('for');
+      if (what) $('#pay-description').value = what.slice(0, 200);
+      var ref = q.get('ref');
+      if (ref) $('#pay-reference').value = ref.slice(0, 100);
+    })();
 
     function showError(msg) { errBox.textContent = msg; errBox.hidden = false; }
     function clearError() { errBox.hidden = true; errBox.textContent = ''; }
