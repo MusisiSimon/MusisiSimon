@@ -9,7 +9,6 @@ Expected filenames — these are already wired up in `build.py` (`ORGS`):
 | `ura.png` | Uganda Revenue Authority |
 | `finca.jpg` | FINCA |
 | `wfp.png` | UN World Food Programme |
-| `gtbank.png` | Guaranty Trust Bank |
 
 Add the file, then run `python3 build.py`. The tile switches from placeholder
 initials to the image on its own. If a file is missing the tile simply shows the wordmark —

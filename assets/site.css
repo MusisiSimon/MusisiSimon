@@ -406,7 +406,8 @@ a.chip:hover{border-color:var(--accent);color:var(--accent)}
 /* ---------- organisation logo wall ---------- */
 .logo-band{background:color-mix(in srgb,var(--surface) 70%,transparent);border:1px solid var(--line);border-radius:var(--r-xl);padding:var(--s6) var(--s5)}
 .logo-wall{display:grid;gap:var(--s4);grid-template-columns:repeat(2,1fr)}
-@media(min-width:760px){.logo-wall{grid-template-columns:repeat(4,1fr)}}
+/* auto-fit so the row stays balanced whatever the number of organisations */
+@media(min-width:760px){.logo-wall{grid-template-columns:repeat(auto-fit,minmax(12rem,1fr))}}
 .logo-tile{
   display:flex;flex-direction:column;align-items:center;gap:.75rem;text-align:center;
   padding:var(--s5) var(--s3);background:var(--surface);
