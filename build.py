@@ -650,6 +650,7 @@ PROJECTS = [
 ORGS = [
     {"name": "Uganda Revenue Authority", "short": "URA", "logo": "ura.png"},
     {"name": "FINCA", "short": "FINCA", "logo": "finca.jpg"},
+    {"name": "UN World Food Programme", "short": "WFP", "logo": "wfp.png"},
 ]
 
 LOGO_DIR = os.path.join(ROOT, "assets", "img", "logos")
