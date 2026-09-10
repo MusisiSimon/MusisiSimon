@@ -13,7 +13,7 @@ import re
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://intelloratech.net"
-EMAIL = "hello@intelloratech.net"
+EMAIL = "support@intelloratech.net"
 
 # Logo — a lineage graph: scattered sources converge through one governed
 # transform into a single served truth. The shape data engineers draw on
@@ -629,14 +629,6 @@ PROJECTS = [
         "tags": ["Data Guard", "Disaster recovery", "Failover"],
     },
     {
-        "name": "Biometric records for two million people",
-        "colour": "plum",
-        "body": "Kept the databases holding more than two million biometric records accurate, secure and "
-                "available across field sites with limited infrastructure — the records behind food and cash "
-                "distribution — including checking and correcting a national register.",
-        "tags": ["Data integrity", "Access security", "Field operations"],
-    },
-    {
         "name": "Core banking databases and reporting",
         "colour": "emerald",
         "body": "Kept core banking databases fast and available, managed who could reach what, and built the "
@@ -658,7 +650,6 @@ PROJECTS = [
 ORGS = [
     {"name": "Uganda Revenue Authority", "short": "URA", "logo": "ura.png"},
     {"name": "FINCA", "short": "FINCA", "logo": "finca.jpg"},
-    {"name": "UN World Food Programme", "short": "WFP", "logo": "wfp.png"},
 ]
 
 LOGO_DIR = os.path.join(ROOT, "assets", "img", "logos")
