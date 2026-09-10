@@ -3,4 +3,4 @@ Allow: /
 Disallow: /payment/success/
 Disallow: /payment/cancel/
 
-Sitemap: https://intelloratech.com/sitemap.xml
+Sitemap: https://intelloratech.net/sitemap.xml

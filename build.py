@@ -12,8 +12,8 @@ import os
 import re
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-SITE = "https://intelloratech.com"
-EMAIL = "hello@intelloratech.com"
+SITE = "https://intelloratech.net"
+EMAIL = "hello@intelloratech.net"
 
 # Logo — a lineage graph: scattered sources converge through one governed
 # transform into a single served truth. The shape data engineers draw on
