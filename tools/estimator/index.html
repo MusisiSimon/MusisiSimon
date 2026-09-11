@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Price estimator — Intellora Tech</title>
+<meta name="description" content="Six questions gives a price range, a timeline and a stage-by-stage breakdown for data, cloud or AI work.">
+
+<link rel="canonical" href="https://intelloratech.net/tools/estimator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Price estimator — Intellora Tech">
+<meta property="og:description" content="Six questions gives a price range, a timeline and a stage-by-stage breakdown for data, cloud or AI work.">
+<meta property="og:url" content="https://intelloratech.net/tools/estimator/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E6E5E'/%3E%3Cpath d='M8 8.5 L17 16 M8 23.5 L17 16 M17 16 L24.5 16' stroke='%23FBF9F5' stroke-width='1.9' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='.85'/%3E%3Ccircle cx='8' cy='8.5' r='2.5' fill='%23FBF9F5'/%3E%3Ccircle cx='8' cy='23.5' r='2.5' fill='%23FBF9F5'/%3E%3Ccircle cx='17' cy='16' r='2.1' fill='%23FBF9F5'/%3E%3Ccircle cx='25' cy='16' r='3.3' fill='%23F0C05A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/theme.js"></script>
+</head>
+<body data-accent="gold">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 32 32"><path d="M8 8.5 L17 16 M8 23.5 L17 16 M17 16 L24.5 16" stroke="#FBF9F5" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/><circle cx="8" cy="8.5" r="2.5" fill="#FBF9F5"/><circle cx="8" cy="23.5" r="2.5" fill="#FBF9F5"/><circle cx="17" cy="16" r="2.1" fill="#FBF9F5"/><circle cx="25" cy="16" r="3.3" fill="#F0C05A"/></svg></span>Intellora Tech</a>
+    <nav class="nav" aria-label="Primary"><a href="/products/">Products</a><a href="/projects/">Projects</a><a href="/tools/" aria-current="page">Tools</a><a href="/blog/">Blog</a><a href="/about/">About</a><a href="/payment/">Payments</a></nav>
+    <div class="hdr-act">
+      <button class="icon-btn" id="theme" type="button" aria-label="Switch theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <a href="/contact/" class="btn btn-p">Book a call</a>
+      <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+  <div class="mobile" id="mobile">
+    <a href="/products/">Products</a><a href="/projects/">Projects</a><a href="/tools/">Tools</a><a href="/blog/">Blog</a><a href="/about/">About</a><a href="/payment/">Payments</a>
+    <a href="/tools/estimator/">Price estimator</a>
+    <a href="/contact/" class="btn btn-p">Book a call</a>
+  </div>
+</header>
+<div class="wrap"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/tools/">Tools</a><span aria-hidden="true">/</span><span>Price estimator</span></nav></div>
+<main id="main">
+
+<section class="wrap page-head">
+  <p class="eyebrow">Price estimator</p>
+  <h1>Six questions, one price range.</h1>
+  <p class="lead">Built from our own rate card and past work. You get a price range, how long it should take, and how the work splits into stages — all of it copyable into an email.</p>
+</section>
+
+<section class="wrap" id="est">
+  <div class="steps">
+    <span data-stepname="1" aria-current="step">1 · Objective</span>
+    <span data-stepname="2" aria-current="false">2 · Shape</span>
+    <span data-stepname="3" aria-current="false">3 · Estimate</span>
+  </div>
+  <div class="track"><i id="estBar"></i></div>
+
+  <div data-pane="1">
+    <p class="q-h">What are you trying to do?</p>
+    <div class="opt-grid g2" data-grp="type"><button class="opt" type="button" data-v="assess" aria-pressed="false"><b>Assess or prove</b><span>An assessment, audit or proof of concept before committing.</span></button><button class="opt" type="button" data-v="optimise" aria-pressed="false"><b>Optimise</b><span>Something exists and underperforms — cost, speed or reliability.</span></button><button class="opt" type="button" data-v="build" aria-pressed="false"><b>Build</b><span>A new platform, pipeline or product capability.</span></button><button class="opt" type="button" data-v="migrate" aria-pressed="false"><b>Migrate</b><span>Move or modernise an existing estate.</span></button></div>
+    <p class="q-h mt6">Which product is the main one?</p>
+    <div class="opt-grid g3" data-grp="pillar"><button class="opt" type="button" data-v="analytics" aria-pressed="false"><b>Analytics &amp; BI</b><span>Reporting, semantic models, dashboards.</span></button><button class="opt" type="button" data-v="governance" aria-pressed="false"><b>Governance</b><span>Lineage, quality, catalogue, privacy.</span></button><button class="opt" type="button" data-v="security" aria-pressed="false"><b>Security</b><span>Access control, encryption, evidence.</span></button><button class="opt" type="button" data-v="ai" aria-pressed="false"><b>AI &amp; ML</b><span>Feature pipelines, training, deployment.</span></button><button class="opt" type="button" data-v="database" aria-pressed="false"><b>Databases</b><span>Modelling, tuning, HA, migration.</span></button><button class="opt" type="button" data-v="cloud" aria-pressed="false"><b>AWS cloud</b><span>Architecture, landing zone, FinOps.</span></button></div>
+    <div class="row mt6"><button class="btn btn-p" id="estN1" type="button" disabled>Continue <span class="ar" aria-hidden="true">→</span></button></div>
+  </div>
+
+  <div data-pane="2" hidden>
+    <p class="q-h">Complexity</p>
+    <div class="opt-grid g3" data-grp="cx"><button class="opt" type="button" data-v="std" aria-pressed="false"><b>Standard</b><span>Clean sources, familiar patterns.</span></button><button class="opt" type="button" data-v="mod" aria-pressed="false"><b>Moderate</b><span>Several systems, some unknowns.</span></button><button class="opt" type="button" data-v="adv" aria-pressed="false"><b>Advanced</b><span>Legacy estate, heavy integration, unclear lineage.</span></button></div>
+    <p class="q-h mt6">Scope</p>
+    <div class="opt-grid g3" data-grp="sz"><button class="opt" type="button" data-v="s" aria-pressed="false"><b>Small</b><span>One system or one reporting domain.</span></button><button class="opt" type="button" data-v="m" aria-pressed="false"><b>Medium</b><span>Several systems or a department.</span></button><button class="opt" type="button" data-v="l" aria-pressed="false"><b>Large</b><span>Enterprise-wide or multi-entity.</span></button></div>
+    <p class="q-h mt6">Governance load</p>
+    <div class="opt-grid g3" data-grp="gv"><button class="opt" type="button" data-v="light" aria-pressed="false"><b>Light</b><span>Internal use, limited external obligation.</span></button><button class="opt" type="button" data-v="standard" aria-pressed="false"><b>Standard</b><span>Audit trail and documented controls expected.</span></button><button class="opt" type="button" data-v="regulated" aria-pressed="false"><b>Regulated</b><span>Supervised entity, formal evidence required.</span></button></div>
+    <p class="q-h mt6">Timeline</p>
+    <div class="opt-grid g3" data-grp="tl"><button class="opt" type="button" data-v="relaxed" aria-pressed="false"><b>Relaxed</b><span>No hard deadline, cheaper to deliver.</span></button><button class="opt" type="button" data-v="standard" aria-pressed="false"><b>Standard</b><span>Normal pace.</span></button><button class="opt" type="button" data-v="rush" aria-pressed="false"><b>Compressed</b><span>Fixed external deadline.</span></button></div>
+    <div class="row mt6">
+      <button class="btn btn-p" id="estN2" type="button" disabled>See the estimate <span class="ar" aria-hidden="true">→</span></button>
+      <button class="btn btn-g" id="estB2" type="button">← Back</button>
+    </div>
+  </div>
+
+  <div data-pane="3" hidden>
+    <div class="grid c2">
+      <div>
+        <div class="row mb4" style="justify-content:space-between">
+          <p class="mono">Estimated range</p>
+          <label class="mono" for="cur" style="display:flex;gap:.5rem;align-items:center">Currency
+            <select id="cur" style="width:auto"><option>USD</option><option>EUR</option><option>GBP</option><option>AED</option></select>
+          </label>
+        </div>
+        <p class="result-price" id="resRange">—</p>
+        <p class="soft mt4" id="resDur"></p>
+        <div class="chips mt5" id="resTags"></div>
+        <div class="row mt6">
+          <a class="btn btn-p" id="resMail" href="mailto:support@intelloratech.net">Send this to us <span class="ar" aria-hidden="true">→</span></a>
+          <button class="btn btn-s" id="resCopy" type="button">Copy summary</button>
+          <span class="mono" id="resCopied" hidden>Copied</span>
+        </div>
+        <div class="row mt5"><button class="btn btn-g" id="estB3" type="button">← Change answers</button></div>
+      </div>
+      <div>
+        <p class="mono mb4">How the work splits</p>
+        <div id="resPhases"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <noscript><div class="callout">The estimator needs JavaScript. Projects typically start at $4,200 for an assessment and $15,000 for a platform build — <a href="/contact/">email us</a> and we will price your case properly.</div></noscript>
+</section>
+
+<section class="wrap section">
+  <div class="section-tint ctr rv">
+    <h2 style="max-width:22ch;margin-inline:auto">Does the number work?</h2>
+    <p class="lead" style="margin-inline:auto">After one call and a look at your systems, the estimate becomes a fixed price.</p>
+    <div class="row ctr mt5" style="justify-content:center">
+      <a href="/contact/" class="btn btn-p">Book a call <span class="ar" aria-hidden="true">→</span></a>
+      <a href="/tools/maturity/" class="btn btn-s">Run the health check</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-g">
+      <div>
+        <p class="brand"><span class="brand-mark" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 32 32"><path d="M8 8.5 L17 16 M8 23.5 L17 16 M17 16 L24.5 16" stroke="#FBF9F5" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/><circle cx="8" cy="8.5" r="2.5" fill="#FBF9F5"/><circle cx="8" cy="23.5" r="2.5" fill="#FBF9F5"/><circle cx="17" cy="16" r="2.1" fill="#FBF9F5"/><circle cx="25" cy="16" r="3.3" fill="#F0C05A"/></svg></span>Intellora Tech</p>
+        <p class="ft-about">A practice of specialists across data engineering, cloud architecture, governance, security, machine learning and databases — led by a principal engineer.</p>
+        <p class="mt4"><a href="mailto:support@intelloratech.net">support@intelloratech.net</a><br>Distributed team · delivery worldwide</p>
+      </div>
+      <div>
+        <h2>Products</h2>
+        <ul><li><a href="/products/analytics-bi/">Analytics &amp; BI</a></li><li><a href="/products/data-governance/">Data Governance</a></li><li><a href="/products/security/">Security &amp; Data Protection</a></li><li><a href="/products/ai-machine-learning/">AI &amp; Machine Learning</a></li><li><a href="/products/database-engineering/">Database Engineering</a></li><li><a href="/products/aws-cloud/">AWS Cloud Architecture</a></li></ul>
+      </div>
+      <div>
+        <h2>Explore</h2>
+        <ul>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tools/estimator/">Price estimator</a></li>
+          <li><a href="/tools/maturity/">Data health check</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/payment/">Payments</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-b"><span>© 2026 Intellora Tech</span><span>A distributed practice · delivered worldwide</span></div>
+  </div>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
