@@ -1,5 +1,5 @@
 /* ==========================================================
-   INTELLORA TECH — SHARED BEHAVIOUR
+   INTELLORA TECH: SHARED BEHAVIOUR
    Progressive enhancement. Every page reads without JS.
    ========================================================== */
 (function () {
@@ -80,7 +80,8 @@
       security:   { p: 1.15, w: 1.08, l: 'Security & data protection' },
       ai:         { p: 1.30, w: 1.22, l: 'AI & machine learning' },
       database:   { p: 1.05, w: 1.00, l: 'Database engineering' },
-      cloud:      { p: 1.12, w: 1.05, l: 'AWS cloud architecture' }
+      cloud:      { p: 1.12, w: 1.05, l: 'AWS cloud architecture' },
+      delivery:   { p: 0.92, w: 1.10, l: 'Project & delivery management' }
     };
     var M = {
       cx: { std: { p: 1.00, w: 1.00, l: 'Standard complexity' }, mod: { p: 1.45, w: 1.30, l: 'Moderate complexity' }, adv: { p: 2.05, w: 1.60, l: 'Advanced complexity' } },
@@ -118,7 +119,7 @@
           '<div class="bar"><i style="width:' + p[1] + '%"></i></div></div>';
       }).join('');
 
-      var sum = 'Price estimate — intelloratech.com\n\n' +
+      var sum = 'Price estimate, intelloratech.net\n\n' +
         'What we want: ' + b.l + '\nMain product: ' + PILLAR[st.pillar].l + '\n' +
         'How complex: ' + M.cx[st.cx].l + '\nHow big: ' + M.sz[st.sz].l + '\n' +
         'Rules to satisfy: ' + M.gv[st.gv].l + '\nTiming: ' + M.tl[st.tl].l + '\n\n' +
@@ -126,7 +127,7 @@
         'Estimated time: ' + r.wLo + '–' + r.wHi + ' weeks\n\nOur situation:\n';
       window.__estSum = sum;
       var ml = $('#resMail');
-      if (ml) ml.href = 'mailto:hello@intelloratech.com?subject=' + encodeURIComponent('Call request — ' + b.l) + '&body=' + encodeURIComponent(sum);
+      if (ml) ml.href = 'mailto:support@intelloratech.net?subject=' + encodeURIComponent('Call request: ' + b.l) + '&body=' + encodeURIComponent(sum);
     }
 
     var sel = $('#cur');
@@ -203,7 +204,7 @@
       { max: 11, n: 'Ad hoc', d: 'Data lives in operational systems and spreadsheets. Reporting is manual and answers disagree depending on who produced them. The first win is a single reliable pipeline and one agreed set of definitions.', p: ['database', 'analytics'] },
       { max: 17, n: 'Repeatable', d: 'Pipelines exist but break quietly, and nobody can trace a number back to its source. The priority is orchestration you can trust and lineage you can show an auditor.', p: ['analytics', 'governance'] },
       { max: 23, n: 'Governed', d: 'The platform is reliable and documented. The next constraints are cost efficiency, access control, and preparing the data layer to support models rather than dashboards alone.', p: ['cloud', 'security'] },
-      { max: 99, n: 'Optimising', d: 'Strong foundations already in place. Value now comes from advanced workloads — machine learning in production, real-time decisioning, and formal model governance.', p: ['ai', 'governance'] }
+      { max: 99, n: 'Optimising', d: 'Strong foundations already in place. Value now comes from advanced workloads: machine learning in production, real-time decisioning, and formal model governance.', p: ['ai', 'governance'] }
     ];
     var NAMES = {
       analytics: 'Analytics & BI', governance: 'Governance & compliance', security: 'Security & data protection',

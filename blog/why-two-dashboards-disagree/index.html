@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Why your two dashboards disagree — Intellora Tech</title>
+<title>Why your two dashboards disagree · Intellora Tech</title>
 <meta name="description" content="Nearly every reporting dispute is a definition dispute wearing a technical costume. Here is how to find the real disagreement and end it.">
 
 <link rel="canonical" href="https://intelloratech.net/blog/why-two-dashboards-disagree/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Why your two dashboards disagree — Intellora Tech">
+<meta property="og:title" content="Why your two dashboards disagree · Intellora Tech">
 <meta property="og:description" content="Nearly every reporting dispute is a definition dispute wearing a technical costume. Here is how to find the real disagreement and end it.">
 <meta property="og:url" content="https://intelloratech.net/blog/why-two-dashboards-disagree/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E6E5E'/%3E%3Cpath d='M8 8.5 L17 16 M8 23.5 L17 16 M17 16 L24.5 16' stroke='%23FBF9F5' stroke-width='1.9' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='.85'/%3E%3Ccircle cx='8' cy='8.5' r='2.5' fill='%23FBF9F5'/%3E%3Ccircle cx='8' cy='23.5' r='2.5' fill='%23FBF9F5'/%3E%3Ccircle cx='17' cy='16' r='2.1' fill='%23FBF9F5'/%3E%3Ccircle cx='25' cy='16' r='3.3' fill='%23F0C05A'/%3E%3C/svg%3E">
@@ -57,7 +57,7 @@
 
 <h2>The disagreement is almost never technical</h2>
 
-<p>It is tempting to treat this as a pipeline problem — a join gone wrong, a filter applied in one place and not the other. Occasionally it is. Far more often the pipelines are both doing exactly what they were told, and what they were told was decided separately, months apart, by people solving different immediate problems.</p>
+<p>It is tempting to treat this as a pipeline problem: a join gone wrong, a filter applied in one place and not the other. Occasionally it is. Far more often the pipelines are both doing exactly what they were told, and what they were told was decided separately, months apart, by people solving different immediate problems.</p>
 
 <p>The tell is simple: ask each dashboard's owner to state the definition out loud. If they hesitate, or reach for the SQL to answer, the definition does not exist as a governed object. It exists as an implementation detail, and implementation details drift.</p>
 
@@ -65,21 +65,21 @@
 
 <h2>What actually fixes it</h2>
 
-<p>The durable fix is to define each metric once, in one place, and have every consumer read from that place. In practice that means a semantic layer — <code>dbt</code> metrics, a warehouse view layer, an Oracle Analytics RPD, whatever fits your stack — that owns the calculation, and reporting tools that are forbidden from recalculating it themselves.</p>
+<p>The durable fix is to define each metric once, in one place, and have every consumer read from that place. In practice that means a semantic layer (<code>dbt</code> metrics, a warehouse view layer, an Oracle Analytics RPD, whatever fits your stack) that owns the calculation, and reporting tools that are forbidden from recalculating it themselves.</p>
 
 <p>Three properties make it stick:</p>
 
 <ul>
   <li><strong>One definition per metric, versioned.</strong> If the rule changes, that is a commit with a date and an author, not a silent edit in a dashboard.</li>
-  <li><strong>Consumers cannot override it.</strong> The moment a report can redefine <em>active customer</em> locally, you are back where you started — only now with the appearance of governance.</li>
+  <li><strong>Consumers cannot override it.</strong> The moment a report can redefine <em>active customer</em> locally, you are back where you started, only now with the appearance of governance.</li>
   <li><strong>The definition is readable by non-engineers.</strong> If the CFO cannot read the rule and agree with it, the rule has not actually been agreed.</li>
 </ul>
 
 <h2>The part people skip</h2>
 
-<p>The technical work is the easy half. The hard half is getting the finance lead, the operations lead and the product lead into one room to agree what <em>active</em> means — because it turns out they each need it to mean something slightly different, and that disagreement is real, not a data problem.</p>
+<p>The technical work is the easy half. The hard half is getting the finance lead, the operations lead and the product lead into one room to agree what <em>active</em> means, because it turns out they each need it to mean something slightly different, and that disagreement is real, not a data problem.</p>
 
-<p>When that happens, the answer is usually not one metric. It is two or three, each named precisely — <em>transacting customers (30d)</em>, <em>open accounts</em>, <em>billable accounts</em> — so that nobody has to guess which one a chart is showing. Precision in the name does more work than any amount of pipeline engineering.</p>
+<p>When that happens, the answer is usually not one metric. It is two or three, each named precisely: <em>transacting customers (30d)</em>, <em>open accounts</em>, <em>billable accounts</em>, so that nobody has to guess which one a chart is showing. Precision in the name does more work than any amount of pipeline engineering.</p>
 
 <h2>How to tell if you have this problem</h2>
 
@@ -99,7 +99,7 @@
     </a>
     <a href="/blog/ml-production-readiness/" class="card card-accent k-coral">
       <p class="mono">AI & ML · 8 min read</p>
-      <div class="post-card"><span class="t">What has to be true before a model ships</span><span class="x">Models rarely fail in the notebook. They fail at the boundary between training data and the real world — a data engineering problem, not a modelling one.</span></div>
+      <div class="post-card"><span class="t">What has to be true before a model ships</span><span class="x">Models rarely fail in the notebook. They fail at the boundary between training data and the real world: a data engineering problem, not a modelling one.</span></div>
       <span class="go">Read →</span>
     </a></div>
 </section>
@@ -121,7 +121,7 @@
     <div class="ft-g">
       <div>
         <p class="brand"><span class="brand-mark" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 32 32"><path d="M8 8.5 L17 16 M8 23.5 L17 16 M17 16 L24.5 16" stroke="#FBF9F5" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/><circle cx="8" cy="8.5" r="2.5" fill="#FBF9F5"/><circle cx="8" cy="23.5" r="2.5" fill="#FBF9F5"/><circle cx="17" cy="16" r="2.1" fill="#FBF9F5"/><circle cx="25" cy="16" r="3.3" fill="#F0C05A"/></svg></span>Intellora Tech</p>
-        <p class="ft-about">A practice of specialists across data engineering, cloud architecture, governance, security, machine learning and databases — led by a principal engineer.</p>
+        <p class="ft-about">A practice of specialists across data engineering, cloud architecture, governance, security, machine learning and databases, led by a principal engineer.</p>
         <p class="mt4"><a href="mailto:support@intelloratech.net">support@intelloratech.net</a><br>Distributed team · delivery worldwide</p>
       </div>
       <div>

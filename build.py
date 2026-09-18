@@ -109,7 +109,7 @@ POSTS = [
         "cat": "AI & ML",
         "mins": 8,
         "excerpt": "Models rarely fail in the notebook. They fail at the boundary between "
-                   "training data and the real world — a data engineering problem, not a modelling one.",
+                   "training data and the real world: a data engineering problem, not a modelling one.",
     },
 ]
 
@@ -181,7 +181,7 @@ def layout(path, title, desc, body, accent="emerald", nav_key=None, crumbs=None,
     <div class="ft-g">
       <div>
         <p class="brand">{MARK}Intellora Tech</p>
-        <p class="ft-about">A practice of specialists across data engineering, cloud architecture, governance, security, machine learning and databases — led by a principal engineer.</p>
+        <p class="ft-about">A practice of specialists across data engineering, cloud architecture, governance, security, machine learning and databases, led by a principal engineer.</p>
         <p class="mt4"><a href="mailto:{EMAIL}">{EMAIL}</a><br>Distributed team · delivery worldwide</p>
       </div>
       <div>
@@ -247,7 +247,7 @@ home = f"""
     <div>
       <p class="eyebrow">A practice of specialists</p>
       <h1>Data platforms that hold up when someone checks the numbers.</h1>
-      <p class="lead">We build and fix the systems underneath your reports — databases, data pipelines, cloud setups, and the rules that keep the numbers trustworthy. You speak to a hands-on engineer from the team that will do the work.</p>
+      <p class="lead">We build and fix the systems underneath your reports: databases, data pipelines, cloud setups, and the rules that keep the numbers trustworthy. You speak to a hands-on engineer from the team that will do the work.</p>
       <div class="row mt6">
         <a href="/contact/" class="btn btn-p">Book a call <span class="ar" aria-hidden="true">→</span></a>
         <a href="/tools/estimator/" class="btn btn-s">Estimate the cost</a>
@@ -268,9 +268,9 @@ home = f"""
 </section>
 
 <section class="wrap mb6">
-  <div class="pgfx rv" role="img" aria-label="Animated diagram. Four fragmented data sources — a stale CRM export, a payments ledger with three conflicting schemas, a manual operations spreadsheet and an unindexed object store — flow through a four-stage pipeline of ingest, validate, model and serve. They emerge as a single source of truth with twelve-minute data freshness, ninety-nine point six per cent pipeline reliability and one agreed metric definition. Figures illustrate a representative project.">
+  <div class="pgfx rv" role="img" aria-label="Animated diagram. Four fragmented data sources (a stale CRM export, a payments ledger with three conflicting schemas, a manual operations spreadsheet and an unindexed object store) flow through a four-stage pipeline of ingest, validate, model and serve. They emerge as a single source of truth with twelve-minute data freshness, ninety-nine point six per cent pipeline reliability and one agreed metric definition. Figures illustrate a representative project.">
     <div class="pgfx-hd">
-      <span>pipeline_view — representative project</span>
+      <span>pipeline_view: representative project</span>
       <span class="lv"><span class="dot-live"></span>running</span>
       <span class="sweep"></span>
     </div>
@@ -313,7 +313,7 @@ home = f"""
     <a href="/products/" class="card card-accent k-emerald rv">
       <p class="mono">Start here</p>
       <h3>Seven products</h3>
-      <p>Reporting, governance, security, AI, databases, AWS and delivery — buy one or several.</p>
+      <p>Reporting, governance, security, AI, databases, AWS and delivery. Buy one or several.</p>
       <span class="go">See the products →</span>
     </a>
     <a href="/tools/estimator/" class="card card-accent k-gold rv">
@@ -355,7 +355,7 @@ home = f"""
       </div>
       <div class="grid" style="gap:var(--s4)">
         <div class="card card-accent k-emerald"><h3>Specialists, not generalists</h3><p>Each project is staffed with the people whose depth matches the work, and the principal reviews everything that ships. No junior learning on your budget.</p></div>
-        <div class="card card-accent k-gold"><h3>We say no more than yes</h3><p>Work outside our depth, undefined scope, or a timeline that would force shortcuts — declined, with a suggestion of who is better placed.</p></div>
+        <div class="card card-accent k-gold"><h3>We say no more than yes</h3><p>Work outside our depth, undefined scope, or a timeline that would force shortcuts: declined, with a suggestion of who is better placed.</p></div>
         <div class="card card-accent k-indigo"><h3>Narrow scope, finished properly</h3><p>A tightly drawn project delivered completely beats a broad one delivered to eighty per cent. Scope is fixed at signature and changes are quoted before work starts.</p></div>
       </div>
     </div>
@@ -398,7 +398,7 @@ home = f"""
   <div class="grid c2">
     <div class="rv">
       <h2>What we are best at</h2>
-      <p class="lead">Full-stack data engineering — Oracle and cloud-native databases, AWS architecture, the pipelines that move data and the dashboards that turn it into something a board can act on. The toolset flexes to whatever your platform already runs on; the standard does not.</p>
+      <p class="lead">Full-stack data engineering: Oracle and cloud-native databases, AWS architecture, the pipelines that move data and the dashboards that turn it into something a board can act on. The toolset flexes to whatever your platform already runs on; the standard does not.</p>
       <div class="row mt5">
         <a href="/projects/" class="btn btn-s">See our projects</a>
         <a href="/about/" class="btn btn-g">About the practice →</a>
@@ -416,51 +416,13 @@ home = f"""
   </div>
 </section>
 
-<section class="wrap section">
-  <div class="rv">
-    <h2 class="mb4">Tools in execution</h2>
-    <p class="lead mb6">The stack changes by project, chosen for the job rather than a single vendor relationship. These are the ones we reach for most often.</p>
-    <div class="grid c3">
-      <div>
-        <p class="mono mb3">Visualisation &amp; reporting</p>
-        <div class="chips">
-          <span class="chip">Power BI</span>
-          <span class="chip">Tableau</span>
-          <span class="chip">Oracle Analytics Server / Cloud</span>
-          <span class="chip">Looker</span>
-          <span class="chip">Qlik Sense</span>
-        </div>
-      </div>
-      <div>
-        <p class="mono mb3">Data integration &amp; orchestration</p>
-        <div class="chips">
-          <span class="chip">Apache Airflow</span>
-          <span class="chip">dbt</span>
-          <span class="chip">Talend</span>
-          <span class="chip">Oracle Data Integrator</span>
-          <span class="chip">Apache Spark</span>
-          <span class="chip">Kafka</span>
-        </div>
-      </div>
-      <div>
-        <p class="mono mb3">Delivery methodology</p>
-        <div class="chips">
-          <span class="chip">PRINCE2</span>
-          <span class="chip">Agile / Scrum</span>
-          <span class="chip">PMBOK-aligned waterfall</span>
-          <span class="chip">Hybrid delivery</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 """ + cta(
     "Tell us what is broken.",
     "One paragraph is enough. You will hear back within one working day.",
     secondary=("Run the health check", "/tools/maturity/"),
 )
 
-write("", layout("/", "Intellora Tech — Data, Cloud &amp; AI Engineering",
+write("", layout("/", "Intellora Tech · Data, Cloud &amp; AI Engineering",
                  "A practice of specialists in data engineering, cloud architecture, governance, security and "
                  "machine learning, led by a principal engineer. You speak to hands-on engineers.",
                  home, accent="emerald"))
@@ -489,7 +451,7 @@ prod_hub = f"""
           primary=("Run the health check", "/tools/maturity/"),
           secondary=("Book a call", "/contact/"))
 
-write("products", layout("/products/", "Products — Intellora Tech",
+write("products", layout("/products/", "Products · Intellora Tech",
                             "Seven products: reporting and BI, data governance, security, AI and machine "
                             "learning, database engineering, AWS cloud work, and project delivery management.",
                             prod_hub, accent="emerald", nav_key="Products",
@@ -530,7 +492,7 @@ def product_page(slug, name, colour, accent, headline, intro, services, tech, bu
           "Twenty minutes on a call is usually enough to know whether this is the right starting point.",
           secondary=("Estimate the cost", "/tools/estimator/"))
     write("products/" + slug,
-          layout("/products/%s/" % slug, "%s — Intellora Tech" % re.sub("&amp;", "&", name),
+          layout("/products/%s/" % slug, "%s · Intellora Tech" % re.sub("&amp;", "&", name),
                  intro[:155], body, accent=accent, nav_key="Products",
                  crumbs=[("Products", "/products/"), (name, None)]))
 
@@ -538,7 +500,7 @@ def product_page(slug, name, colour, accent, headline, intro, services, tech, bu
 product_page(
     "analytics-bi", "Analytics &amp; BI", "emerald", "emerald",
     "Numbers your board can act on without arguing about them first.",
-    "Most reporting problems are definition problems wearing a technical costume. We model each metric once, govern the definition, and build the reporting layer on top of it — so the argument moves from whose number is right to what to do about it.",
+    "Most reporting problems are definition problems wearing a technical costume. We model each metric once, govern the definition, and build the reporting layer on top of it, so the argument moves from whose number is right to what to do about it.",
     [("Semantic modelling &amp; metric governance", "One agreed definition per metric, versioned and consumed everywhere."),
      ("Oracle Analytics Server design &amp; installation", "Architecture, sizing, installation, RPD modelling, subject areas, security and high availability, including migration from legacy OBIEE."),
      ("Power BI &amp; embedded analytics", "Dashboards built around decisions people actually make, and analytics embedded into your own product where that is the requirement."),
@@ -569,7 +531,7 @@ product_page(
 product_page(
     "security", "Security &amp; Data Protection", "deep", "emerald",
     "Security designed into the platform, not bolted on after the finding.",
-    "This is data-platform security specifically — how your warehouse, pipelines and analytics layer are protected, segmented, encrypted and evidenced.",
+    "This is data-platform security specifically: how your warehouse, pipelines and analytics layer are protected, segmented, encrypted and evidenced.",
     [("Data security architecture", "Security design for the data platform: trust boundaries, segmentation, data classification and control placement."),
      ("Encryption &amp; key management", "Encryption at rest and in transit, KMS key hierarchy, rotation policy, envelope encryption and field-level protection for sensitive attributes."),
      ("Access control design", "Role-based and attribute-based access control, row and column-level security, least-privilege review and joiner-mover-leaver process for data access."),
@@ -585,7 +547,7 @@ product_page(
 product_page(
     "ai-machine-learning", "AI &amp; Machine Learning", "plum", "plum",
     "Models that reach production, on data you can defend.",
-    "We approach machine learning from the data side first. Most organisations asking for models actually need the layer underneath fixed — and we will tell you that rather than build something impressive on unreliable inputs.",
+    "We approach machine learning from the data side first. Most organisations asking for models actually need the layer underneath fixed, and we will tell you that rather than build something impressive on unreliable inputs.",
     [("Feature pipelines &amp; feature stores", "Reproducible feature engineering with consistent definitions between training and serving."),
      ("Model training workflows", "Versioned, reproducible training with experiment tracking and a registry that records what shipped and why."),
      ("MLOps &amp; deployment", "Deployment pipelines, rollback paths, monitoring for drift and degradation, and retraining schedules."),
@@ -600,7 +562,7 @@ product_page(
 product_page(
     "database-engineering", "Database Engineering", "coral", "coral",
     "The deepest part of our practice.",
-    "Deep production database work across Oracle, PostgreSQL, SQL Server and the cloud-native platforms that have largely replaced them. This is where the fastest wins usually are — tuning a query is almost always cheaper than buying more hardware.",
+    "Deep production database work across Oracle, PostgreSQL, SQL Server and the cloud-native platforms that have largely replaced them. This is where the fastest wins usually are: tuning a query is almost always cheaper than buying more hardware.",
     [("Logical &amp; physical data modelling", "Conceptual through physical models, normalisation and deliberate denormalisation, dimensional and Data Vault approaches where they fit."),
      ("Database design &amp; development", "Schema design, constraints and referential integrity, stored procedures and packages, across Oracle, PostgreSQL, MySQL and SQL Server."),
      ("Performance tuning", "Execution plan analysis, index strategy, statistics management, partitioning and query rewrites."),
@@ -632,8 +594,8 @@ product_page(
 product_page(
     "project-delivery", "Project &amp; Delivery Management", "slate", "slate",
     "The discipline that makes the other six land on time and on budget.",
-    "Good engineering does not survive bad delivery. We run every project against a named methodology chosen for the shape of the work — PRINCE2 where governance and stage gates matter, Agile and Scrum where the requirement will keep moving, or a PMBOK-aligned blend where part of the programme is fixed and part is exploratory. The method is picked to fit the work, not applied by default.",
-    [("Methodology selection &amp; governance design", "PRINCE2, Agile/Scrum, a PMBOK-aligned waterfall, or a deliberate hybrid — chosen for the project's risk profile and how settled the requirements actually are."),
+    "Good engineering does not survive bad delivery. We run every project against a named methodology chosen for the shape of the work: PRINCE2 where governance and stage gates matter, Agile and Scrum where the requirement will keep moving, or a PMBOK-aligned blend where part of the programme is fixed and part is exploratory. The method is picked to fit the work, not applied by default.",
+    [("Methodology selection &amp; governance design", "PRINCE2, Agile/Scrum, a PMBOK-aligned waterfall, or a deliberate hybrid, chosen for the project's risk profile and how settled the requirements actually are."),
      ("Programme &amp; project management office (PMO)", "Schedule, budget, RAID log, change control and stage-gate reporting run as a discipline, not bolted onto the engineering work after the fact."),
      ("Agile delivery &amp; Scrum facilitation", "Sprint planning, backlog ownership, ceremonies and velocity tracking for teams where the requirement is expected to change as the work proceeds."),
      ("Business case &amp; benefits realisation", "The case for the spend, built to a PMBOK-aligned standard, and the tracking that proves the benefit was actually realised once delivery is over."),
@@ -652,12 +614,12 @@ PROJECTS = [
         "name": "National tax administration system rebuild",
         "colour": "indigo",
         "body": "Set the data quality rules across every old and new system, decided who owns which data, "
-                "put lineage and access controls in place, and wrote the plan for moving the data — a "
+                "put lineage and access controls in place, and wrote the plan for moving the data: a "
                 "multi-year programme run to a named governance framework rather than by instinct.",
         "tags": ["Data governance", "Migration planning", "Programme governance"],
     },
     {
-        "name": "Data lake house — pipeline architecture",
+        "name": "Data lake house build",
         "colour": "emerald",
         "body": "Built the pipelines that fill a central data store: Apache Airflow to schedule the work, Kafka "
                 "for live data, PySpark for the heavy lifting. Data from several separate systems now lands in "
@@ -668,12 +630,12 @@ PROJECTS = [
         "name": "Data warehouse rebuild",
         "colour": "gold",
         "body": "Rebuilt the loading pipelines so they process far more data in the same window, and added "
-                "automatic quality checks, alerting and schema enforcement — so a broken load is caught before "
+                "automatic quality checks, alerting and schema enforcement, so a broken load is caught before "
                 "it reaches a report rather than after someone queries it.",
         "tags": ["ELT redesign", "Data quality", "Alerting"],
     },
     {
-        "name": "Core banking upgrade — Oracle 12c to 19c",
+        "name": "Core banking database upgrade",
         "colour": "coral",
         "body": "Moved core banking and mobile banking databases onto a new Oracle version with no downtime and "
                 "no data lost. Performance tuning and stress testing were done on the new setup before anyone "
@@ -684,7 +646,7 @@ PROJECTS = [
         "name": "Disaster recovery and emergency failover",
         "colour": "deep",
         "body": "Designed an Oracle Data Guard cascading standby setup across several recovery sites, then led "
-                "the emergency failover that brought a bank back up after a critical infrastructure failure — "
+                "the emergency failover that brought a bank back up after a critical infrastructure failure, "
                 "with no data lost.",
         "tags": ["Data Guard", "Disaster recovery", "Failover"],
     },
@@ -765,7 +727,7 @@ projects = f"""
 <section class="wrap section">
   <div class="rv narrow">
     <h2 class="mb4">What this adds up to</h2>
-    <p class="lead">Tax and customs systems, core banking, and humanitarian operations — places where a wrong number has consequences and someone eventually checks. That is the kind of work we are quick at: regulated data, matching numbers that must agree, audit trails, and moves that cannot afford a bad switch-over.</p>
+    <p class="lead">Tax and customs systems, core banking, and humanitarian operations: places where a wrong number has consequences and someone eventually checks. That is the kind of work we are quick at, regulated data, matching numbers that must agree, audit trails, and moves that cannot afford a bad switch-over.</p>
     <p class="mono mt6 mb3">We also work in</p>
     <div class="chips">{"".join('<span class="chip">%s</span>' % t for t in [
       "Lending &amp; credit", "Insurance", "Payments &amp; fintech", "Capital markets",
@@ -777,7 +739,7 @@ projects = f"""
           "Tell us what is broken in a paragraph. We will tell you honestly whether we are the right people.",
           secondary=("See what we sell", "/products/"))
 
-write("projects", layout("/projects/", "Projects — Intellora Tech",
+write("projects", layout("/projects/", "Projects · Intellora Tech",
                          "Real project work: a national tax administration system rebuild, data lake pipelines, "
                          "a data warehouse rebuild, core banking upgrades, disaster recovery and large-scale "
                          "biometric data operations.",
@@ -790,7 +752,7 @@ tools_hub = """
 <section class="wrap page-head">
   <p class="eyebrow">Tools</p>
   <h1>Two free tools, two minutes each.</h1>
-  <p class="lead">Both are free, need no sign-up, and give you something you can act on — or forward to whoever holds the budget.</p>
+  <p class="lead">Both are free, need no sign-up, and give you something you can act on, or forward to whoever holds the budget.</p>
 </section>
 
 <section class="wrap">
@@ -812,7 +774,7 @@ tools_hub = """
 """ + cta("Want a real number instead of an estimate?",
           "A short call and a look at your systems turns an estimate into a fixed price.")
 
-write("tools", layout("/tools/", "Tools — Intellora Tech",
+write("tools", layout("/tools/", "Tools · Intellora Tech",
                       "Two free tools: a price estimator for data, cloud and AI work, and a data health check.",
                       tools_hub, accent="gold", nav_key="Tools", crumbs=[("Tools", None)]))
 
@@ -828,7 +790,7 @@ estimator = f"""
 <section class="wrap page-head">
   <p class="eyebrow">Price estimator</p>
   <h1>Six questions, one price range.</h1>
-  <p class="lead">Built from our own rate card and past work. You get a price range, how long it should take, and how the work splits into stages — all of it copyable into an email.</p>
+  <p class="lead">Built from our own rate card and past work. You get a price range, how long it should take, and how the work splits into stages, all copyable into an email.</p>
 </section>
 
 <section class="wrap" id="est">
@@ -843,7 +805,7 @@ estimator = f"""
     <p class="q-h">What are you trying to do?</p>
     {opts("type", [
         ("assess", "Assess or prove", "An assessment, audit or proof of concept before committing."),
-        ("optimise", "Optimise", "Something exists and underperforms — cost, speed or reliability."),
+        ("optimise", "Optimise", "Something exists and underperforms: cost, speed or reliability."),
         ("build", "Build", "A new platform, pipeline or product capability."),
         ("migrate", "Migrate", "Move or modernise an existing estate."),
     ])}
@@ -855,6 +817,7 @@ estimator = f"""
         ("ai", "AI &amp; ML", "Feature pipelines, training, deployment."),
         ("database", "Databases", "Modelling, tuning, HA, migration."),
         ("cloud", "AWS cloud", "Architecture, landing zone, FinOps."),
+        ("delivery", "Delivery &amp; PM", "PRINCE2, Agile/Scrum, PMBOK, PMO setup."),
     ], "g3")}
     <div class="row mt6"><button class="btn btn-p" id="estN1" type="button" disabled>Continue <span class="ar" aria-hidden="true">→</span></button></div>
   </div>
@@ -918,13 +881,13 @@ estimator = f"""
 </section>
 
 <section class="wrap">
-  <noscript><div class="callout">The estimator needs JavaScript. Projects typically start at $4,200 for an assessment and $15,000 for a platform build — <a href="/contact/">email us</a> and we will price your case properly.</div></noscript>
+  <noscript><div class="callout">The estimator needs JavaScript. Projects typically start at $4,200 for an assessment and $15,000 for a platform build. <a href="/contact/">Email us</a> and we will price your case properly.</div></noscript>
 </section>
 """ + cta("Does the number work?",
           "After one call and a look at your systems, the estimate becomes a fixed price.",
           secondary=("Run the health check", "/tools/maturity/"))
 
-write("tools/estimator", layout("/tools/estimator/", "Price estimator — Intellora Tech",
+write("tools/estimator", layout("/tools/estimator/", "Price estimator · Intellora Tech",
                                "Six questions gives a price range, a timeline and a stage-by-stage breakdown for data, cloud or AI work.",
                                estimator, accent="gold", nav_key="Tools",
                                crumbs=[("Tools", "/tools/"), ("Price estimator", None)]))
@@ -979,7 +942,7 @@ maturity = f"""
           "A call replaces this with a real look at your systems.",
           secondary=("Estimate the cost", "/tools/estimator/"))
 
-write("tools/maturity", layout("/tools/maturity/", "Data data health check — Intellora Tech",
+write("tools/maturity", layout("/tools/maturity/", "Data health check · Intellora Tech",
                               "Six questions that show where your data setup stands and what is worth fixing first.",
                               maturity, accent="gold", nav_key="Tools",
                               crumbs=[("Tools", "/tools/"), ("Data health check", None)]))
@@ -1008,7 +971,7 @@ blog_index = f"""
 """ + cta("Have a version of this problem?",
           "If one of these sounds like your platform, a twenty-minute call will tell you how deep it goes.")
 
-write("blog", layout("/blog/", "Blog — Intellora Tech",
+write("blog", layout("/blog/", "Blog · Intellora Tech",
                      "Field notes on data platforms: reporting definitions, database cost, and what has to be "
                      "true before a machine learning model ships.",
                      blog_index, accent="coral", nav_key="Blog", crumbs=[("Blog", None)]))
@@ -1042,7 +1005,7 @@ def post_page(p, body_html):
 """ + cta("Recognise this in your own platform?",
           "Twenty minutes is usually enough to tell you whether it is a small fix or a structural one.")
 
-    write("blog/" + p["slug"], layout("/blog/%s/" % p["slug"], "%s — Intellora Tech" % p["title"],
+    write("blog/" + p["slug"], layout("/blog/%s/" % p["slug"], "%s · Intellora Tech" % p["title"],
                                       p["excerpt"], body, accent="coral", nav_key="Blog",
                                       crumbs=[("Blog", "/blog/"), (p["title"], None)]))
 
@@ -1054,7 +1017,7 @@ post_page(POSTS[0], """
 
 <h2>The disagreement is almost never technical</h2>
 
-<p>It is tempting to treat this as a pipeline problem — a join gone wrong, a filter applied in one place and not the other. Occasionally it is. Far more often the pipelines are both doing exactly what they were told, and what they were told was decided separately, months apart, by people solving different immediate problems.</p>
+<p>It is tempting to treat this as a pipeline problem: a join gone wrong, a filter applied in one place and not the other. Occasionally it is. Far more often the pipelines are both doing exactly what they were told, and what they were told was decided separately, months apart, by people solving different immediate problems.</p>
 
 <p>The tell is simple: ask each dashboard's owner to state the definition out loud. If they hesitate, or reach for the SQL to answer, the definition does not exist as a governed object. It exists as an implementation detail, and implementation details drift.</p>
 
@@ -1062,21 +1025,21 @@ post_page(POSTS[0], """
 
 <h2>What actually fixes it</h2>
 
-<p>The durable fix is to define each metric once, in one place, and have every consumer read from that place. In practice that means a semantic layer — <code>dbt</code> metrics, a warehouse view layer, an Oracle Analytics RPD, whatever fits your stack — that owns the calculation, and reporting tools that are forbidden from recalculating it themselves.</p>
+<p>The durable fix is to define each metric once, in one place, and have every consumer read from that place. In practice that means a semantic layer (<code>dbt</code> metrics, a warehouse view layer, an Oracle Analytics RPD, whatever fits your stack) that owns the calculation, and reporting tools that are forbidden from recalculating it themselves.</p>
 
 <p>Three properties make it stick:</p>
 
 <ul>
   <li><strong>One definition per metric, versioned.</strong> If the rule changes, that is a commit with a date and an author, not a silent edit in a dashboard.</li>
-  <li><strong>Consumers cannot override it.</strong> The moment a report can redefine <em>active customer</em> locally, you are back where you started — only now with the appearance of governance.</li>
+  <li><strong>Consumers cannot override it.</strong> The moment a report can redefine <em>active customer</em> locally, you are back where you started, only now with the appearance of governance.</li>
   <li><strong>The definition is readable by non-engineers.</strong> If the CFO cannot read the rule and agree with it, the rule has not actually been agreed.</li>
 </ul>
 
 <h2>The part people skip</h2>
 
-<p>The technical work is the easy half. The hard half is getting the finance lead, the operations lead and the product lead into one room to agree what <em>active</em> means — because it turns out they each need it to mean something slightly different, and that disagreement is real, not a data problem.</p>
+<p>The technical work is the easy half. The hard half is getting the finance lead, the operations lead and the product lead into one room to agree what <em>active</em> means, because it turns out they each need it to mean something slightly different, and that disagreement is real, not a data problem.</p>
 
-<p>When that happens, the answer is usually not one metric. It is two or three, each named precisely — <em>transacting customers (30d)</em>, <em>open accounts</em>, <em>billable accounts</em> — so that nobody has to guess which one a chart is showing. Precision in the name does more work than any amount of pipeline engineering.</p>
+<p>When that happens, the answer is usually not one metric. It is two or three, each named precisely: <em>transacting customers (30d)</em>, <em>open accounts</em>, <em>billable accounts</em>, so that nobody has to guess which one a chart is showing. Precision in the name does more work than any amount of pipeline engineering.</p>
 
 <h2>How to tell if you have this problem</h2>
 
@@ -1092,7 +1055,7 @@ post_page(POSTS[1], """
 
 <h2>1. The query that scans everything to return almost nothing</h2>
 
-<p>A report filters on a date range and returns 400 rows. The execution plan shows a full scan of 90 million. Usually the filter is applied to a derived column — <code>WHERE YEAR(created_at) = 2026</code> — which makes the index unusable. Rewriting to a range predicate on the raw column changes the plan and, on managed platforms billed by data scanned, changes the bill directly.</p>
+<p>A report filters on a date range and returns 400 rows. The execution plan shows a full scan of 90 million. Usually the filter is applied to a derived column, such as <code>WHERE YEAR(created_at) = 2026</code>, which makes the index unusable. Rewriting to a range predicate on the raw column changes the plan and, on managed platforms billed by data scanned, changes the bill directly.</p>
 
 <h2>2. Statistics nobody has refreshed</h2>
 
@@ -1100,7 +1063,7 @@ post_page(POSTS[1], """
 
 <h2>3. Indexes that exist for queries nobody runs</h2>
 
-<p>Every index is paid for twice: once in storage, and again on every write. Estates that have been through several teams accumulate indexes added for a report that was retired long ago. Most engines expose usage counters. Anything unused across a full business cycle — including month-end and year-end, which is why you wait a full cycle — is a candidate for removal.</p>
+<p>Every index is paid for twice: once in storage, and again on every write. Estates that have been through several teams accumulate indexes added for a report that was retired long ago. Most engines expose usage counters. Anything unused across a full business cycle, including month-end and year-end, which is why you wait a full cycle, is a candidate for removal.</p>
 
 <blockquote>Adding an index is a five-minute decision that you pay for on every insert, for years.</blockquote>
 
@@ -1114,7 +1077,7 @@ post_page(POSTS[1], """
 
 <h2>Where to start</h2>
 
-<p>Pull the ten most expensive queries by total cost — not by average runtime, which hides frequently-run cheap-looking queries — and read their plans. In most estates, those ten account for a large majority of the spend, and two or three of them are fixable in an afternoon.</p>
+<p>Pull the ten most expensive queries by total cost, not by average runtime, which hides frequently-run cheap-looking queries, and read their plans. In most estates, those ten account for a large majority of the spend, and two or three of them are fixable in an afternoon.</p>
 
 <p>The reason this work is undersold is that it produces no new capability. It just makes the bill smaller and the reports faster, which is a difficult thing to put in a launch announcement and an easy thing to justify to a finance director.</p>
 """)
@@ -1130,7 +1093,7 @@ post_page(POSTS[2], """
 
 <h2>Training data has to be reconstructible</h2>
 
-<p>Six months after deployment someone asks why the model made a particular decision. Answering means reconstructing the exact training set — which means the raw inputs, the transformation code and the feature definitions all have to be versioned together, not just the model weights.</p>
+<p>Six months after deployment someone asks why the model made a particular decision. Answering means reconstructing the exact training set, which means the raw inputs, the transformation code and the feature definitions all have to be versioned together, not just the model weights.</p>
 
 <blockquote>If you cannot rebuild the training set from scratch, you do not have a reproducible model. You have an artefact.</blockquote>
 
@@ -1138,13 +1101,13 @@ post_page(POSTS[2], """
 
 <h2>Someone has to own degradation</h2>
 
-<p>Models decay. Input distributions shift, an upstream system changes a code list, a business process changes and the historical relationship stops holding. None of this raises an error — the model keeps returning confident predictions that are progressively less useful.</p>
+<p>Models decay. Input distributions shift, an upstream system changes a code list, a business process changes and the historical relationship stops holding. None of this raises an error; the model keeps returning confident predictions that are progressively less useful.</p>
 
 <p>Production readiness means monitoring the inputs, not just the outputs: distribution checks on incoming features, alerts on null-rate and cardinality changes, and a scheduled review of prediction quality against outcomes once outcomes are known. And a named person who receives those alerts.</p>
 
 <h2>There has to be a rollback</h2>
 
-<p>The question "what do we do if this model starts behaving badly on a Friday afternoon" should have a boring answer: route traffic to the previous version, or to the deterministic rule the model replaced. If the answer involves a retraining run, the model is not deployed — it is merely running.</p>
+<p>The question "what do we do if this model starts behaving badly on a Friday afternoon" should have a boring answer: route traffic to the previous version, or to the deterministic rule the model replaced. If the answer involves a retraining run, the model is not deployed; it is merely running.</p>
 
 <h2>The honest sequencing</h2>
 
@@ -1158,17 +1121,17 @@ about = f"""
 <section class="wrap page-head">
   <p class="eyebrow">About</p>
   <h1>A senior-led practice, deliberately small.</h1>
-  <p class="lead">Intellora Tech is an engineering consultancy working across data, cloud, AI and security. A collective of specialists — database, cloud, analytics, machine learning, governance and security — led by a principal engineer who staffs each project and reviews what ships. You speak to hands-on engineers throughout, never an account manager.</p>
+  <p class="lead">Intellora Tech is an engineering consultancy working across data, cloud, AI and security. A collective of specialists (database, cloud, analytics, machine learning, governance and security) led by a principal engineer who staffs each project and reviews what ships. You speak to hands-on engineers throughout, never an account manager.</p>
 </section>
 
 <section class="wrap section">
   <div class="capacity rv">
     <p class="eyebrow">How we stay small on purpose</p>
     <h2 style="max-width:24ch">A capped book is the quality control.</h2>
-    <p class="lead">We run at most three projects concurrently. Not as a scarcity tactic — as the only honest way to promise that the specialists on your platform are genuinely thinking about it, and that the principal can review every piece of work rather than signing off work nobody senior has read.</p>
+    <p class="lead">We run at most three projects concurrently, not as a scarcity tactic but as the only honest way to promise that the specialists on your platform are genuinely thinking about it, and that the principal can review every piece of work rather than signing off work nobody senior has read.</p>
     <div class="grid c3 mt6">
       <div><p class="mono mb3">We decline</p><p class="soft">Work outside our depth, scope that is genuinely undefined at contracting, and deadlines that would force us to cut the testing or the documentation.</p></div>
-      <div><p class="mono mb3">We finish</p><p class="soft">A project is done when it is documented, handed over and running — not when the hours are used up. Overrun on a fixed price is our problem, not yours.</p></div>
+      <div><p class="mono mb3">We finish</p><p class="soft">A project is done when it is documented, handed over and running, not when the hours are used up. Overrun on a fixed price is our problem, not yours.</p></div>
       <div><p class="mono mb3">We go narrow</p><p class="soft">One capability, delivered completely, beats a broad project delivered to eighty per cent. If the right answer is a smaller project, we will propose the smaller one.</p></div>
     </div>
   </div>
@@ -1205,12 +1168,12 @@ about = f"""
       <div class="card card-accent k-coral"><h3>Database engineering</h3><p>Oracle internals, PostgreSQL, SQL Server and MySQL. Modelling, tuning, high availability, migration and Oracle Data Integrator.</p></div>
       <div class="card card-accent k-gold"><h3>Cloud &amp; platform</h3><p>AWS architecture, landing zones, infrastructure as code, CI/CD for data infrastructure, and cost engineering.</p></div>
       <div class="card card-accent k-emerald"><h3>Analytics engineering</h3><p>Semantic modelling, dbt, Oracle Analytics and Power BI, and the metric governance that stops dashboards disagreeing.</p></div>
-      <div class="card card-accent k-plum"><h3>Machine learning</h3><p>Feature pipelines, training workflows, MLOps and retrieval systems — built by people who ship models, not only notebooks.</p></div>
+      <div class="card card-accent k-plum"><h3>Machine learning</h3><p>Feature pipelines, training workflows, MLOps and retrieval systems, built by people who ship models, not only notebooks.</p></div>
       <div class="card card-accent k-indigo"><h3>Governance &amp; data quality</h3><p>Lineage, cataloguing, quality enforcement and the evidence trail an auditor or regulator will eventually ask for.</p></div>
       <div class="card card-accent k-deep"><h3>Platform security</h3><p>Access control design, encryption and key management, secrets, and audit logging for the data estate.</p></div>
-      <div class="card card-accent k-slate"><h3>Project &amp; delivery management</h3><p>PRINCE2, Agile/Scrum or a PMBOK-aligned blend, chosen to fit the project rather than applied by default — plus the PMO discipline that keeps a programme reportable to a board.</p></div>
+      <div class="card card-accent k-slate"><h3>Project &amp; delivery management</h3><p>PRINCE2, Agile/Scrum or a PMBOK-aligned blend, chosen to fit the project rather than applied by default, plus the PMO discipline that keeps a programme reportable to a board.</p></div>
     </div>
-    <div class="callout mt6"><b>Who you actually speak to.</b> Every call is with a hands-on engineer from the team that would do the work — someone who reads execution plans and writes the code, not an account manager relaying questions back to a delivery team. The principal reviews every project regardless of who leads it.</div>
+    <div class="callout mt6"><b>Who you actually speak to.</b> Every call is with a hands-on engineer from the team that would do the work: someone who reads execution plans and writes the code, not an account manager relaying questions back to a delivery team. The principal reviews every project regardless of who leads it.</div>
   </div>
 </section>
 
@@ -1218,10 +1181,10 @@ about = f"""
   <div class="rv">
     <h2 class="mb5">How a distributed practice works</h2>
     <div class="grid c2">
-      <div class="card card-accent k-emerald"><h3>Weekly written update</h3><p>Every Friday from the engineer leading your work: what shipped, what is next, what is blocked, and any change to the estimate — in writing, so it survives being forwarded to your board.</p></div>
+      <div class="card card-accent k-emerald"><h3>Weekly written update</h3><p>Every Friday from the engineer leading your work: what shipped, what is next, what is blocked, and any change to the estimate, in writing, so it survives being forwarded to your board.</p></div>
       <div class="card card-accent k-indigo"><h3>Working sessions, not status calls</h3><p>Calls are for decisions and joint work. Status arrives in writing beforehand so the call is not spent reading it aloud.</p></div>
       <div class="card card-accent k-gold"><h3>Your tools</h3><p>The team works in your Slack, your Jira, your repository and your cloud account, with access provisioned at least privilege and revoked on handover.</p></div>
-      <div class="card card-accent k-coral"><h3>Handover as a piece of work</h3><p>Documentation, runbooks and decision records, plus a live session between your engineers and ours — so the work outlives the project.</p></div>
+      <div class="card card-accent k-coral"><h3>Handover as a piece of work</h3><p>Documentation, runbooks and decision records, plus a live session between your engineers and ours, so the work outlives the project.</p></div>
     </div>
   </div>
 </section>
@@ -1229,7 +1192,7 @@ about = f"""
           "One paragraph about what is broken is enough to start.",
           secondary=("Read the insights", "/blog/"))
 
-write("about", layout("/about/", "About — Intellora Tech",
+write("about", layout("/about/", "About · Intellora Tech",
                       "A distributed engineering practice of specialists across data, cloud, AI and "
                       "security, led by a principal engineer and delivering worldwide.",
                       about, accent="emerald", nav_key="About", crumbs=[("About", None)]))
@@ -1239,7 +1202,7 @@ contact = f"""
 <section class="wrap page-head">
   <p class="eyebrow">Book a call</p>
   <h1>Two ways to start.</h1>
-  <p class="lead">Both are with a hands-on engineer — someone who writes the code, not a salesperson. Pick whichever fits where you are.</p>
+  <p class="lead">Both are with a hands-on engineer, someone who writes the code, not a salesperson. Pick whichever fits where you are.</p>
 </section>
 
 <section class="wrap">
@@ -1257,7 +1220,7 @@ contact = f"""
     <div class="card card-accent k-gold rv" style="padding:var(--s6)">
       <p class="mono">USD {CONSULT_FEE} · 60 minutes</p>
       <h3>Technical consultation</h3>
-      <p style="font-size:var(--t-bd)">A working session, not a sales call. We look at your actual setup — schemas, pipelines, cloud bill, whatever is relevant — and you leave with specific answers and a written summary of what we found and what we would do about it.</p>
+      <p style="font-size:var(--t-bd)">A working session, not a sales call. We look at your actual setup (schemas, pipelines, cloud bill, whatever is relevant) and you leave with specific answers and a written summary of what we found and what we would do about it.</p>
       <p class="mt4"><b class="ui">Free if you hire us:</b> <span class="soft">the full fee comes off your first invoice.</span></p>
       <div class="row mt5">
         <a href="/payment/?amount={CONSULT_FEE}&amp;for=Technical+consultation+%2860+minutes%29" class="btn btn-p">Book and pay <span class="ar" aria-hidden="true">→</span></a>
@@ -1299,7 +1262,7 @@ contact = f"""
     <h2 class="mb5">Before you write</h2>
     <div class="rows">
       <div><div><p class="n">What should a first email say?</p><p class="m">One paragraph on the problem, roughly what you run it on, and any deadline. Nothing formal.</p></div></div>
-      <div><div><p class="n">Will you sign an NDA before we talk?</p><p class="m">Yes — standard mutual NDAs usually within a day.</p></div></div>
+      <div><div><p class="n">Will you sign an NDA before we talk?</p><p class="m">Yes, standard mutual NDAs, usually within a day.</p></div></div>
       <div><div><p class="n">Do you charge for the call?</p><p class="m">The 15-minute intro call is free. The 60-minute technical session is USD 250, and it comes off your first invoice if you hire us.</p></div></div>
       <div><div><p class="n">How do payments work?</p><p class="m">Invoices in USD, EUR, GBP or AED, paid by card or bank transfer. Usually half up front on a first project.</p></div></div>
     </div>
@@ -1310,7 +1273,7 @@ contact = f"""
           primary=("Email us", "mailto:%s?subject=Discovery%%20call%%20request" % EMAIL),
           secondary=("Pay an invoice", "/payment/"))
 
-write("contact", layout("/contact/", "Contact — Intellora Tech",
+write("contact", layout("/contact/", "Contact · Intellora Tech",
                         "Two ways to start: a free 15-minute intro call, or a paid 60-minute technical session with a "
                         "senior engineer, refunded against your first invoice.",
                         contact, accent="emerald", crumbs=[("Contact", None)]))
@@ -1320,7 +1283,7 @@ payment = f"""
 <section class="wrap page-head">
   <p class="eyebrow">Secure payment</p>
   <h1>Pay securely by card.</h1>
-  <p class="lead">For paying an invoice, a deposit, or a booked technical session. Payment happens on Stripe's own page — your card number is typed there, never here.</p>
+  <p class="lead">For paying an invoice, a deposit, or a booked technical session. Payment happens on Stripe's own page: your card number is typed there, never here.</p>
 </section>
 
 <section class="wrap">
@@ -1343,7 +1306,7 @@ payment = f"""
 
           <div class="field">
             <label for="pay-description">What this payment is for</label>
-            <input type="text" id="pay-description" name="description" maxlength="200" placeholder="Deposit — data platform build">
+            <input type="text" id="pay-description" name="description" maxlength="200" placeholder="Deposit for data platform build">
           </div>
 
           <button type="submit" id="pay-btn" class="btn btn-p" style="width:100%;justify-content:center">Pay with Visa / Mastercard <span class="ar" aria-hidden="true">→</span></button>
@@ -1366,20 +1329,20 @@ payment = f"""
         <li><b>2 · You are redirected to Stripe</b><span>Card number, expiry and CVC are entered on Stripe's own page, over a connection Stripe controls end to end.</span></li>
         <li><b>3 · Instant confirmation</b><span>You return here with an on-screen confirmation, and Stripe emails your receipt automatically.</span></li>
       </ul>
-      <div class="callout mt6"><b>Why we never take card numbers directly.</b> Routing payment through Stripe's hosted checkout keeps Intellora Tech out of PCI-DSS scope entirely — the same standard used by companies far larger than us.</div>
+      <div class="callout mt6"><b>Why we never take card numbers directly.</b> Routing payment through Stripe's hosted checkout keeps Intellora Tech out of PCI-DSS scope entirely, the same standard used by companies far larger than us.</div>
     </div>
   </div>
 </section>
 """
 
-write("payment", layout("/payment/", "Pay an invoice — Intellora Tech",
+write("payment", layout("/payment/", "Pay an invoice · Intellora Tech",
                         "Pay an invoice, deposit or booked technical session securely by Visa or Mastercard.",
                         payment, accent="emerald", nav_key="Payments", crumbs=[("Payments", None)]))
 
 success = """
 <section class="wrap page-head ctr">
   <p class="eyebrow" style="margin-inline:auto">Payment received</p>
-  <h1 style="max-width:20ch;margin-inline:auto">Thank you — that is settled.</h1>
+  <h1 style="max-width:20ch;margin-inline:auto">Thank you. That is settled.</h1>
   <p class="lead" style="margin-inline:auto">Stripe has processed your card payment and emailed your receipt. We will be in touch shortly to confirm next steps.</p>
   <p id="confirm-box" class="mono mt5" hidden style="color:var(--accent)"></p>
   <div class="row mt6" style="justify-content:center">
@@ -1388,7 +1351,7 @@ success = """
   </div>
 </section>
 """
-write("payment/success", layout("/payment/success/", "Payment received — Intellora Tech",
+write("payment/success", layout("/payment/success/", "Payment received · Intellora Tech",
                                 "Your payment to Intellora Tech has been received.",
                                 success, accent="emerald", noindex=True))
 
@@ -1403,7 +1366,7 @@ cancel = """
   </div>
 </section>
 """
-write("payment/cancel", layout("/payment/cancel/", "Payment cancelled — Intellora Tech",
+write("payment/cancel", layout("/payment/cancel/", "Payment cancelled · Intellora Tech",
                                "Your payment was cancelled and no charge was made.",
                                cancel, accent="emerald", noindex=True))
 
