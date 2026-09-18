@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The database bill nobody audits · Intellora Tech</title>
+<meta name="description" content="Most cloud database overspend is not a pricing problem. It is five specific query patterns, and each one is cheaper to fix than to host.">
+
+<link rel="canonical" href="https://intelloratech.net/blog/database-cost-audit/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The database bill nobody audits · Intellora Tech">
+<meta property="og:description" content="Most cloud database overspend is not a pricing problem. It is five specific query patterns, and each one is cheaper to fix than to host.">
+<meta property="og:url" content="https://intelloratech.net/blog/database-cost-audit/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E6E5E'/%3E%3Cpath d='M8 8.5 L17 16 M8 23.5 L17 16 M17 16 L24.5 16' stroke='%23FBF9F5' stroke-width='1.9' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='.85'/%3E%3Ccircle cx='8' cy='8.5' r='2.5' fill='%23FBF9F5'/%3E%3Ccircle cx='8' cy='23.5' r='2.5' fill='%23FBF9F5'/%3E%3Ccircle cx='17' cy='16' r='2.1' fill='%23FBF9F5'/%3E%3Ccircle cx='25' cy='16' r='3.3' fill='%23F0C05A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/theme.js"></script>
+<script src="/assets/lang.js"></script>
+</head>
+<body data-accent="coral">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 32 32"><path d="M8 8.5 L17 16 M8 23.5 L17 16 M17 16 L24.5 16" stroke="#FBF9F5" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/><circle cx="8" cy="8.5" r="2.5" fill="#FBF9F5"/><circle cx="8" cy="23.5" r="2.5" fill="#FBF9F5"/><circle cx="17" cy="16" r="2.1" fill="#FBF9F5"/><circle cx="25" cy="16" r="3.3" fill="#F0C05A"/></svg></span>Intellora Tech</a>
+    <nav class="nav" aria-label="Primary"><a href="/products/"><span data-en="Products" data-fr="Produits">Products</span></a><a href="/projects/"><span data-en="Projects" data-fr="Projets">Projects</span></a><a href="/tools/"><span data-en="Tools" data-fr="Outils">Tools</span></a><a href="/blog/" aria-current="page"><span data-en="Blog" data-fr="Blog">Blog</span></a><a href="/about/"><span data-en="About" data-fr="À propos">About</span></a><a href="/payment/"><span data-en="Payments" data-fr="Paiements">Payments</span></a></nav>
+    <div class="hdr-act">
+      <button class="icon-btn lang-btn" id="langBtn" type="button" data-aria-en="Switch to French" data-aria-fr="Passer à l'anglais" aria-label="Switch to French">
+        <span data-en="FR" data-fr="EN">FR</span>
+      </button>
+      <button class="icon-btn" id="theme" type="button" aria-label="Switch theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <a href="/contact/" class="btn btn-p"><span data-en="Book a call" data-fr="Réserver un appel">Book a call</span></a>
+      <button class="burger" id="burger" type="button" data-aria-en="Open menu" data-aria-fr="Ouvrir le menu" aria-label="Open menu" aria-expanded="false" aria-controls="mobile"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+  <div class="mobile" id="mobile">
+    <a href="/products/"><span data-en="Products" data-fr="Produits">Products</span></a><a href="/projects/"><span data-en="Projects" data-fr="Projets">Projects</span></a><a href="/tools/"><span data-en="Tools" data-fr="Outils">Tools</span></a><a href="/blog/"><span data-en="Blog" data-fr="Blog">Blog</span></a><a href="/about/"><span data-en="About" data-fr="À propos">About</span></a><a href="/payment/"><span data-en="Payments" data-fr="Paiements">Payments</span></a>
+    <a href="/tools/estimator/"><span data-en="Price estimator" data-fr="Estimateur de prix">Price estimator</span></a>
+    <a href="/contact/" class="btn btn-p"><span data-en="Book a call" data-fr="Réserver un appel">Book a call</span></a>
+  </div>
+</header>
+<div class="wrap"><nav class="crumb" aria-label="Breadcrumb"><a href="/"><span data-en="Home" data-fr="Accueil">Home</span></a><span aria-hidden="true">/</span><a href="/blog/"><span data-en="Blog" data-fr="Blog">Blog</span></a><span aria-hidden="true">/</span><span><span data-en="The database bill nobody audits" data-fr="La facture de base de données que personne n'audite">The database bill nobody audits</span></span></nav></div>
+<main id="main">
+<div class="i18n" lang="en">
+<article class="wrap page-head article">
+  <p class="eyebrow">Databases</p>
+  <h1 style="max-width:24ch">The database bill nobody audits</h1>
+  <div class="post-meta">
+    <time datetime="2026-01-27">27 January 2026</time>
+    <span>·</span><span>7 minute read</span>
+    <span>·</span><span>Intellora Tech engineering team</span>
+  </div>
+  <div class="prose mt7">
+<p>Cloud database spend has a peculiar property: it grows smoothly, so nobody ever has the moment where they look at it and flinch. Each month is a little more than the last, each increase is individually defensible, and eighteen months later the line item is four times what it was with no single decision to point at.</p>
+
+<p>When we audit these bills, the overspend is rarely in the pricing model. It is in a handful of query patterns that were reasonable at small volumes and became expensive at large ones.</p>
+
+<h2>1. The query that scans everything to return almost nothing</h2>
+
+<p>A report filters on a date range and returns 400 rows. The execution plan shows a full scan of 90 million. Usually the filter is applied to a derived column, such as <code>WHERE YEAR(created_at) = 2026</code>, which makes the index unusable. Rewriting to a range predicate on the raw column changes the plan and, on managed platforms billed by data scanned, changes the bill directly.</p>
+
+<h2>2. Statistics nobody has refreshed</h2>
+
+<p>The optimiser makes its decisions from statistics. When those statistics describe a table as it was two years and forty million rows ago, it will confidently choose a nested loop where a hash join belongs. This is the cheapest fix on this list and the most commonly skipped: a stale-stats problem looks exactly like a hardware problem right up until someone checks.</p>
+
+<h2>3. Indexes that exist for queries nobody runs</h2>
+
+<p>Every index is paid for twice: once in storage, and again on every write. Estates that have been through several teams accumulate indexes added for a report that was retired long ago. Most engines expose usage counters. Anything unused across a full business cycle, including month-end and year-end, which is why you wait a full cycle, is a candidate for removal.</p>
+
+<blockquote>Adding an index is a five-minute decision that you pay for on every insert, for years.</blockquote>
+
+<h2>4. Partitions that are not aligned to how data is queried</h2>
+
+<p>Partitioning helps only when the predicate lets the engine skip partitions. A table partitioned by ingest date, queried almost exclusively by transaction date, gets all of the maintenance cost and none of the pruning benefit. This one requires actually reading the query log rather than reasoning about how the table <em>should</em> be used.</p>
+
+<h2>5. The pipeline that reprocesses history every night</h2>
+
+<p>Full reloads survive because they are simple and correct. They stop being cheap the moment the table is large: reprocessing five years of history nightly to capture one day of change is a cost that grows with your success. Incremental processing with a watermark, plus a scheduled reconciliation to catch drift, keeps the correctness and drops most of the cost.</p>
+
+<h2>Where to start</h2>
+
+<p>Pull the ten most expensive queries by total cost, not by average runtime, which hides frequently-run cheap-looking queries, and read their plans. In most estates, those ten account for a large majority of the spend, and two or three of them are fixable in an afternoon.</p>
+
+<p>The reason this work is undersold is that it produces no new capability. It just makes the bill smaller and the reports faster, which is a difficult thing to put in a launch announcement and an easy thing to justify to a finance director.</p>
+</div>
+</article>
+
+<section class="wrap section article">
+  <h2 class="mb5">More from the blog</h2>
+  <div class="grid c2">
+    <a href="/blog/why-two-dashboards-disagree/" class="card card-accent k-coral">
+      <p class="mono">Analytics · 6 min read</p>
+      <div class="post-card"><span class="t">Why your two dashboards disagree</span><span class="x">Nearly every reporting dispute is a definition dispute wearing a technical costume. Here is how to find the real disagreement and end it.</span></div>
+      <span class="go">Read →</span>
+    </a>
+    <a href="/blog/ml-production-readiness/" class="card card-accent k-coral">
+      <p class="mono">AI & ML · 8 min read</p>
+      <div class="post-card"><span class="t">What has to be true before a model ships</span><span class="x">Models rarely fail in the notebook. They fail at the boundary between training data and the real world: a data engineering problem, not a modelling one.</span></div>
+      <span class="go">Read →</span>
+    </a></div>
+</section></div><div class="i18n" lang="fr" hidden>
+<article class="wrap page-head article">
+  <p class="eyebrow">Bases de données</p>
+  <h1 style="max-width:24ch">La facture de base de données que personne n'audite</h1>
+  <div class="post-meta">
+    <time datetime="2026-01-27">27 janvier 2026</time>
+    <span>·</span><span>7 minutes de lecture</span>
+    <span>·</span><span>Équipe d'ingénierie Intellora Tech</span>
+  </div>
+  <div class="prose mt7">
+<p>Les dépenses de bases de données cloud ont une particularité : elles augmentent en douceur, si bien que personne n'a jamais ce moment où on les regarde et sursaute. Chaque mois est un peu plus élevé que le précédent, chaque hausse est individuellement défendable, et dix-huit mois plus tard, la ligne de dépense est quatre fois plus élevée qu'avant, sans qu'aucune décision unique n'en soit la cause.</p>
+
+<p>Quand nous auditons ces factures, le dépassement se trouve rarement dans le modèle tarifaire. Il se trouve dans une poignée de schémas de requêtes qui étaient raisonnables à faible volume et sont devenus coûteux à grande échelle.</p>
+
+<h2>1. La requête qui parcourt tout pour ne retourner presque rien</h2>
+
+<p>Un rapport filtre sur une plage de dates et retourne 400 lignes. Le plan d'exécution montre un scan complet de 90 millions de lignes. En général, le filtre est appliqué à une colonne dérivée, comme <code>WHERE YEAR(created_at) = 2026</code>, ce qui rend l'index inutilisable. Réécrire le filtre en un prédicat de plage sur la colonne brute change le plan et, sur les plateformes managées facturées au volume de données scannées, change directement la facture.</p>
+
+<h2>2. Des statistiques que personne n'a rafraîchies</h2>
+
+<p>L'optimiseur prend ses décisions à partir des statistiques. Quand ces statistiques décrivent une table telle qu'elle était il y a deux ans et quarante millions de lignes, il choisira avec assurance une boucle imbriquée là où une jointure par hachage s'impose. C'est la correction la moins chère de cette liste et la plus souvent négligée : un problème de statistiques obsolètes ressemble exactement à un problème matériel, jusqu'à ce que quelqu'un vérifie.</p>
+
+<h2>3. Des index qui existent pour des requêtes que personne n'exécute</h2>
+
+<p>Chaque index est payé deux fois : une fois en stockage, et à nouveau à chaque écriture. Les patrimoines qui ont vu passer plusieurs équipes accumulent des index ajoutés pour un rapport retiré depuis longtemps. La plupart des moteurs exposent des compteurs d'utilisation. Tout ce qui reste inutilisé sur un cycle métier complet, incluant la fin de mois et la fin d'année, ce qui explique qu'il faille attendre un cycle complet, est un candidat à la suppression.</p>
+
+<blockquote>Ajouter un index est une décision de cinq minutes que vous payez à chaque insertion, pendant des années.</blockquote>
+
+<h2>4. Des partitions qui ne sont pas alignées sur la façon dont les données sont interrogées</h2>
+
+<p>Le partitionnement n'aide que lorsque le prédicat permet au moteur de sauter des partitions. Une table partitionnée par date d'ingestion, interrogée presque exclusivement par date de transaction, subit tout le coût de maintenance sans aucun des bénéfices d'élagage. Ce cas exige de véritablement lire le journal des requêtes plutôt que de raisonner sur la façon dont la table <em>devrait</em> être utilisée.</p>
+
+<h2>5. Le pipeline qui retraite l'historique chaque nuit</h2>
+
+<p>Les rechargements complets survivent parce qu'ils sont simples et corrects. Ils cessent d'être bon marché dès que la table devient grande : retraiter cinq ans d'historique chaque nuit pour capturer un jour de changement est un coût qui croît avec votre succès. Un traitement incrémental avec un point de contrôle, plus un rapprochement programmé pour détecter la dérive, préserve l'exactitude tout en réduisant l'essentiel du coût.</p>
+
+<h2>Par où commencer</h2>
+
+<p>Extrayez les dix requêtes les plus coûteuses par coût total, et non par durée moyenne d'exécution, qui masque les requêtes fréquentes à l'apparence bon marché, et lisez leurs plans. Dans la plupart des patrimoines, ces dix requêtes représentent une large majorité de la dépense, et deux ou trois d'entre elles se corrigent en une après-midi.</p>
+
+<p>La raison pour laquelle ce travail est sous-évalué est qu'il ne produit aucune nouvelle capacité. Il rend simplement la facture plus petite et les rapports plus rapides, ce qui est difficile à mettre dans une annonce de lancement mais facile à justifier auprès d'un directeur financier.</p>
+</div>
+</article>
+
+<section class="wrap section article">
+  <h2 class="mb5">Plus sur le blog</h2>
+  <div class="grid c2">
+    <a href="/blog/why-two-dashboards-disagree/" class="card card-accent k-coral">
+      <p class="mono">Analytique · 6 min de lecture</p>
+      <div class="post-card"><span class="t">Pourquoi vos deux tableaux de bord se contredisent</span><span class="x">Presque tous les désaccords de reporting sont des désaccords de définition déguisés en problème technique. Voici comment trouver le vrai désaccord et y mettre fin.</span></div>
+      <span class="go">Lire →</span>
+    </a>
+    <a href="/blog/ml-production-readiness/" class="card card-accent k-coral">
+      <p class="mono">IA & ML · 8 min de lecture</p>
+      <div class="post-card"><span class="t">Ce qui doit être vrai avant qu'un modèle parte en production</span><span class="x">Les modèles échouent rarement dans le notebook. Ils échouent à la frontière entre les données d'entraînement et le monde réel : un problème d'ingénierie des données, pas de modélisation.</span></div>
+      <span class="go">Lire →</span>
+    </a></div>
+</section></div>
+<section class="wrap section">
+  <div class="section-tint ctr rv">
+    <h2 style="max-width:22ch;margin-inline:auto"><span data-en="Recognise this in your own platform?" data-fr="Cela vous rappelle votre propre plateforme ?">Recognise this in your own platform?</span></h2>
+    <p class="lead" style="margin-inline:auto"><span data-en="Twenty minutes is usually enough to tell you whether it is a small fix or a structural one." data-fr="Vingt minutes suffisent généralement à dire s'il s'agit d'une petite correction ou d'un problème structurel.">Twenty minutes is usually enough to tell you whether it is a small fix or a structural one.</span></p>
+    <div class="row ctr mt5" style="justify-content:center">
+      <a href="/contact/" class="btn btn-p"><span data-en="Book a call" data-fr="Réserver un appel">Book a call</span> <span class="ar" aria-hidden="true">→</span></a>
+      
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-g">
+      <div>
+        <p class="brand"><span class="brand-mark" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 32 32"><path d="M8 8.5 L17 16 M8 23.5 L17 16 M17 16 L24.5 16" stroke="#FBF9F5" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/><circle cx="8" cy="8.5" r="2.5" fill="#FBF9F5"/><circle cx="8" cy="23.5" r="2.5" fill="#FBF9F5"/><circle cx="17" cy="16" r="2.1" fill="#FBF9F5"/><circle cx="25" cy="16" r="3.3" fill="#F0C05A"/></svg></span>Intellora Tech</p>
+        <p class="ft-about"><span data-en="A practice of specialists across data engineering, cloud architecture, governance, security, machine learning and databases, led by a principal engineer." data-fr="Une pratique de spécialistes en ingénierie des données, architecture cloud, gouvernance, sécurité, machine learning et bases de données, dirigée par un ingénieur principal.">A practice of specialists across data engineering, cloud architecture, governance, security, machine learning and databases, led by a principal engineer.</span></p>
+        <p class="mt4"><a href="mailto:support@intelloratech.net">support@intelloratech.net</a><br><span data-en="Distributed team · delivery worldwide" data-fr="Équipe distribuée · livraison dans le monde entier">Distributed team · delivery worldwide</span></p>
+      </div>
+      <div>
+        <h2><span data-en="Products" data-fr="Produits">Products</span></h2>
+        <ul><li><a href="/products/analytics-bi/"><span data-en="Analytics &amp; BI" data-fr="Analytique &amp; BI">Analytics &amp; BI</span></a></li><li><a href="/products/data-governance/"><span data-en="Data Governance" data-fr="Gouvernance des données">Data Governance</span></a></li><li><a href="/products/security/"><span data-en="Security &amp; Data Protection" data-fr="Sécurité &amp; Protection des données">Security &amp; Data Protection</span></a></li><li><a href="/products/ai-machine-learning/"><span data-en="AI &amp; Machine Learning" data-fr="IA &amp; Machine Learning">AI &amp; Machine Learning</span></a></li><li><a href="/products/database-engineering/"><span data-en="Database Engineering" data-fr="Ingénierie des bases de données">Database Engineering</span></a></li><li><a href="/products/aws-cloud/"><span data-en="AWS Cloud Architecture" data-fr="Architecture cloud AWS">AWS Cloud Architecture</span></a></li><li><a href="/products/project-delivery/"><span data-en="Project &amp; Delivery Management" data-fr="Gestion de projet &amp; de livraison">Project &amp; Delivery Management</span></a></li></ul>
+      </div>
+      <div>
+        <h2><span data-en="Explore" data-fr="Explorer">Explore</span></h2>
+        <ul>
+          <li><a href="/projects/"><span data-en="Projects" data-fr="Projets">Projects</span></a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tools/estimator/"><span data-en="Price estimator" data-fr="Estimateur de prix">Price estimator</span></a></li>
+          <li><a href="/tools/maturity/"><span data-en="Data health check" data-fr="Diagnostic des données">Data health check</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h2><span data-en="Company" data-fr="Entreprise">Company</span></h2>
+        <ul>
+          <li><a href="/about/"><span data-en="About" data-fr="À propos">About</span></a></li>
+          <li><a href="/contact/"><span data-en="Contact" data-fr="Contact">Contact</span></a></li>
+          <li><a href="/payment/"><span data-en="Payments" data-fr="Paiements">Payments</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-b"><span>© 2026 Intellora Tech</span><span><span data-en="A distributed practice · delivered worldwide" data-fr="Une pratique distribuée · livrée dans le monde entier">A distributed practice · delivered worldwide</span></span></div>
+  </div>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
