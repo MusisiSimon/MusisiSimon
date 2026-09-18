@@ -76,6 +76,8 @@ PRODUCTS = [
      "The deepest part of our practice."),
     ("aws-cloud", "AWS Cloud Architecture", "gold",
      "Architecture you can defend, and a bill you can predict."),
+    ("project-delivery", "Project &amp; Delivery Management", "slate",
+     "The discipline that makes the other six land on time and on budget."),
 ]
 
 POSTS = [
@@ -310,8 +312,8 @@ home = f"""
   <div class="grid c3">
     <a href="/products/" class="card card-accent k-emerald rv">
       <p class="mono">Start here</p>
-      <h3>Six products</h3>
-      <p>Reporting, governance, security, AI, databases and AWS — buy one or several.</p>
+      <h3>Seven products</h3>
+      <p>Reporting, governance, security, AI, databases, AWS and delivery — buy one or several.</p>
       <span class="go">See the products →</span>
     </a>
     <a href="/tools/estimator/" class="card card-accent k-gold rv">
@@ -333,7 +335,7 @@ home = f"""
   <div class="grid c4">
     <div class="stat rv"><p class="v">10+</p><p class="k">Years of production data engineering</p></div>
     <div class="stat rv"><p class="v">3</p><p class="k">Most projects we run at once</p></div>
-    <div class="stat rv"><p class="v">6</p><p class="k">Products, sold separately or together</p></div>
+    <div class="stat rv"><p class="v">7</p><p class="k">Products, sold separately or together</p></div>
     <div class="stat rv"><p class="v">0</p><p class="k">Account managers between you and the engineers</p></div>
   </div>
 </section>
@@ -362,31 +364,33 @@ home = f"""
 
 <section class="wrap section">
   <div class="orbit-w rv">
-    <div class="orbit" role="img" aria-label="Diagram showing Intellora Tech at the centre of two rotating rings. The inner ring holds the six products: analytics and business intelligence, governance, security, artificial intelligence and machine learning, database engineering, and AWS cloud architecture. The outer ring holds representative services including ETL and ELT pipelines, lineage tracing, feature pipelines, access control design, Oracle Analytics, Oracle Data Integrator, cost optimisation, semantic modelling, MLOps and performance tuning.">
+    <div class="orbit" role="img" aria-label="Diagram showing Intellora Tech at the centre of two rotating rings. The inner ring holds the seven products: analytics and business intelligence, governance, security, artificial intelligence and machine learning, database engineering, AWS cloud architecture, and project and delivery management. The outer ring holds representative services including ETL and ELT pipelines, lineage tracing, feature pipelines, access control design, Oracle Analytics, Oracle Data Integrator, cost optimisation, semantic modelling, MLOps, performance tuning and PRINCE2/Agile/PMBOK delivery frameworks.">
       <div class="orb-halo" aria-hidden="true"></div>
-      <div class="orb-core"><b>Intellora<br>Tech</b><i>6 products</i></div>
+      <div class="orb-core"><b>Intellora<br>Tech</b><i>7 products</i></div>
       <div class="ring ring1">
         <div class="onode p-analytics" style="--a:0deg"><div class="ospin"><div class="opill">Analytics &amp; BI</div></div></div>
-        <div class="onode p-governance" style="--a:60deg"><div class="ospin"><div class="opill">Governance</div></div></div>
-        <div class="onode p-security" style="--a:120deg"><div class="ospin"><div class="opill">Security</div></div></div>
-        <div class="onode p-ai" style="--a:180deg"><div class="ospin"><div class="opill">AI &amp; ML</div></div></div>
-        <div class="onode p-database" style="--a:240deg"><div class="ospin"><div class="opill">Databases</div></div></div>
-        <div class="onode p-cloud" style="--a:300deg"><div class="ospin"><div class="opill">AWS Cloud</div></div></div>
+        <div class="onode p-governance" style="--a:51.4deg"><div class="ospin"><div class="opill">Governance</div></div></div>
+        <div class="onode p-security" style="--a:102.9deg"><div class="ospin"><div class="opill">Security</div></div></div>
+        <div class="onode p-ai" style="--a:154.3deg"><div class="ospin"><div class="opill">AI &amp; ML</div></div></div>
+        <div class="onode p-database" style="--a:205.7deg"><div class="ospin"><div class="opill">Databases</div></div></div>
+        <div class="onode p-cloud" style="--a:257.1deg"><div class="ospin"><div class="opill">AWS Cloud</div></div></div>
+        <div class="onode p-delivery" style="--a:308.6deg"><div class="ospin"><div class="opill">Delivery &amp; PM</div></div></div>
       </div>
       <div class="ring ring2">
         <div class="onode" style="--a:0deg"><div class="ospin"><div class="opill">ETL &amp; ELT</div></div></div>
-        <div class="onode" style="--a:36deg"><div class="ospin"><div class="opill">Lineage tracing</div></div></div>
-        <div class="onode" style="--a:72deg"><div class="ospin"><div class="opill">Access control</div></div></div>
-        <div class="onode" style="--a:108deg"><div class="ospin"><div class="opill">Feature pipelines</div></div></div>
-        <div class="onode" style="--a:144deg"><div class="ospin"><div class="opill">MLOps</div></div></div>
-        <div class="onode" style="--a:180deg"><div class="ospin"><div class="opill">Oracle Data Integrator</div></div></div>
-        <div class="onode" style="--a:216deg"><div class="ospin"><div class="opill">Performance tuning</div></div></div>
-        <div class="onode" style="--a:252deg"><div class="ospin"><div class="opill">Cost optimisation</div></div></div>
-        <div class="onode" style="--a:288deg"><div class="ospin"><div class="opill">Oracle Analytics</div></div></div>
-        <div class="onode" style="--a:324deg"><div class="ospin"><div class="opill">Semantic modelling</div></div></div>
+        <div class="onode" style="--a:32.7deg"><div class="ospin"><div class="opill">Lineage tracing</div></div></div>
+        <div class="onode" style="--a:65.5deg"><div class="ospin"><div class="opill">Access control</div></div></div>
+        <div class="onode" style="--a:98.2deg"><div class="ospin"><div class="opill">Feature pipelines</div></div></div>
+        <div class="onode" style="--a:130.9deg"><div class="ospin"><div class="opill">MLOps</div></div></div>
+        <div class="onode" style="--a:163.6deg"><div class="ospin"><div class="opill">Oracle Data Integrator</div></div></div>
+        <div class="onode" style="--a:196.4deg"><div class="ospin"><div class="opill">Performance tuning</div></div></div>
+        <div class="onode" style="--a:229.1deg"><div class="ospin"><div class="opill">Cost optimisation</div></div></div>
+        <div class="onode" style="--a:261.8deg"><div class="ospin"><div class="opill">Oracle Analytics</div></div></div>
+        <div class="onode" style="--a:294.5deg"><div class="ospin"><div class="opill">Semantic modelling</div></div></div>
+        <div class="onode" style="--a:327.3deg"><div class="ospin"><div class="opill">PRINCE2 / Agile / PMBOK</div></div></div>
       </div>
     </div>
-    <p class="orb-cap">Six products · one team · you speak to the engineers who build it</p>
+    <p class="orb-cap">Seven products · one team · you speak to the engineers who build it</p>
   </div>
 </section>
 
@@ -416,7 +420,7 @@ home = f"""
   <div class="rv">
     <h2 class="mb4">Tools in execution</h2>
     <p class="lead mb6">The stack changes by project, chosen for the job rather than a single vendor relationship. These are the ones we reach for most often.</p>
-    <div class="grid c2">
+    <div class="grid c3">
       <div>
         <p class="mono mb3">Visualisation &amp; reporting</p>
         <div class="chips">
@@ -436,6 +440,15 @@ home = f"""
           <span class="chip">Oracle Data Integrator</span>
           <span class="chip">Apache Spark</span>
           <span class="chip">Kafka</span>
+        </div>
+      </div>
+      <div>
+        <p class="mono mb3">Delivery methodology</p>
+        <div class="chips">
+          <span class="chip">PRINCE2</span>
+          <span class="chip">Agile / Scrum</span>
+          <span class="chip">PMBOK-aligned waterfall</span>
+          <span class="chip">Hybrid delivery</span>
         </div>
       </div>
     </div>
@@ -464,7 +477,7 @@ prod_cards = "".join(f"""
 prod_hub = f"""
 <section class="wrap page-head">
   <p class="eyebrow">Products</p>
-  <h1>Six products, bought separately or together.</h1>
+  <h1>Seven products, bought separately or together.</h1>
   <p class="lead">Each one is a complete piece of work on its own. Most clients buy one, see it land, then buy the next.</p>
 </section>
 
@@ -477,14 +490,14 @@ prod_hub = f"""
           secondary=("Book a call", "/contact/"))
 
 write("products", layout("/products/", "Products — Intellora Tech",
-                            "Six products: reporting and BI, data governance, security, AI and machine "
-                            "learning, database engineering and AWS cloud work.",
+                            "Seven products: reporting and BI, data governance, security, AI and machine "
+                            "learning, database engineering, AWS cloud work, and project delivery management.",
                             prod_hub, accent="emerald", nav_key="Products",
                             crumbs=[("Products", None)]))
 
 
 # --------------------------------------------------------------- pillar pages
-def product_page(slug, name, colour, accent, headline, intro, services, tech, budget, triggers):
+def product_page(slug, name, colour, accent, headline, intro, services, tech, budget, triggers, tech_label="Technologies"):
     svc = "".join('<li><b>%s</b><span>%s</span></li>' % (t, d) for t, d in services)
     chips = "".join('<span class="chip">%s</span>' % t for t in tech)
     trg = "".join('<li><b>%s</b></li>' % t for t in triggers)
@@ -502,7 +515,7 @@ def product_page(slug, name, colour, accent, headline, intro, services, tech, bu
       <ul class="svc">{svc}</ul>
     </div>
     <div class="rv">
-      <h2 class="mb5">Technologies</h2>
+      <h2 class="mb5">{tech_label}</h2>
       <div class="chips">{chips}</div>
 
       <h2 class="mt7 mb4">Who usually owns the budget</h2>
@@ -616,15 +629,32 @@ product_page(
      "A migration has stalled halfway and both estates now need running",
      "Nobody can say what happens if the primary region goes down"])
 
+product_page(
+    "project-delivery", "Project &amp; Delivery Management", "slate", "slate",
+    "The discipline that makes the other six land on time and on budget.",
+    "Good engineering does not survive bad delivery. We run every project against a named methodology chosen for the shape of the work — PRINCE2 where governance and stage gates matter, Agile and Scrum where the requirement will keep moving, or a PMBOK-aligned blend where part of the programme is fixed and part is exploratory. The method is picked to fit the work, not applied by default.",
+    [("Methodology selection &amp; governance design", "PRINCE2, Agile/Scrum, a PMBOK-aligned waterfall, or a deliberate hybrid — chosen for the project's risk profile and how settled the requirements actually are."),
+     ("Programme &amp; project management office (PMO)", "Schedule, budget, RAID log, change control and stage-gate reporting run as a discipline, not bolted onto the engineering work after the fact."),
+     ("Agile delivery &amp; Scrum facilitation", "Sprint planning, backlog ownership, ceremonies and velocity tracking for teams where the requirement is expected to change as the work proceeds."),
+     ("Business case &amp; benefits realisation", "The case for the spend, built to a PMBOK-aligned standard, and the tracking that proves the benefit was actually realised once delivery is over."),
+     ("Stakeholder &amp; steering committee reporting", "The written weekly update and the steering pack, built so a non-technical sponsor or board can follow progress without a translator."),
+     ("Risk, issue &amp; change management", "A structured RAID log and change-control process, so scope drifts on paper before it drifts in the codebase.")],
+    ["PRINCE2", "Agile / Scrum", "PMBOK-aligned waterfall", "Hybrid / bimodal delivery", "RAID logs", "Stage-gate governance"],
+    "Programme Director, PMO Lead, or a sponsor who has been burned by a delivery with no paper trail.",
+    ["A programme has no single named methodology and everyone is improvising their own",
+     "The board wants a steering pack and the current update is a Slack thread",
+     "Requirements are fixed in some areas and volatile in others, and one methodology does not fit both"],
+    tech_label="Methodologies")
+
 # -------------------------------------------------------------------- projects
 PROJECTS = [
     {
         "name": "National tax administration system rebuild",
         "colour": "indigo",
         "body": "Set the data quality rules across every old and new system, decided who owns which data, "
-                "put lineage and access controls in place, and wrote the plan for moving the data — a move "
-                "spanning several years.",
-        "tags": ["Data governance", "Migration planning", "Data quality"],
+                "put lineage and access controls in place, and wrote the plan for moving the data — a "
+                "multi-year programme run to a named governance framework rather than by instinct.",
+        "tags": ["Data governance", "Migration planning", "Programme governance"],
     },
     {
         "name": "Data lake house — pipeline architecture",
@@ -1178,6 +1208,7 @@ about = f"""
       <div class="card card-accent k-plum"><h3>Machine learning</h3><p>Feature pipelines, training workflows, MLOps and retrieval systems — built by people who ship models, not only notebooks.</p></div>
       <div class="card card-accent k-indigo"><h3>Governance &amp; data quality</h3><p>Lineage, cataloguing, quality enforcement and the evidence trail an auditor or regulator will eventually ask for.</p></div>
       <div class="card card-accent k-deep"><h3>Platform security</h3><p>Access control design, encryption and key management, secrets, and audit logging for the data estate.</p></div>
+      <div class="card card-accent k-slate"><h3>Project &amp; delivery management</h3><p>PRINCE2, Agile/Scrum or a PMBOK-aligned blend, chosen to fit the project rather than applied by default — plus the PMO discipline that keeps a programme reportable to a board.</p></div>
     </div>
     <div class="callout mt6"><b>Who you actually speak to.</b> Every call is with a hands-on engineer from the team that would do the work — someone who reads execution plans and writes the code, not an account manager relaying questions back to a delivery team. The principal reviews every project regardless of who leads it.</div>
   </div>
