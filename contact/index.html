@@ -17,6 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/theme.js"></script>
+<script src="/assets/lang.js"></script>
 </head>
 <body data-accent="emerald">
 <a class="skip" href="#main">Skip to content</a>
@@ -24,24 +25,27 @@
 <header class="hdr">
   <div class="wrap hdr-in">
     <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 32 32"><path d="M8 8.5 L17 16 M8 23.5 L17 16 M17 16 L24.5 16" stroke="#FBF9F5" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/><circle cx="8" cy="8.5" r="2.5" fill="#FBF9F5"/><circle cx="8" cy="23.5" r="2.5" fill="#FBF9F5"/><circle cx="17" cy="16" r="2.1" fill="#FBF9F5"/><circle cx="25" cy="16" r="3.3" fill="#F0C05A"/></svg></span>Intellora Tech</a>
-    <nav class="nav" aria-label="Primary"><a href="/products/">Products</a><a href="/projects/">Projects</a><a href="/tools/">Tools</a><a href="/blog/">Blog</a><a href="/about/">About</a><a href="/payment/">Payments</a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/products/"><span data-en="Products" data-fr="Produits">Products</span></a><a href="/projects/"><span data-en="Projects" data-fr="Projets">Projects</span></a><a href="/tools/"><span data-en="Tools" data-fr="Outils">Tools</span></a><a href="/blog/"><span data-en="Blog" data-fr="Blog">Blog</span></a><a href="/about/"><span data-en="About" data-fr="À propos">About</span></a><a href="/payment/"><span data-en="Payments" data-fr="Paiements">Payments</span></a></nav>
     <div class="hdr-act">
+      <button class="icon-btn lang-btn" id="langBtn" type="button" data-aria-en="Switch to French" data-aria-fr="Passer à l'anglais" aria-label="Switch to French">
+        <span data-en="FR" data-fr="EN">FR</span>
+      </button>
       <button class="icon-btn" id="theme" type="button" aria-label="Switch theme">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       </button>
-      <a href="/contact/" class="btn btn-p">Book a call</a>
-      <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile"><i></i><i></i><i></i></button>
+      <a href="/contact/" class="btn btn-p"><span data-en="Book a call" data-fr="Réserver un appel">Book a call</span></a>
+      <button class="burger" id="burger" type="button" data-aria-en="Open menu" data-aria-fr="Ouvrir le menu" aria-label="Open menu" aria-expanded="false" aria-controls="mobile"><i></i><i></i><i></i></button>
     </div>
   </div>
   <div class="mobile" id="mobile">
-    <a href="/products/">Products</a><a href="/projects/">Projects</a><a href="/tools/">Tools</a><a href="/blog/">Blog</a><a href="/about/">About</a><a href="/payment/">Payments</a>
-    <a href="/tools/estimator/">Price estimator</a>
-    <a href="/contact/" class="btn btn-p">Book a call</a>
+    <a href="/products/"><span data-en="Products" data-fr="Produits">Products</span></a><a href="/projects/"><span data-en="Projects" data-fr="Projets">Projects</span></a><a href="/tools/"><span data-en="Tools" data-fr="Outils">Tools</span></a><a href="/blog/"><span data-en="Blog" data-fr="Blog">Blog</span></a><a href="/about/"><span data-en="About" data-fr="À propos">About</span></a><a href="/payment/"><span data-en="Payments" data-fr="Paiements">Payments</span></a>
+    <a href="/tools/estimator/"><span data-en="Price estimator" data-fr="Estimateur de prix">Price estimator</span></a>
+    <a href="/contact/" class="btn btn-p"><span data-en="Book a call" data-fr="Réserver un appel">Book a call</span></a>
   </div>
 </header>
-<div class="wrap"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Contact</span></nav></div>
+<div class="wrap"><nav class="crumb" aria-label="Breadcrumb"><a href="/"><span data-en="Home" data-fr="Accueil">Home</span></a><span aria-hidden="true">/</span><span><span data-en="Contact" data-fr="Contact">Contact</span></span></nav></div>
 <main id="main">
-
+<div class="i18n" lang="en">
 <section class="wrap page-head">
   <p class="eyebrow">Book a call</p>
   <h1>Two ways to start.</h1>
@@ -110,15 +114,83 @@
       <div><div><p class="n">How do payments work?</p><p class="m">Invoices in USD, EUR, GBP or AED, paid by card or bank transfer. Usually half up front on a first project.</p></div></div>
     </div>
   </div>
+</section></div><div class="i18n" lang="fr" hidden>
+<section class="wrap page-head">
+  <p class="eyebrow">Réserver un appel</p>
+  <h1>Deux façons de démarrer.</h1>
+  <p class="lead">Les deux se font avec un ingénieur opérationnel, quelqu'un qui écrit le code, pas un commercial. Choisissez celle qui correspond à votre situation.</p>
+</section>
+
+<section class="wrap">
+  <div class="grid c2">
+    <div class="card card-accent k-emerald rv" style="padding:var(--s6)">
+      <p class="mono">Gratuit · 15 minutes</p>
+      <h3>Appel d'introduction</h3>
+      <p style="font-size:var(--t-bd)">Dites-nous ce qui ne va pas. Nous vous disons si nous sommes les bonnes personnes, à peu près ce que cela coûterait, et ce que nous ferions en premier. Si nous ne sommes pas les bons pour ce projet, nous le disons et vous orientons ailleurs.</p>
+      <p class="mt4"><b class="ui">Utile pour :</b> <span class="soft">déterminer si cela vaut la peine d'aller plus loin.</span></p>
+      <div class="row mt5">
+        <a href="mailto:support@intelloratech.net?subject=Intro%20call%20request" class="btn btn-p">Réserver l'appel gratuit <span class="ar" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <div class="card card-accent k-gold rv" style="padding:var(--s6)">
+      <p class="mono">250 USD · 60 minutes</p>
+      <h3>Consultation technique</h3>
+      <p style="font-size:var(--t-bd)">Une session de travail, pas un appel commercial. Nous examinons votre configuration réelle (schémas, pipelines, facture cloud, ce qui est pertinent) et vous partez avec des réponses précises et un résumé écrit de ce que nous avons trouvé et de ce que nous ferions.</p>
+      <p class="mt4"><b class="ui">Gratuit si vous nous engagez :</b> <span class="soft">le montant total est déduit de votre première facture.</span></p>
+      <div class="row mt5">
+        <a href="/payment/?amount=250&amp;for=Technical+consultation+%2860+minutes%29" class="btn btn-p">Réserver et payer <span class="ar" aria-hidden="true">→</span></a>
+        <a href="mailto:support@intelloratech.net?subject=Technical%20consultation" class="btn btn-s">Demander d'abord</a>
+      </div>
+    </div>
+  </div>
+  <div class="callout mt6"><b>Pourquoi la session payante a un prix.</b> Une heure de temps d'ingénierie senior consacrée à examiner correctement vos systèmes vous vaut plus qu'une discussion gratuite, et la facturer signifie que nous nous y préparons. Les ingénieurs data seniors indépendants facturent généralement entre 150 et 350 USD de l'heure ; nous nous situons au milieu de cette fourchette, et la remboursons si vous allez de l'avant.</div>
 </section>
 
 <section class="wrap section">
+  <div class="grid c2">
+    <div class="rv">
+      <h2 class="mb5">Comment nous contacter</h2>
+      <div class="rows">
+        <div><div><p class="n">E-mail</p><p class="m">Réponse dans un jour ouvré</p></div><p class="d"><a href="mailto:support@intelloratech.net">support@intelloratech.net</a></p></div>
+        <div><div><p class="n">Structure</p><p class="m">Des spécialistes adaptés à votre pile technique</p></div><p class="d">Équipe distribuée</p></div>
+        <div><div><p class="n">Horaires de travail</p><p class="m">Appels programmés dans votre fuseau horaire</p></div><p class="d">Vos heures de bureau</p></div>
+        <div><div><p class="n">Langues</p><p class="m">Livraison et documentation</p></div><p class="d">Anglais</p></div>
+        <div><div><p class="n">Paiements</p><p class="m">Carte, ou virement bancaire</p></div><p class="d"><a href="/payment/">Paiements</a></p></div>
+      </div>
+    </div>
+    <div class="rv">
+      <h2 class="mb5">Ce qui se passe pendant l'appel gratuit</h2>
+      <ul class="svc">
+        <li><b>Premières minutes · Ce qui ne va pas</b><span>Vous décrivez le problème. Nous demandons qui cela affecte et ce que cela coûte chaque mois que cela continue.</span></li>
+        <li><b>Au milieu · Ce que vous avez déjà</b><span>Quelles données existent, comment elles sont organisées, et dans quel état sont les systèmes. C'est ce qui influence le plus le prix, donc nous le demandons tôt.</span></li>
+        <li><b>Ensuite · Budget et ordre des travaux</b><span>Si votre budget et notre prix sont dans la même fourchette, et ce qui doit être fait en premier.</span></li>
+        <li><b>Dernières minutes · Une réponse franche</b><span>Si nous pouvons aider, qui dirigerait le projet, ce que nous suggérerions, et quand vous l'obtiendrez par écrit.</span></li>
+      </ul>
+      <div class="callout mt6"><b>N'apportez rien de préparé.</b> Un schéma d'architecture ou une facture cloud récente accélèrent les choses, mais l'appel fonctionne très bien sans l'un ou l'autre.</div>
+      <div class="callout mt5"><b>Nous menons trois projets à la fois.</b> S'ils sont tous complets au moment où vous nous écrivez, nous le dirons pendant l'appel et vous donnerons une vraie date de début plutôt que d'accepter le travail en nous dispersant.</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="rv narrow">
+    <h2 class="mb5">Avant de nous écrire</h2>
+    <div class="rows">
+      <div><div><p class="n">Que doit dire un premier e-mail ?</p><p class="m">Un paragraphe sur le problème, à peu près sur quoi cela tourne, et une éventuelle échéance. Rien de formel.</p></div></div>
+      <div><div><p class="n">Signerez-vous un accord de confidentialité avant que nous parlions ?</p><p class="m">Oui, des accords de confidentialité mutuels standards, généralement dans la journée.</p></div></div>
+      <div><div><p class="n">Facturez-vous l'appel ?</p><p class="m">L'appel d'introduction de 15 minutes est gratuit. La session technique de 60 minutes coûte 250 USD, déduits de votre première facture si vous nous engagez.</p></div></div>
+      <div><div><p class="n">Comment fonctionnent les paiements ?</p><p class="m">Factures en USD, EUR, GBP ou AED, payées par carte ou virement bancaire. Généralement la moitié à l'avance pour un premier projet.</p></div></div>
+    </div>
+  </div>
+</section></div>
+<section class="wrap section">
   <div class="section-tint ctr rv">
-    <h2 style="max-width:22ch;margin-inline:auto">Tell us what is broken.</h2>
-    <p class="lead" style="margin-inline:auto">One paragraph is enough. You will hear back within one business day.</p>
+    <h2 style="max-width:22ch;margin-inline:auto"><span data-en="Tell us what is broken." data-fr="Dites-nous ce qui ne va pas.">Tell us what is broken.</span></h2>
+    <p class="lead" style="margin-inline:auto"><span data-en="One paragraph is enough. You will hear back within one business day." data-fr="Un paragraphe suffit. Vous aurez une réponse dans un jour ouvré.">One paragraph is enough. You will hear back within one business day.</span></p>
     <div class="row ctr mt5" style="justify-content:center">
-      <a href="mailto:support@intelloratech.net?subject=Discovery%20call%20request" class="btn btn-p">Email us <span class="ar" aria-hidden="true">→</span></a>
-      <a href="/payment/" class="btn btn-s">Pay an invoice</a>
+      <a href="mailto:support@intelloratech.net?subject=Discovery%20call%20request" class="btn btn-p"><span data-en="Email us" data-fr="Nous écrire">Email us</span> <span class="ar" aria-hidden="true">→</span></a>
+      <a href="/payment/" class="btn btn-s"><span data-en="Pay an invoice" data-fr="Payer une facture">Pay an invoice</span></a>
     </div>
   </div>
 </section>
@@ -129,32 +201,32 @@
     <div class="ft-g">
       <div>
         <p class="brand"><span class="brand-mark" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 32 32"><path d="M8 8.5 L17 16 M8 23.5 L17 16 M17 16 L24.5 16" stroke="#FBF9F5" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/><circle cx="8" cy="8.5" r="2.5" fill="#FBF9F5"/><circle cx="8" cy="23.5" r="2.5" fill="#FBF9F5"/><circle cx="17" cy="16" r="2.1" fill="#FBF9F5"/><circle cx="25" cy="16" r="3.3" fill="#F0C05A"/></svg></span>Intellora Tech</p>
-        <p class="ft-about">A practice of specialists across data engineering, cloud architecture, governance, security, machine learning and databases, led by a principal engineer.</p>
-        <p class="mt4"><a href="mailto:support@intelloratech.net">support@intelloratech.net</a><br>Distributed team · delivery worldwide</p>
+        <p class="ft-about"><span data-en="A practice of specialists across data engineering, cloud architecture, governance, security, machine learning and databases, led by a principal engineer." data-fr="Une pratique de spécialistes en ingénierie des données, architecture cloud, gouvernance, sécurité, machine learning et bases de données, dirigée par un ingénieur principal.">A practice of specialists across data engineering, cloud architecture, governance, security, machine learning and databases, led by a principal engineer.</span></p>
+        <p class="mt4"><a href="mailto:support@intelloratech.net">support@intelloratech.net</a><br><span data-en="Distributed team · delivery worldwide" data-fr="Équipe distribuée · livraison dans le monde entier">Distributed team · delivery worldwide</span></p>
       </div>
       <div>
-        <h2>Products</h2>
-        <ul><li><a href="/products/analytics-bi/">Analytics &amp; BI</a></li><li><a href="/products/data-governance/">Data Governance</a></li><li><a href="/products/security/">Security &amp; Data Protection</a></li><li><a href="/products/ai-machine-learning/">AI &amp; Machine Learning</a></li><li><a href="/products/database-engineering/">Database Engineering</a></li><li><a href="/products/aws-cloud/">AWS Cloud Architecture</a></li><li><a href="/products/project-delivery/">Project &amp; Delivery Management</a></li></ul>
+        <h2><span data-en="Products" data-fr="Produits">Products</span></h2>
+        <ul><li><a href="/products/analytics-bi/"><span data-en="Analytics &amp; BI" data-fr="Analytique &amp; BI">Analytics &amp; BI</span></a></li><li><a href="/products/data-governance/"><span data-en="Data Governance" data-fr="Gouvernance des données">Data Governance</span></a></li><li><a href="/products/security/"><span data-en="Security &amp; Data Protection" data-fr="Sécurité &amp; Protection des données">Security &amp; Data Protection</span></a></li><li><a href="/products/ai-machine-learning/"><span data-en="AI &amp; Machine Learning" data-fr="IA &amp; Machine Learning">AI &amp; Machine Learning</span></a></li><li><a href="/products/database-engineering/"><span data-en="Database Engineering" data-fr="Ingénierie des bases de données">Database Engineering</span></a></li><li><a href="/products/aws-cloud/"><span data-en="AWS Cloud Architecture" data-fr="Architecture cloud AWS">AWS Cloud Architecture</span></a></li><li><a href="/products/project-delivery/"><span data-en="Project &amp; Delivery Management" data-fr="Gestion de projet &amp; de livraison">Project &amp; Delivery Management</span></a></li></ul>
       </div>
       <div>
-        <h2>Explore</h2>
+        <h2><span data-en="Explore" data-fr="Explorer">Explore</span></h2>
         <ul>
-          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/projects/"><span data-en="Projects" data-fr="Projets">Projects</span></a></li>
           <li><a href="/blog/">Blog</a></li>
-          <li><a href="/tools/estimator/">Price estimator</a></li>
-          <li><a href="/tools/maturity/">Data health check</a></li>
+          <li><a href="/tools/estimator/"><span data-en="Price estimator" data-fr="Estimateur de prix">Price estimator</span></a></li>
+          <li><a href="/tools/maturity/"><span data-en="Data health check" data-fr="Diagnostic des données">Data health check</span></a></li>
         </ul>
       </div>
       <div>
-        <h2>Company</h2>
+        <h2><span data-en="Company" data-fr="Entreprise">Company</span></h2>
         <ul>
-          <li><a href="/about/">About</a></li>
-          <li><a href="/contact/">Contact</a></li>
-          <li><a href="/payment/">Payments</a></li>
+          <li><a href="/about/"><span data-en="About" data-fr="À propos">About</span></a></li>
+          <li><a href="/contact/"><span data-en="Contact" data-fr="Contact">Contact</span></a></li>
+          <li><a href="/payment/"><span data-en="Payments" data-fr="Paiements">Payments</span></a></li>
         </ul>
       </div>
     </div>
-    <div class="ft-b"><span>© 2026 Intellora Tech</span><span>A distributed practice · delivered worldwide</span></div>
+    <div class="ft-b"><span>© 2026 Intellora Tech</span><span><span data-en="A distributed practice · delivered worldwide" data-fr="Une pratique distribuée · livrée dans le monde entier">A distributed practice · delivered worldwide</span></span></div>
   </div>
 </footer>
 

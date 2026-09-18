@@ -537,6 +537,12 @@ input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-m
 .ft-about{max-width:34ch;line-height:1.6;font-size:.9375rem}
 .ft-b{border-top:1px solid rgba(255,255,255,.12);padding-top:var(--s5);display:flex;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;font-size:.8125rem;color:#8496A6}
 
+/* ---------- i18n ---------- */
+.i18n[lang="fr"]{display:none}
+html[data-lang="fr"] .i18n[lang="fr"]{display:block}
+html[data-lang="fr"] .i18n[lang="en"]{display:none}
+.lang-btn{font-family:var(--f-mono);font-size:.75rem;font-weight:600;letter-spacing:.02em}
+
 /* ---------- reveal ---------- */
 .rv{opacity:0;transform:translateY(14px);transition:opacity .55s var(--e),transform .55s var(--e)}
 .rv.on{opacity:1;transform:none}
