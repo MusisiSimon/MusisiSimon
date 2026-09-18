@@ -394,7 +394,7 @@ home = f"""
   <div class="grid c2">
     <div class="rv">
       <h2>What we are best at</h2>
-      <p class="lead">A decade inside core banking, United Nations humanitarian work, and national tax and customs systems. That is what we are fast at: regulated data, matching numbers that must agree, audit trails, and moves that cannot afford a bad switch-over.</p>
+      <p class="lead">Full-stack data engineering — Oracle and cloud-native databases, AWS architecture, the pipelines that move data and the dashboards that turn it into something a board can act on. The toolset flexes to whatever your platform already runs on; the standard does not.</p>
       <div class="row mt5">
         <a href="/projects/" class="btn btn-s">See our projects</a>
         <a href="/about/" class="btn btn-g">About the practice →</a>
@@ -407,6 +407,36 @@ home = f"""
         <div><div><p class="n">Fixed price on signature</p><p class="m">Any change is priced before work starts</p></div><p class="d">Always</p></div>
         <div><div><p class="n">Written update</p><p class="m">What is done, what is next, what is stuck</p></div><p class="d">Every Friday</p></div>
         <div><div><p class="n">Handover</p><p class="m">Guides, decisions written down, a live session</p></div><p class="d">Final week</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="rv">
+    <h2 class="mb4">Tools in execution</h2>
+    <p class="lead mb6">The stack changes by project, chosen for the job rather than a single vendor relationship. These are the ones we reach for most often.</p>
+    <div class="grid c2">
+      <div>
+        <p class="mono mb3">Visualisation &amp; reporting</p>
+        <div class="chips">
+          <span class="chip">Power BI</span>
+          <span class="chip">Tableau</span>
+          <span class="chip">Oracle Analytics Server / Cloud</span>
+          <span class="chip">Looker</span>
+          <span class="chip">Qlik Sense</span>
+        </div>
+      </div>
+      <div>
+        <p class="mono mb3">Data integration &amp; orchestration</p>
+        <div class="chips">
+          <span class="chip">Apache Airflow</span>
+          <span class="chip">dbt</span>
+          <span class="chip">Talend</span>
+          <span class="chip">Oracle Data Integrator</span>
+          <span class="chip">Apache Spark</span>
+          <span class="chip">Kafka</span>
+        </div>
       </div>
     </div>
   </div>
@@ -501,7 +531,7 @@ product_page(
      ("Power BI &amp; embedded analytics", "Dashboards built around decisions people actually make, and analytics embedded into your own product where that is the requirement."),
      ("Regulatory &amp; management reporting", "Reporting pipelines with audit trails, reconciliation controls and defensible lineage for regulators, auditors and boards."),
      ("Self-service enablement", "Curated datasets, documentation and training so analysts answer their own questions without filing tickets.")],
-    ["Oracle Analytics Server", "Oracle Analytics Cloud", "Power BI", "dbt", "SQL", "Redshift", "Snowflake", "Athena"],
+    ["Oracle Analytics Server", "Oracle Analytics Cloud", "Power BI", "Tableau", "dbt", "SQL", "Redshift", "Snowflake"],
     "Head of Data, CDO, or a Finance Director who has lost patience with reconciliation.",
     ["Two dashboards disagree and nobody can say which is right",
      "A regulator or auditor has asked how a reported figure was derived",
@@ -557,7 +587,7 @@ product_page(
 product_page(
     "database-engineering", "Database Engineering", "coral", "coral",
     "The deepest part of our practice.",
-    "A decade of production database work across core banking, humanitarian operations and revenue administration. This is where our experience is longest and where the fastest wins usually are — tuning a query is almost always cheaper than buying more hardware.",
+    "Deep production database work across Oracle, PostgreSQL, SQL Server and the cloud-native platforms that have largely replaced them. This is where the fastest wins usually are — tuning a query is almost always cheaper than buying more hardware.",
     [("Logical &amp; physical data modelling", "Conceptual through physical models, normalisation and deliberate denormalisation, dimensional and Data Vault approaches where they fit."),
      ("Database design &amp; development", "Schema design, constraints and referential integrity, stored procedures and packages, across Oracle, PostgreSQL, MySQL and SQL Server."),
      ("Performance tuning", "Execution plan analysis, index strategy, statistics management, partitioning and query rewrites."),
@@ -1119,13 +1149,13 @@ about = f"""
     <div class="rv">
       <picture>
         <source type="image/webp" srcset="/assets/img/simon-720.webp">
-        <img src="/assets/img/simon-720.jpg" width="720" height="720" alt="Portrait of Musisi Ntege Simon Peter, principal engineer at Intellora Tech." loading="lazy" decoding="async" style="border-radius:var(--r-lg);max-width:22rem">
+        <img src="/assets/img/simon-720.jpg" width="720" height="720" alt="Portrait of Musisi Simon Peter, principal engineer at Intellora Tech." loading="lazy" decoding="async" style="border-radius:var(--r-lg);max-width:22rem">
       </picture>
     </div>
     <div class="rv">
       <p class="mono mb3">Principal engineer · practice lead</p>
-      <h2>Musisi Ntege Simon Peter</h2>
-      <p class="soft mt4">Leads the practice: sets the engineering standards, staffs each project, and reviews what goes out the door. Roughly a decade of production data engineering across core banking, United Nations humanitarian operations, and revenue and customs administration.</p>
+      <h2>Musisi Simon Peter</h2>
+      <p class="soft mt4">Leads the practice: sets the engineering standards, staffs each project, and reviews what goes out the door. Roughly a decade of production data engineering across regulated financial services, public-sector systems and international-development programmes.</p>
       <p class="soft mt4">Deepest personally in Oracle database internals, enterprise data warehouse architecture and ETL and ELT engineering. Holds an MBA and a BSc in Computer Engineering.</p>
       <p class="mono mt6 mb3">Certified in</p>
       <div class="chips"><span class="chip">AWS Solutions Architect</span><span class="chip">Oracle Data Integrator</span><span class="chip">ITIL 4 Foundation</span><span class="chip">PRINCE2 Practitioner</span><span class="chip">Agile Scrum Master</span><span class="chip">COBIT 5 Foundation</span></div>
