@@ -14,6 +14,9 @@ import re
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://intelloratech.net"
 EMAIL = "support@intelloratech.net"
+# Temporary contact number, standing in until a company line is set up.
+PHONE = "+256 756 439980"
+PHONE_TEL = "tel:+256756439980"
 
 # Logo — a lineage graph: scattered sources converge through one governed
 # transform into a single served truth. The shape data engineers draw on
@@ -192,9 +195,9 @@ POSTS = [
         "cat_fr": "Livraison",
         "mins": 7,
         "excerpt": "A sprint board and a steering pack can both be accurate and still describe two "
-                   "different projects. The gap between them is a methodology choice, not a communication problem.",
+                   "different projects. The gap is a methodology choice, not a communication problem.",
         "excerpt_fr": "Un tableau de sprint et un rapport de pilotage peuvent tous deux être exacts et pourtant "
-                      "décrire deux projets différents. L'écart entre les deux est un choix de méthodologie, pas un problème de communication.",
+                      "décrire deux projets différents. L'écart est un choix de méthodologie, pas un problème de communication.",
     },
 ]
 
@@ -337,7 +340,7 @@ def cta(title, text, primary=("Book a call", "/contact/"), secondary=None):
 
 
 # ----------------------------------------------------------------- home
-home_en = """
+home_en = f"""
 <section class="wrap page-head">
   <div class="hero">
     <div>
@@ -356,8 +359,8 @@ home_en = """
         <div><div><p class="n">Delivery</p></div><p class="d">Remote, worldwide</p></div>
         <div><div><p class="n">First reply</p></div><p class="d">One working day</p></div>
         <div><div><p class="n">Pricing</p></div><p class="d">Fixed on signature</p></div>
-        <div><div><p class="n">Intro call</p></div><p class="d">Free · 15 minutes</p></div>
-        <div><div><p class="n">Deep-dive session</p></div><p class="d">USD 250 · 60 minutes</p></div>
+        <div><div><p class="n">Intro call</p></div><p class="d">Free · {INTRO_MINS} minutes</p></div>
+        <div><div><p class="n">Deep-dive session</p></div><p class="d">USD {CONSULT_FEE} · 60 minutes</p></div>
       </div>
     </aside>
   </div>
@@ -513,7 +516,7 @@ home_en = """
 </section>
 """
 
-home_fr = """
+home_fr = f"""
 <section class="wrap page-head">
   <div class="hero">
     <div>
@@ -532,8 +535,8 @@ home_fr = """
         <div><div><p class="n">Livraison</p></div><p class="d">À distance, dans le monde entier</p></div>
         <div><div><p class="n">Première réponse</p></div><p class="d">Un jour ouvré</p></div>
         <div><div><p class="n">Tarification</p></div><p class="d">Fixée à la signature</p></div>
-        <div><div><p class="n">Appel d'introduction</p></div><p class="d">Gratuit · 15 minutes</p></div>
-        <div><div><p class="n">Session approfondie</p></div><p class="d">250 USD · 60 minutes</p></div>
+        <div><div><p class="n">Appel d'introduction</p></div><p class="d">Gratuit · {INTRO_MINS} minutes</p></div>
+        <div><div><p class="n">Session approfondie</p></div><p class="d">{CONSULT_FEE} USD · 60 minutes</p></div>
       </div>
     </aside>
   </div>
@@ -697,8 +700,8 @@ home = blocks(home_en, home_fr) + cta(
 )
 
 write("", layout("/", "Intellora Tech · Data, Cloud &amp; AI Engineering",
-                 "A practice of specialists in data engineering, cloud architecture, governance, security and "
-                 "machine learning, led by a principal engineer. You speak to hands-on engineers.",
+                 "A practice of specialists in data, cloud, governance, security, AI and delivery management, "
+                 "led by a principal engineer. You speak to hands-on engineers.",
                  home, accent="emerald"))
 
 # ----------------------------------------------------------- capabilities hub
@@ -710,29 +713,24 @@ prod_cards = "".join(f"""
       {bi(("Read more →", "En savoir plus →"), cls="go")}
     </a>""" for i, (slug, name, name_fr, colour, line, line_fr) in enumerate(PRODUCTS, 1))
 
-prod_hub_en = f"""
+prod_hub_en = """
 <section class="wrap page-head">
   <p class="eyebrow">Products</p>
   <h1>Seven products, bought separately or together.</h1>
   <p class="lead">Each one is a complete piece of work on its own. Most clients buy one, see it land, then buy the next.</p>
-</section>
-
-<section class="wrap">
-  <div class="grid c3">{prod_cards}</div>
 </section>"""
 
-prod_hub_fr = f"""
+prod_hub_fr = """
 <section class="wrap page-head">
   <p class="eyebrow">Produits</p>
   <h1>Sept produits, achetés séparément ou ensemble.</h1>
   <p class="lead">Chacun est un projet complet en soi. La plupart des clients en achètent un, le voient aboutir, puis achètent le suivant.</p>
-</section>
-
-<section class="wrap">
-  <div class="grid c3">{prod_cards}</div>
 </section>"""
 
-prod_hub = blocks(prod_hub_en, prod_hub_fr) + cta(
+prod_hub = blocks(prod_hub_en, prod_hub_fr) + f"""
+<section class="wrap">
+  <div class="grid c3">{prod_cards}</div>
+</section>""" + cta(
     ("Not sure which one you need?", "Vous ne savez pas lequel vous choisir ?"),
     ("The health check takes two minutes and points at what is most likely holding you back.",
      "Le diagnostic prend deux minutes et indique ce qui vous freine le plus probablement."),
@@ -1239,9 +1237,8 @@ projects = blocks(projects_en, projects_fr) + cta(
     secondary=("See what we sell", "/products/"))
 
 write("projects", layout("/projects/", "Projects · Intellora Tech",
-                         "Real project work: a national tax administration system rebuild, data lake pipelines, "
-                         "a data warehouse rebuild, core banking upgrades, disaster recovery and large-scale "
-                         "biometric data operations.",
+                         "Real project work: a national tax system rebuild, data lake and warehouse builds, "
+                         "core banking upgrades, and disaster recovery for regulated finance.",
                          projects, accent="indigo", nav_key="Projects",
                          crumbs=[(("Projects", "Projets"), None)]))
 
@@ -2067,6 +2064,7 @@ contact_en = f"""
       <h2 class="mb5">How to reach us</h2>
       <div class="rows">
         <div><div><p class="n">Email</p><p class="m">Replies within one business day</p></div><p class="d"><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
+        <div><div><p class="n">Phone</p><p class="m">Temporary line, until a company number is set up</p></div><p class="d"><a href="{PHONE_TEL}">{PHONE}</a></p></div>
         <div><div><p class="n">Structure</p><p class="m">Specialists matched to your stack</p></div><p class="d">Distributed team</p></div>
         <div><div><p class="n">Working hours</p><p class="m">Calls scheduled in your timezone</p></div><p class="d">Your business hours</p></div>
         <div><div><p class="n">Languages</p><p class="m">Delivery and documentation</p></div><p class="d">English</p></div>
@@ -2093,7 +2091,7 @@ contact_en = f"""
     <div class="rows">
       <div><div><p class="n">What should a first email say?</p><p class="m">One paragraph on the problem, roughly what you run it on, and any deadline. Nothing formal.</p></div></div>
       <div><div><p class="n">Will you sign an NDA before we talk?</p><p class="m">Yes, standard mutual NDAs, usually within a day.</p></div></div>
-      <div><div><p class="n">Do you charge for the call?</p><p class="m">The 15-minute intro call is free. The 60-minute technical session is USD 250, and it comes off your first invoice if you hire us.</p></div></div>
+      <div><div><p class="n">Do you charge for the call?</p><p class="m">The {INTRO_MINS}-minute intro call is free. The 60-minute technical session is USD {CONSULT_FEE}, and it comes off your first invoice if you hire us.</p></div></div>
       <div><div><p class="n">How do payments work?</p><p class="m">Invoices in USD, EUR, GBP or AED, paid by card or bank transfer. Usually half up front on a first project.</p></div></div>
     </div>
   </div>
@@ -2119,7 +2117,7 @@ contact_fr = f"""
     </div>
 
     <div class="card card-accent k-gold rv" style="padding:var(--s6)">
-      <p class="mono">250 USD · 60 minutes</p>
+      <p class="mono">{CONSULT_FEE} USD · 60 minutes</p>
       <h3>Consultation technique</h3>
       <p style="font-size:var(--t-bd)">Une session de travail, pas un appel commercial. Nous examinons votre configuration réelle (schémas, pipelines, facture cloud, ce qui est pertinent) et vous partez avec des réponses précises et un résumé écrit de ce que nous avons trouvé et de ce que nous ferions.</p>
       <p class="mt4"><b class="ui">Gratuit si vous nous engagez :</b> <span class="soft">le montant total est déduit de votre première facture.</span></p>
@@ -2138,6 +2136,7 @@ contact_fr = f"""
       <h2 class="mb5">Comment nous contacter</h2>
       <div class="rows">
         <div><div><p class="n">E-mail</p><p class="m">Réponse dans un jour ouvré</p></div><p class="d"><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
+        <div><div><p class="n">Téléphone</p><p class="m">Ligne temporaire, en attendant un numéro d'entreprise</p></div><p class="d"><a href="{PHONE_TEL}">{PHONE}</a></p></div>
         <div><div><p class="n">Structure</p><p class="m">Des spécialistes adaptés à votre pile technique</p></div><p class="d">Équipe distribuée</p></div>
         <div><div><p class="n">Horaires de travail</p><p class="m">Appels programmés dans votre fuseau horaire</p></div><p class="d">Vos heures de bureau</p></div>
         <div><div><p class="n">Langues</p><p class="m">Livraison et documentation</p></div><p class="d">Anglais</p></div>
@@ -2164,7 +2163,7 @@ contact_fr = f"""
     <div class="rows">
       <div><div><p class="n">Que doit dire un premier e-mail ?</p><p class="m">Un paragraphe sur le problème, à peu près sur quoi cela tourne, et une éventuelle échéance. Rien de formel.</p></div></div>
       <div><div><p class="n">Signerez-vous un accord de confidentialité avant que nous parlions ?</p><p class="m">Oui, des accords de confidentialité mutuels standards, généralement dans la journée.</p></div></div>
-      <div><div><p class="n">Facturez-vous l'appel ?</p><p class="m">L'appel d'introduction de 15 minutes est gratuit. La session technique de 60 minutes coûte 250 USD, déduits de votre première facture si vous nous engagez.</p></div></div>
+      <div><div><p class="n">Facturez-vous l'appel ?</p><p class="m">L'appel d'introduction de {INTRO_MINS} minutes est gratuit. La session technique de 60 minutes coûte {CONSULT_FEE} USD, déduits de votre première facture si vous nous engagez.</p></div></div>
       <div><div><p class="n">Comment fonctionnent les paiements ?</p><p class="m">Factures en USD, EUR, GBP ou AED, payées par carte ou virement bancaire. Généralement la moitié à l'avance pour un premier projet.</p></div></div>
     </div>
   </div>
@@ -2178,7 +2177,7 @@ contact = blocks(contact_en, contact_fr) + cta(
     secondary=("Pay an invoice", "/payment/"))
 
 write("contact", layout("/contact/", "Contact · Intellora Tech",
-                        "Two ways to start: a free 15-minute intro call, or a paid 60-minute technical session with a "
+                        f"Two ways to start: a free {INTRO_MINS}-minute intro call, or a paid 60-minute technical session with a "
                         "senior engineer, refunded against your first invoice.",
                         contact, accent="emerald", crumbs=[("Contact", None)]))
 
@@ -2201,8 +2200,8 @@ payment = f"""
           <div class="field">
             <label for="pay-amount">{bi(("Amount (USD)", "Montant (USD)"))}</label>
             <input type="number" id="pay-amount" name="amount" min="1" max="250000" step="0.01" inputmode="decimal" placeholder="1500.00" data-ph-en="1500.00" data-ph-fr="1500.00" required>
-            <span class="hint">{bi(("The figure on your invoice, proposal, or USD 250 for a technical session.",
-                                     "Le montant indiqué sur votre facture, votre proposition, ou 250 USD pour une session technique."))}</span>
+            <span class="hint">{bi((f"The figure on your invoice, proposal, or USD {CONSULT_FEE} for a technical session.",
+                                     f"Le montant indiqué sur votre facture, votre proposition, ou {CONSULT_FEE} USD pour une session technique."))}</span>
           </div>
 
           <div class="field">
