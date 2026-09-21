@@ -10,6 +10,8 @@
   <url><loc>https://intelloratech.net/tools/</loc></url>
   <url><loc>https://intelloratech.net/tools/estimator/</loc></url>
   <url><loc>https://intelloratech.net/tools/maturity/</loc></url>
+  <url><loc>https://intelloratech.net/privacy/</loc></url>
+  <url><loc>https://intelloratech.net/terms/</loc></url>
   <url><loc>https://intelloratech.net/products/analytics-bi/</loc></url>
   <url><loc>https://intelloratech.net/products/data-governance/</loc></url>
   <url><loc>https://intelloratech.net/products/security/</loc></url>
@@ -21,4 +23,6 @@
   <url><loc>https://intelloratech.net/blog/database-cost-audit/</loc></url>
   <url><loc>https://intelloratech.net/blog/ml-production-readiness/</loc></url>
   <url><loc>https://intelloratech.net/blog/sprint-board-vs-steering-pack/</loc></url>
+  <url><loc>https://intelloratech.net/projects/data-lakehouse-build/</loc></url>
+  <url><loc>https://intelloratech.net/projects/data-warehouse-rebuild/</loc></url>
 </urlset>

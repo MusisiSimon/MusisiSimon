@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Database Engineering · Intellora Tech</title>
-<meta name="description" content="Deep production database work across Oracle, PostgreSQL, SQL Server and the cloud-native platforms that have largely replaced them. This is where the faste">
+<title>Data warehouse rebuild · Intellora Tech</title>
+<meta name="description" content="How we rebuilt a warehouse's loading pipelines around incremental processing and automatic quality checks, so a broken load is caught before it reaches a report rather than after someone queries it.">
 
-<link rel="canonical" href="https://intelloratech.net/products/database-engineering/">
+<link rel="canonical" href="https://intelloratech.net/projects/data-warehouse-rebuild/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Database Engineering · Intellora Tech">
-<meta property="og:description" content="Deep production database work across Oracle, PostgreSQL, SQL Server and the cloud-native platforms that have largely replaced them. This is where the faste">
-<meta property="og:url" content="https://intelloratech.net/products/database-engineering/">
+<meta property="og:title" content="Data warehouse rebuild · Intellora Tech">
+<meta property="og:description" content="How we rebuilt a warehouse's loading pipelines around incremental processing and automatic quality checks, so a broken load is caught before it reaches a report rather than after someone queries it.">
+<meta property="og:url" content="https://intelloratech.net/projects/data-warehouse-rebuild/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E6E5E'/%3E%3Cpath d='M8 8.5 L17 16 M8 23.5 L17 16 M17 16 L24.5 16' stroke='%23FBF9F5' stroke-width='1.9' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='.85'/%3E%3Ccircle cx='8' cy='8.5' r='2.5' fill='%23FBF9F5'/%3E%3Ccircle cx='8' cy='23.5' r='2.5' fill='%23FBF9F5'/%3E%3Ccircle cx='17' cy='16' r='2.1' fill='%23FBF9F5'/%3E%3Ccircle cx='25' cy='16' r='3.3' fill='%23F0C05A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,13 +19,13 @@
 <script src="/assets/theme.js"></script>
 <script src="/assets/lang.js"></script>
 </head>
-<body data-accent="coral">
+<body data-accent="indigo">
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="hdr">
   <div class="wrap hdr-in">
     <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 32 32"><path d="M8 8.5 L17 16 M8 23.5 L17 16 M17 16 L24.5 16" stroke="#FBF9F5" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/><circle cx="8" cy="8.5" r="2.5" fill="#FBF9F5"/><circle cx="8" cy="23.5" r="2.5" fill="#FBF9F5"/><circle cx="17" cy="16" r="2.1" fill="#FBF9F5"/><circle cx="25" cy="16" r="3.3" fill="#F0C05A"/></svg></span>Intellora Tech</a>
-    <nav class="nav" aria-label="Primary"><a href="/products/" aria-current="page"><span data-en="Products" data-fr="Produits">Products</span></a><a href="/projects/"><span data-en="Projects" data-fr="Projets">Projects</span></a><a href="/tools/"><span data-en="Tools" data-fr="Outils">Tools</span></a><a href="/blog/"><span data-en="Blog" data-fr="Blog">Blog</span></a><a href="/about/"><span data-en="About" data-fr="À propos">About</span></a><a href="/payment/"><span data-en="Payments" data-fr="Paiements">Payments</span></a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/products/"><span data-en="Products" data-fr="Produits">Products</span></a><a href="/projects/" aria-current="page"><span data-en="Projects" data-fr="Projets">Projects</span></a><a href="/tools/"><span data-en="Tools" data-fr="Outils">Tools</span></a><a href="/blog/"><span data-en="Blog" data-fr="Blog">Blog</span></a><a href="/about/"><span data-en="About" data-fr="À propos">About</span></a><a href="/payment/"><span data-en="Payments" data-fr="Paiements">Payments</span></a></nav>
     <div class="hdr-act">
       <button class="icon-btn lang-btn" id="langBtn" type="button" data-aria-en="Switch to French" data-aria-fr="Passer à l'anglais" aria-label="Switch to French">
         <span data-en="FR" data-fr="EN">FR</span>
@@ -43,64 +43,48 @@
     <a href="/contact/" class="btn btn-p"><span data-en="Book a call" data-fr="Réserver un appel">Book a call</span></a>
   </div>
 </header>
-<div class="wrap"><nav class="crumb" aria-label="Breadcrumb"><a href="/"><span data-en="Home" data-fr="Accueil">Home</span></a><span aria-hidden="true">/</span><a href="/products/"><span data-en="Products" data-fr="Produits">Products</span></a><span aria-hidden="true">/</span><span><span data-en="Database Engineering" data-fr="Ingénierie des bases de données">Database Engineering</span></span></nav></div>
+<div class="wrap"><nav class="crumb" aria-label="Breadcrumb"><a href="/"><span data-en="Home" data-fr="Accueil">Home</span></a><span aria-hidden="true">/</span><a href="/projects/"><span data-en="Projects" data-fr="Projects">Projects</span></a><span aria-hidden="true">/</span><span><span data-en="Data warehouse rebuild" data-fr="Refonte de l'entrepôt de données">Data warehouse rebuild</span></span></nav></div>
 <main id="main">
 <div class="i18n" lang="en">
-<section class="wrap page-head">
-  <p class="eyebrow">Database Engineering</p>
-  <h1>The deepest part of our practice.</h1>
-  <p class="lead">Deep production database work across Oracle, PostgreSQL, SQL Server and the cloud-native platforms that have largely replaced them. This is where the fastest wins usually are: tuning a query is almost always cheaper than buying more hardware.</p>
-</section>
+<article class="wrap page-head article">
+  <p class="eyebrow"><span data-en="Case study" data-fr="Étude de cas">Case study</span></p>
+  <h1 style="max-width:26ch">Data warehouse rebuild</h1>
+  <div class="chips mt4"><span class="chip">ELT redesign</span><span class="chip">Data quality</span><span class="chip">Alerting</span></div>
+  <div class="prose mt7">
+<h2>The situation</h2>
+<p>The warehouse's loading pipelines had been built years earlier as a single serial batch process: extract, transform, load, one table after another, on a fixed nightly clock. That design worked when the data volume was small enough to finish comfortably inside the window. It stopped working gracefully as both the number of source tables and the rows per table grew, and there was no mechanism to catch a bad load before it reached the tables reports queried the next morning, only whoever noticed a number looked wrong.</p>
 
-<section class="wrap">
-  <div class="grid c2">
-    <div class="rv">
-      <h2 class="mb5">What we do</h2>
-      <ul class="svc"><li><b>Logical &amp; physical data modelling</b><span>Conceptual through physical models, normalisation and deliberate denormalisation, dimensional and Data Vault approaches where they fit.</span></li><li><b>Database design &amp; development</b><span>Schema design, constraints and referential integrity, stored procedures and packages, across Oracle, PostgreSQL, MySQL and SQL Server.</span></li><li><b>Performance tuning</b><span>Execution plan analysis, index strategy, statistics management, partitioning and query rewrites.</span></li><li><b>High availability &amp; recovery</b><span>Replication topology, failover design, backup strategy and tested recovery procedures with real recovery time objectives.</span></li><li><b>Migration &amp; upgrade</b><span>Version upgrades and cross-platform migration with parallel validation and reconciliation before cutover.</span></li><li><b>Oracle Data Integrator development</b><span>ODI mappings, packages, load plans and knowledge module customisation, including remediation of inherited estates.</span></li></ul>
-    </div>
-    <div class="rv">
-      <h2 class="mb5">Technologies</h2>
-      <div class="chips"><span class="chip">Oracle 19c &amp; 23ai</span><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">SQL Server</span><span class="chip">MongoDB</span><span class="chip">Redis</span><span class="chip">Oracle Data Integrator</span><span class="chip">Data Vault</span></div>
+<h2>The approach</h2>
+<p>We redesigned the loading pipelines around incremental, partition-aware processing rather than reprocessing full tables every run: each load only touches the rows that actually changed, which keeps the work proportional to what happened since the last run instead of proportional to the size of the whole table. Independent tables load in parallel rather than in a fixed serial order, so one slow source no longer holds up every table behind it in the queue.</p>
+<p>We added automatic data quality checks at the point of ingestion, row-count reconciliation against the source, null and range checks against columns that should never be null or out of range, and referential checks against the dimensions a fact table depends on, along with schema drift detection so a source system silently adding, dropping or retyping a column produces an alert rather than a quietly wrong load. A load that fails a check is quarantined rather than written through: the previous good data stays in place and the team is paged, so the first anyone hears of a data problem is an alert, not a report that does not add up.</p>
 
-      <h2 class="mt7 mb4">Who usually owns the budget</h2>
-      <p class="soft">CTO, VP Engineering, or a Head of Platform whose database has become the bottleneck.</p>
+<h2>What changed</h2>
+<p>The loading pipeline now scales with what actually changed rather than with the size of the whole warehouse, and a bad load is caught and quarantined at ingestion instead of silently reaching the tables reports run against. The team is alerted when a check fails, rather than finding out from whoever happens to notice a wrong number downstream.</p>
+</div>
+</article></div><div class="i18n" lang="fr" hidden>
+<article class="wrap page-head article">
+  <p class="eyebrow"><span data-en="Case study" data-fr="Étude de cas">Case study</span></p>
+  <h1 style="max-width:26ch">Refonte de l'entrepôt de données</h1>
+  <div class="chips mt4"><span class="chip">Refonte ELT</span><span class="chip">Qualité des données</span><span class="chip">Alertes</span></div>
+  <div class="prose mt7">
+<h2>La situation</h2>
+<p>Les pipelines de chargement de l'entrepôt avaient été construits des années plus tôt comme un unique processus batch séquentiel : extraction, transformation, chargement, une table après l'autre, sur une horloge nocturne fixe. Cette conception fonctionnait tant que le volume de données restait assez faible pour tenir confortablement dans la fenêtre. Elle a cessé de bien fonctionner à mesure que le nombre de tables sources et le volume de lignes par table augmentaient, et il n'existait aucun mécanisme pour intercepter un chargement défaillant avant qu'il n'atteigne les tables interrogées par les rapports le lendemain matin, seulement la vigilance de qui remarquerait un chiffre erroné.</p>
 
-      <h2 class="mt7 mb4">What triggers the purchase</h2>
-      <ul class="svc"><li><b>Queries that used to take seconds now take minutes</b></li><li><b>An unsupported database version is becoming an audit finding</b></li><li><b>Nobody has tested whether the backups actually restore</b></li></ul>
-    </div>
-  </div>
-</section></div><div class="i18n" lang="fr" hidden>
-<section class="wrap page-head">
-  <p class="eyebrow">Ingénierie des bases de données</p>
-  <h1>Le socle historique de notre pratique.</h1>
-  <p class="lead">Un travail approfondi sur les bases de données en production, sur Oracle, PostgreSQL, SQL Server et les plateformes cloud-natives qui les ont largement remplacées. C'est souvent là que se trouvent les gains les plus rapides : ajuster une requête coûte presque toujours moins cher qu'acheter du matériel supplémentaire.</p>
-</section>
+<h2>L'approche</h2>
+<p>Nous avons repensé les pipelines de chargement autour d'un traitement incrémental et sensible aux partitions plutôt que de retraiter des tables entières à chaque exécution : chaque chargement ne touche que les lignes réellement modifiées, ce qui rend le travail proportionnel à ce qui s'est passé depuis la dernière exécution plutôt qu'à la taille de la table entière. Les tables indépendantes se chargent en parallèle plutôt que dans un ordre séquentiel fixe, si bien qu'une source lente ne bloque plus toutes les tables placées derrière elle dans la file.</p>
+<p>Nous avons ajouté des contrôles de qualité automatiques au moment de l'ingestion, rapprochement du nombre de lignes avec la source, contrôles de nullité et de plage sur les colonnes qui ne devraient jamais être nulles ou hors plage, et contrôles référentiels sur les dimensions dont dépend une table de faits, ainsi qu'une détection de dérive de schéma pour qu'un système source ajoutant, supprimant ou retypant silencieusement une colonne déclenche une alerte plutôt qu'un chargement discrètement faux. Un chargement qui échoue à un contrôle est mis en quarantaine plutôt qu'écrit directement : les bonnes données précédentes restent en place et l'équipe est alertée, de sorte que le premier signe d'un problème de données est une alerte, pas un rapport qui ne tombe pas juste.</p>
 
-<section class="wrap">
-  <div class="grid c2">
-    <div class="rv">
-      <h2 class="mb5">Ce que nous faisons</h2>
-      <ul class="svc"><li><b>Modélisation logique &amp; physique des données</b><span>Des modèles conceptuels aux modèles physiques, normalisation et dénormalisation délibérée, approches dimensionnelles et Data Vault lorsqu'elles s'appliquent.</span></li><li><b>Conception &amp; développement de bases de données</b><span>Conception de schémas, contraintes et intégrité référentielle, procédures stockées et packages, sur Oracle, PostgreSQL, MySQL et SQL Server.</span></li><li><b>Optimisation des performances</b><span>Analyse des plans d'exécution, stratégie d'indexation, gestion des statistiques, partitionnement et réécriture de requêtes.</span></li><li><b>Haute disponibilité &amp; reprise</b><span>Topologie de réplication, conception du basculement, stratégie de sauvegarde et procédures de reprise testées avec de vrais objectifs de délai de reprise.</span></li><li><b>Migration &amp; mise à niveau</b><span>Montées de version et migration inter-plateformes avec validation en parallèle et rapprochement avant la bascule.</span></li><li><b>Développement Oracle Data Integrator</b><span>Mappings ODI, packages, plans de chargement et personnalisation de knowledge modules, y compris la remédiation de patrimoines hérités.</span></li></ul>
-    </div>
-    <div class="rv">
-      <h2 class="mb5">Technologies</h2>
-      <div class="chips"><span class="chip">Oracle 19c &amp; 23ai</span><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">SQL Server</span><span class="chip">MongoDB</span><span class="chip">Redis</span><span class="chip">Oracle Data Integrator</span><span class="chip">Data Vault</span></div>
-
-      <h2 class="mt7 mb4">Qui détient généralement le budget</h2>
-      <p class="soft">Le CTO, le VP Engineering, ou un responsable plateforme dont la base de données est devenue le goulot d'étranglement.</p>
-
-      <h2 class="mt7 mb4">Ce qui déclenche l'achat</h2>
-      <ul class="svc"><li><b>Des requêtes qui prenaient quelques secondes en prennent maintenant plusieurs minutes</b></li><li><b>Une version de base de données non supportée devient un constat d'audit</b></li><li><b>Personne n'a testé si les sauvegardes se restaurent réellement</b></li></ul>
-    </div>
-  </div>
-</section></div>
+<h2>Ce qui a changé</h2>
+<p>Le pipeline de chargement évolue désormais avec ce qui a réellement changé plutôt qu'avec la taille de l'entrepôt entier, et un chargement défaillant est intercepté et mis en quarantaine dès l'ingestion au lieu d'atteindre silencieusement les tables sur lesquelles s'appuient les rapports. L'équipe est alertée en cas d'échec d'un contrôle, plutôt que de l'apprendre par qui remarque en aval un chiffre erroné.</p>
+</div>
+</article></div>
 <section class="wrap section">
   <div class="section-tint ctr rv">
-    <h2 style="max-width:22ch;margin-inline:auto"><span data-en="Is this the piece you need?" data-fr="Est-ce la pièce qu'il vous faut ?">Is this the piece you need?</span></h2>
-    <p class="lead" style="margin-inline:auto"><span data-en="Twenty minutes on a call is usually enough to know whether this is the right starting point." data-fr="Vingt minutes au téléphone suffisent généralement à savoir si c'est le bon point de départ.">Twenty minutes on a call is usually enough to know whether this is the right starting point.</span></p>
+    <h2 style="max-width:22ch;margin-inline:auto"><span data-en="Have a project like this one?" data-fr="Vous avez un projet comme celui-ci ?">Have a project like this one?</span></h2>
+    <p class="lead" style="margin-inline:auto"><span data-en="Tell us what is broken in a paragraph. We will tell you honestly whether we are the right people." data-fr="Décrivez-nous en un paragraphe ce qui ne va pas. Nous vous dirons honnêtement si nous sommes les bonnes personnes.">Tell us what is broken in a paragraph. We will tell you honestly whether we are the right people.</span></p>
     <div class="row ctr mt5" style="justify-content:center">
       <a href="/contact/" class="btn btn-p"><span data-en="Book a call" data-fr="Réserver un appel">Book a call</span> <span class="ar" aria-hidden="true">→</span></a>
-      <a href="/tools/estimator/" class="btn btn-s"><span data-en="Estimate the cost" data-fr="Estimer le coût">Estimate the cost</span></a>
+      <a href="/projects/" class="btn btn-s"><span data-en="See all projects" data-fr="See all projects">See all projects</span></a>
     </div>
   </div>
 </section>

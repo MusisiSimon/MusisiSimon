@@ -14,7 +14,6 @@ import re
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://intelloratech.net"
 EMAIL = "support@intelloratech.net"
-# Temporary contact number, standing in until a company line is set up.
 PHONE = "+256 756 439980"
 PHONE_TEL = "tel:+256756439980"
 
@@ -305,7 +304,7 @@ def layout(path, title, desc, body, accent="emerald", nav_key=None, crumbs=None,
         </ul>
       </div>
     </div>
-    <div class="ft-b"><span>© 2026 Intellora Tech</span><span>{bi(("A distributed practice · delivered worldwide", "Une pratique distribuée · livrée dans le monde entier"))}</span></div>
+    <div class="ft-b"><span>© 2026 Intellora Tech</span><span>{bi(("A distributed practice · delivered worldwide", "Une pratique distribuée · livrée dans le monde entier"))}</span><span class="ft-legal"><a href="/privacy/">{bi(("Privacy", "Confidentialité"))}</a><a href="/terms/">{bi(("Terms", "Conditions"))}</a></span></div>
   </div>
 </footer>
 
@@ -1054,6 +1053,7 @@ PROJECTS = [
         "name": "Data lake house build",
         "name_fr": "Construction d'un data lakehouse",
         "colour": "emerald",
+        "slug": "data-lakehouse-build",
         "body": "Built the pipelines that fill a central data store: Apache Airflow to schedule the work, Kafka "
                 "for live data, PySpark for the heavy lifting. Data from several separate systems now lands in "
                 "one place that the reports read from.",
@@ -1068,6 +1068,7 @@ PROJECTS = [
         "name": "Data warehouse rebuild",
         "name_fr": "Refonte de l'entrepôt de données",
         "colour": "gold",
+        "slug": "data-warehouse-rebuild",
         "body": "Rebuilt the loading pipelines so they process far more data in the same window, and added "
                 "automatic quality checks, alerting and schema enforcement, so a broken load is caught before "
                 "it reaches a report rather than after someone queries it.",
@@ -1156,14 +1157,21 @@ def org_tile(o):
 
 
 def proj_cards_html(i):
+    def more_link(p):
+        if not p.get("slug"):
+            return ""
+        label = "Read the full case study →" if not i else "Lire l'étude de cas complète →"
+        return '<a href="/projects/%s/" class="go mt4" style="display:inline-block">%s</a>' % (p["slug"], label)
     return "".join("""
       <div class="card card-accent k-{colour} rv">
         <h3>{name}</h3>
         <p>{body}</p>
         <div class="chips mt4">{chips}</div>
+        {more}
       </div>""".format(
         colour=p["colour"], name=p["name"] if not i else p["name_fr"], body=p["body"] if not i else p["body_fr"],
-        chips="".join('<span class="chip">%s</span>' % t for t in (p["tags"] if not i else p["tags_fr"])))
+        chips="".join('<span class="chip">%s</span>' % t for t in (p["tags"] if not i else p["tags_fr"])),
+        more=more_link(p))
     for p in PROJECTS)
 
 
@@ -1241,6 +1249,99 @@ write("projects", layout("/projects/", "Projects · Intellora Tech",
                          "core banking upgrades, and disaster recovery for regulated finance.",
                          projects, accent="indigo", nav_key="Projects",
                          crumbs=[(("Projects", "Projets"), None)]))
+
+
+# ------------------------------------------------------------- case studies
+def case_study_page(slug, name, name_fr, desc, desc_fr, tags, tags_fr, body_en, body_fr):
+    def article(name_h, eyebrow, tags_h, body_h):
+        return f"""
+<article class="wrap page-head article">
+  <p class="eyebrow">{eyebrow}</p>
+  <h1 style="max-width:26ch">{name_h}</h1>
+  <div class="chips mt4">{"".join('<span class="chip">%s</span>' % t for t in tags_h)}</div>
+  <div class="prose mt7">{body_h}</div>
+</article>"""
+
+    body = blocks(
+        article(name, bi(("Case study", "Étude de cas")), tags, body_en),
+        article(name_fr, bi(("Case study", "Étude de cas")), tags_fr, body_fr),
+    ) + cta(
+        ("Have a project like this one?", "Vous avez un projet comme celui-ci ?"),
+        ("Tell us what is broken in a paragraph. We will tell you honestly whether we are the right people.",
+         "Décrivez-nous en un paragraphe ce qui ne va pas. Nous vous dirons honnêtement si nous sommes les bonnes personnes."),
+        secondary=("See all projects", "/projects/"))
+
+    write("projects/" + slug, layout("/projects/%s/" % slug, "%s · Intellora Tech" % name, desc, body,
+                                      accent="indigo", nav_key="Projects",
+                                      crumbs=[("Projects", "/projects/"), ((name, name_fr), None)]))
+
+
+case_study_page(
+    "data-lakehouse-build",
+    "Data lake house build", "Construction d'un data lakehouse",
+    "How we brought several separate operational systems into one governed lakehouse, so reports read from a "
+    "single conformed layer instead of a pile of one-off extracts.",
+    "Comment nous avons rassemblé plusieurs systèmes opérationnels distincts dans un lakehouse gouverné, afin que "
+    "les rapports s'appuient sur une couche conformée unique plutôt que sur une multitude d'extractions ad hoc.",
+    ["Airflow", "Kafka", "PySpark", "Power BI"], ["Airflow", "Kafka", "PySpark", "Power BI"],
+    """
+<h2>The situation</h2>
+<p>The client ran several operational systems, each owned by a different team, each with its own idea of what a customer record or a transaction looked like. Reporting was built the way reporting usually gets built under those conditions: whoever needed a number wrote a one-off extract against whichever source system seemed closest to the answer. Every new question meant a new pipeline, built against a schema that could change without notice, by someone who had to guess how another team's system worked.</p>
+<p>That pattern is not a data problem so much as an organisational one. Two reports built against the same underlying reality can still disagree, because each was assembled by a different person, on a different day, making different reasonable-sounding judgement calls about which rows to include.</p>
+
+<h2>The approach</h2>
+<p>We built a lakehouse with a clear landing-to-curated structure: raw data lands exactly as the source produced it, then moves through a conformance layer that resolves the things source systems never agree on, date formats, currency, identifiers for the same entity across systems, before anything is allowed to reach a report.</p>
+<p>Apache Airflow orchestrates the pipeline as a dependency graph rather than a set of jobs on independent clocks, so a downstream transform only runs once the data it depends on has actually landed and passed its checks, not just once its scheduled time has arrived. That distinction matters more than it sounds: a fixed-clock pipeline will happily read a half-written upstream table and produce a number that looks plausible and is wrong.</p>
+<p>For sources where staleness itself was the problem, transaction feeds that needed to inform same-day decisions, we used Kafka to stream change events rather than waiting for the next batch window. Slower-moving reference data stayed on a batch cadence, because streaming everything would have added operational complexity the data did not need. PySpark handles the transform work at the volume involved: deduplication, slowly changing dimension logic, and the conformance rules that turn five systems' worth of assumptions into one.</p>
+
+<h2>What changed</h2>
+<p>Reports now read from one conformed layer instead of being assembled by stitching together fresh extracts from whichever source seemed relevant. A new reporting question gets answered against the existing curated model rather than by writing a new point-to-point pipeline into a specific operational system, which is both faster to build and structurally unable to disagree with an existing report the way two independently built extracts can. Power BI sits on top of the curated layer, so the definitions it displays are the ones the pipeline already enforced, not a fresh interpretation invented at the dashboard.</p>
+""",
+    """
+<h2>La situation</h2>
+<p>Le client exploitait plusieurs systèmes opérationnels, chacun détenu par une équipe différente, chacun avec sa propre idée de ce qu'était une fiche client ou une transaction. Le reporting était construit comme il l'est généralement dans ces conditions : quiconque avait besoin d'un chiffre écrivait une extraction ponctuelle contre le système source qui semblait le plus proche de la réponse. Chaque nouvelle question exigeait un nouveau pipeline, construit contre un schéma pouvant changer sans préavis, par quelqu'un devant deviner le fonctionnement du système d'une autre équipe.</p>
+<p>Ce schéma n'est pas tant un problème de données qu'un problème d'organisation. Deux rapports construits à partir de la même réalité sous-jacente peuvent quand même se contredire, car chacun a été assemblé par une personne différente, un jour différent, faisant des choix raisonnables mais différents sur les lignes à inclure.</p>
+
+<h2>L'approche</h2>
+<p>Nous avons construit un lakehouse avec une structure claire, de la zone brute à la zone conformée : les données brutes arrivent telles que le système source les a produites, puis passent par une couche de conformité qui résout ce sur quoi les systèmes sources ne s'accordent jamais, formats de date, devises, identifiants d'une même entité selon les systèmes, avant qu'aucune donnée ne puisse atteindre un rapport.</p>
+<p>Apache Airflow orchestre le pipeline comme un graphe de dépendances plutôt qu'un ensemble de tâches sur des horloges indépendantes, de sorte qu'une transformation en aval ne s'exécute qu'une fois que les données dont elle dépend sont réellement arrivées et ont passé leurs contrôles, et non simplement une fois l'heure prévue atteinte. Cette distinction compte plus qu'il n'y paraît : un pipeline à horloge fixe lira sans problème une table amont à moitié écrite et produira un chiffre plausible et faux.</p>
+<p>Pour les sources où l'ancienneté même des données était le problème, des flux de transactions devant éclairer des décisions le jour même, nous avons utilisé Kafka pour diffuser les événements de changement plutôt que d'attendre la prochaine fenêtre de traitement par lots. Les données de référence, évoluant plus lentement, sont restées sur un rythme par lots, car tout diffuser en continu aurait ajouté une complexité opérationnelle dont les données n'avaient pas besoin. PySpark gère le travail de transformation au volume concerné : déduplication, gestion des dimensions à évolution lente, et les règles de conformité qui transforment les hypothèses de cinq systèmes en une seule.</p>
+
+<h2>Ce qui a changé</h2>
+<p>Les rapports s'appuient désormais sur une seule couche conformée au lieu d'être assemblés en recousant des extractions fraîches depuis le système source qui semblait pertinent. Une nouvelle question de reporting trouve sa réponse dans le modèle conformé existant plutôt que par l'écriture d'un nouveau pipeline point à point vers un système opérationnel spécifique, ce qui est à la fois plus rapide à construire et structurellement incapable de contredire un rapport existant comme peuvent le faire deux extractions construites indépendamment. Power BI s'appuie sur la couche conformée, de sorte que les définitions qu'il affiche sont celles déjà appliquées par le pipeline, et non une interprétation fraîche inventée au niveau du tableau de bord.</p>
+""")
+
+case_study_page(
+    "data-warehouse-rebuild",
+    "Data warehouse rebuild", "Refonte de l'entrepôt de données",
+    "How we rebuilt a warehouse's loading pipelines around incremental processing and automatic quality checks, "
+    "so a broken load is caught before it reaches a report rather than after someone queries it.",
+    "Comment nous avons reconstruit les pipelines de chargement d'un entrepôt de données autour d'un traitement "
+    "incrémental et de contrôles de qualité automatiques, pour qu'un chargement défaillant soit détecté avant "
+    "d'atteindre un rapport plutôt qu'après qu'une requête l'interroge.",
+    ["ELT redesign", "Data quality", "Alerting"], ["Refonte ELT", "Qualité des données", "Alertes"],
+    """
+<h2>The situation</h2>
+<p>The warehouse's loading pipelines had been built years earlier as a single serial batch process: extract, transform, load, one table after another, on a fixed nightly clock. That design worked when the data volume was small enough to finish comfortably inside the window. It stopped working gracefully as both the number of source tables and the rows per table grew, and there was no mechanism to catch a bad load before it reached the tables reports queried the next morning, only whoever noticed a number looked wrong.</p>
+
+<h2>The approach</h2>
+<p>We redesigned the loading pipelines around incremental, partition-aware processing rather than reprocessing full tables every run: each load only touches the rows that actually changed, which keeps the work proportional to what happened since the last run instead of proportional to the size of the whole table. Independent tables load in parallel rather than in a fixed serial order, so one slow source no longer holds up every table behind it in the queue.</p>
+<p>We added automatic data quality checks at the point of ingestion, row-count reconciliation against the source, null and range checks against columns that should never be null or out of range, and referential checks against the dimensions a fact table depends on, along with schema drift detection so a source system silently adding, dropping or retyping a column produces an alert rather than a quietly wrong load. A load that fails a check is quarantined rather than written through: the previous good data stays in place and the team is paged, so the first anyone hears of a data problem is an alert, not a report that does not add up.</p>
+
+<h2>What changed</h2>
+<p>The loading pipeline now scales with what actually changed rather than with the size of the whole warehouse, and a bad load is caught and quarantined at ingestion instead of silently reaching the tables reports run against. The team is alerted when a check fails, rather than finding out from whoever happens to notice a wrong number downstream.</p>
+""",
+    """
+<h2>La situation</h2>
+<p>Les pipelines de chargement de l'entrepôt avaient été construits des années plus tôt comme un unique processus batch séquentiel : extraction, transformation, chargement, une table après l'autre, sur une horloge nocturne fixe. Cette conception fonctionnait tant que le volume de données restait assez faible pour tenir confortablement dans la fenêtre. Elle a cessé de bien fonctionner à mesure que le nombre de tables sources et le volume de lignes par table augmentaient, et il n'existait aucun mécanisme pour intercepter un chargement défaillant avant qu'il n'atteigne les tables interrogées par les rapports le lendemain matin, seulement la vigilance de qui remarquerait un chiffre erroné.</p>
+
+<h2>L'approche</h2>
+<p>Nous avons repensé les pipelines de chargement autour d'un traitement incrémental et sensible aux partitions plutôt que de retraiter des tables entières à chaque exécution : chaque chargement ne touche que les lignes réellement modifiées, ce qui rend le travail proportionnel à ce qui s'est passé depuis la dernière exécution plutôt qu'à la taille de la table entière. Les tables indépendantes se chargent en parallèle plutôt que dans un ordre séquentiel fixe, si bien qu'une source lente ne bloque plus toutes les tables placées derrière elle dans la file.</p>
+<p>Nous avons ajouté des contrôles de qualité automatiques au moment de l'ingestion, rapprochement du nombre de lignes avec la source, contrôles de nullité et de plage sur les colonnes qui ne devraient jamais être nulles ou hors plage, et contrôles référentiels sur les dimensions dont dépend une table de faits, ainsi qu'une détection de dérive de schéma pour qu'un système source ajoutant, supprimant ou retypant silencieusement une colonne déclenche une alerte plutôt qu'un chargement discrètement faux. Un chargement qui échoue à un contrôle est mis en quarantaine plutôt qu'écrit directement : les bonnes données précédentes restent en place et l'équipe est alertée, de sorte que le premier signe d'un problème de données est une alerte, pas un rapport qui ne tombe pas juste.</p>
+
+<h2>Ce qui a changé</h2>
+<p>Le pipeline de chargement évolue désormais avec ce qui a réellement changé plutôt qu'avec la taille de l'entrepôt entier, et un chargement défaillant est intercepté et mis en quarantaine dès l'ingestion au lieu d'atteindre silencieusement les tables sur lesquelles s'appuient les rapports. L'équipe est alertée en cas d'échec d'un contrôle, plutôt que de l'apprendre par qui remarque en aval un chiffre erroné.</p>
+""")
 
 
 # ------------------------------------------------------------------ tools hub
@@ -2064,7 +2165,7 @@ contact_en = f"""
       <h2 class="mb5">How to reach us</h2>
       <div class="rows">
         <div><div><p class="n">Email</p><p class="m">Replies within one business day</p></div><p class="d"><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
-        <div><div><p class="n">Phone</p><p class="m">Temporary line, until a company number is set up</p></div><p class="d"><a href="{PHONE_TEL}">{PHONE}</a></p></div>
+        <div><div><p class="n">Phone</p><p class="m">Direct line, business hours</p></div><p class="d"><a href="{PHONE_TEL}">{PHONE}</a></p></div>
         <div><div><p class="n">Structure</p><p class="m">Specialists matched to your stack</p></div><p class="d">Distributed team</p></div>
         <div><div><p class="n">Working hours</p><p class="m">Calls scheduled in your timezone</p></div><p class="d">Your business hours</p></div>
         <div><div><p class="n">Languages</p><p class="m">Delivery and documentation</p></div><p class="d">English</p></div>
@@ -2136,7 +2237,7 @@ contact_fr = f"""
       <h2 class="mb5">Comment nous contacter</h2>
       <div class="rows">
         <div><div><p class="n">E-mail</p><p class="m">Réponse dans un jour ouvré</p></div><p class="d"><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
-        <div><div><p class="n">Téléphone</p><p class="m">Ligne temporaire, en attendant un numéro d'entreprise</p></div><p class="d"><a href="{PHONE_TEL}">{PHONE}</a></p></div>
+        <div><div><p class="n">Téléphone</p><p class="m">Ligne directe, heures de bureau</p></div><p class="d"><a href="{PHONE_TEL}">{PHONE}</a></p></div>
         <div><div><p class="n">Structure</p><p class="m">Des spécialistes adaptés à votre pile technique</p></div><p class="d">Équipe distribuée</p></div>
         <div><div><p class="n">Horaires de travail</p><p class="m">Appels programmés dans votre fuseau horaire</p></div><p class="d">Vos heures de bureau</p></div>
         <div><div><p class="n">Langues</p><p class="m">Livraison et documentation</p></div><p class="d">Anglais</p></div>
@@ -2281,11 +2382,154 @@ write("payment/cancel", layout("/payment/cancel/", "Payment cancelled · Intello
                                "Your payment was cancelled and no charge was made.",
                                cancel, accent="emerald", noindex=True))
 
+# ------------------------------------------------------------- legal pages
+LAST_UPDATED = "21 September 2026"
+LAST_UPDATED_FR = "21 septembre 2026"
+
+def legal_page(path, title, title_fr, desc, desc_fr, body_en, body_fr, crumb_label, crumb_label_fr):
+    body = blocks(f"""
+<article class="wrap page-head article">
+  <p class="eyebrow">{bi(("Legal", "Mentions légales"))}</p>
+  <h1 style="max-width:26ch">{title}</h1>
+  <p class="post-meta">{bi(("Last updated", "Dernière mise à jour"))} {LAST_UPDATED}</p>
+  <div class="prose mt7">{body_en}</div>
+</article>""", f"""
+<article class="wrap page-head article">
+  <p class="eyebrow">{bi(("Legal", "Mentions légales"))}</p>
+  <h1 style="max-width:26ch">{title_fr}</h1>
+  <p class="post-meta">{bi(("Last updated", "Dernière mise à jour"))} {LAST_UPDATED_FR}</p>
+  <div class="prose mt7">{body_fr}</div>
+</article>""")
+    write(path.strip("/"), layout("/%s/" % path.strip("/"), "%s · Intellora Tech" % title, desc, body,
+                                   accent="slate", crumbs=[((crumb_label, crumb_label_fr), None)]))
+
+
+legal_page(
+    "privacy", "Privacy policy", "Politique de confidentialité",
+    "How Intellora Tech collects, uses and protects information, and how card payments are handled through Stripe.",
+    "Comment Intellora Tech collecte, utilise et protège les informations, et comment les paiements par carte sont traités via Stripe.",
+    """
+<p>This page explains what Intellora Tech collects when you use this website, why, and what we do with it. We collect as little as the work requires.</p>
+
+<h2>What we collect</h2>
+<p>Getting in touch by email is just that: an email. We keep the messages you send us and whatever you choose to put in them, for as long as is reasonable to handle your enquiry and keep a record of the engagement.</p>
+<p>The payment page (<a href="/payment/">/payment/</a>) sends the amount, an optional reference and an optional description to our server to open a Stripe checkout session. We do not see, collect or store your card number, expiry date or CVC at any point: those are entered directly on a page hosted and secured by Stripe. Whatever billing details Stripe collects to process the payment (name, email, card details) are held by Stripe under its own privacy policy, not ours.</p>
+<p>This site does not use analytics or advertising trackers, and does not set tracking cookies. It stores two small preferences in your browser's local storage, your chosen theme (light or dark) and language (English or French), so the site remembers your choice on your next visit. Those preferences stay on your device; they are never sent to us.</p>
+
+<h2>How we use it</h2>
+<p>To reply to you, to deliver and invoice work you engage us for, and to keep the records a business is reasonably expected to keep. We do not sell, rent or trade information, and we do not use it for advertising.</p>
+
+<h2>Third parties</h2>
+<p>Stripe processes card payments on our behalf and is a PCI DSS Level 1 certified payment processor. Where a project requires us to work with a client's own systems or a subprocessor named in a signed agreement, that is governed by the terms of that agreement, not this page.</p>
+
+<h2>Data retention</h2>
+<p>We keep correspondence and payment records for as long as needed to deliver the work, meet our own accounting and tax obligations, and resolve any dispute, then delete or anonymise what is no longer needed.</p>
+
+<h2>Your rights</h2>
+<p>You can ask us what we hold about you, ask us to correct it, or ask us to delete it, by emailing <a href="mailto:support@intelloratech.net">support@intelloratech.net</a>. We will respond within a reasonable time. Where GDPR or an equivalent regime applies to you, these requests are handled under that regime.</p>
+
+<h2>Security</h2>
+<p>This site is served over TLS. Payment is handled entirely on Stripe's infrastructure, which keeps card data out of our systems and out of PCI-DSS scope for us entirely.</p>
+
+<h2>Changes to this policy</h2>
+<p>If this policy changes in a way that matters, we will update the date at the top of this page.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy go to <a href="mailto:support@intelloratech.net">support@intelloratech.net</a>.</p>
+""",
+    """
+<p>Cette page explique ce que Intellora Tech collecte lorsque vous utilisez ce site, pourquoi, et ce que nous en faisons. Nous collectons le minimum requis par le travail.</p>
+
+<h2>Ce que nous collectons</h2>
+<p>Nous contacter par e-mail, c'est simplement cela : un e-mail. Nous conservons les messages que vous nous envoyez et ce que vous choisissez d'y indiquer, le temps raisonnable de traiter votre demande et de garder une trace de la relation.</p>
+<p>La page de paiement (<a href="/payment/">/payment/</a>) envoie le montant, une référence facultative et une description facultative à notre serveur pour ouvrir une session de paiement Stripe. Nous ne voyons, ne collectons ni ne stockons à aucun moment votre numéro de carte, sa date d'expiration ou son CVC : ces informations sont saisies directement sur une page hébergée et sécurisée par Stripe. Les coordonnées de facturation que Stripe collecte pour traiter le paiement (nom, e-mail, informations de carte) sont conservées par Stripe selon sa propre politique de confidentialité, pas la nôtre.</p>
+<p>Ce site n'utilise ni outils d'analyse ni traceurs publicitaires, et ne dépose pas de cookies de suivi. Il enregistre deux petites préférences dans le stockage local de votre navigateur, votre thème choisi (clair ou sombre) et votre langue (anglais ou français), afin que le site retienne votre choix lors de votre prochaine visite. Ces préférences restent sur votre appareil ; elles ne nous sont jamais transmises.</p>
+
+<h2>Comment nous les utilisons</h2>
+<p>Pour vous répondre, pour livrer et facturer le travail que vous nous confiez, et pour tenir les registres qu'une entreprise est raisonnablement tenue de conserver. Nous ne vendons, ne louons ni n'échangeons d'informations, et nous ne les utilisons pas à des fins publicitaires.</p>
+
+<h2>Tiers</h2>
+<p>Stripe traite les paiements par carte pour notre compte et est un prestataire de paiement certifié PCI DSS niveau 1. Lorsqu'un projet nous demande de travailler avec les propres systèmes d'un client ou un sous-traitant nommé dans un accord signé, cela relève des termes de cet accord, pas de cette page.</p>
+
+<h2>Conservation des données</h2>
+<p>Nous conservons la correspondance et les registres de paiement le temps nécessaire pour livrer le travail, respecter nos propres obligations comptables et fiscales, et résoudre tout litige, puis supprimons ou anonymisons ce qui n'est plus nécessaire.</p>
+
+<h2>Vos droits</h2>
+<p>Vous pouvez nous demander ce que nous détenons à votre sujet, nous demander de le corriger, ou nous demander de le supprimer, en écrivant à <a href="mailto:support@intelloratech.net">support@intelloratech.net</a>. Nous répondrons dans un délai raisonnable. Lorsque le RGPD ou un régime équivalent vous est applicable, ces demandes sont traitées selon ce régime.</p>
+
+<h2>Sécurité</h2>
+<p>Ce site est servi via TLS. Le paiement est entièrement traité sur l'infrastructure de Stripe, ce qui garde les données de carte hors de nos systèmes et nous place entièrement hors du périmètre PCI-DSS.</p>
+
+<h2>Modifications de cette politique</h2>
+<p>Si cette politique change de manière significative, nous mettrons à jour la date en haut de cette page.</p>
+
+<h2>Contact</h2>
+<p>Les questions concernant cette politique peuvent être adressées à <a href="mailto:support@intelloratech.net">support@intelloratech.net</a>.</p>
+""",
+    "Privacy policy", "Politique de confidentialité")
+
+legal_page(
+    "terms", "Terms of service", "Conditions d'utilisation",
+    "The terms that apply to using this website and paying Intellora Tech through it. Project work is governed by its own signed agreement.",
+    "Les conditions applicables à l'utilisation de ce site et aux paiements effectués à Intellora Tech via celui-ci. Le travail de projet est régi par son propre accord signé.",
+    """
+<p>These terms cover your use of this website and of the payment page at <a href="/payment/">/payment/</a>. They are written to be read, not decoded, so they stay short.</p>
+
+<h2>The website</h2>
+<p>This site describes what Intellora Tech does, publishes our project work and writing, and lets you book a call, ask a question or pay an invoice. Nothing on this site is a binding offer on its own; a project starts once both sides have agreed and signed a proposal or statement of work.</p>
+
+<h2>Paying through this site</h2>
+<p>The payment page is for settling an invoice, a deposit or a booked technical session with an amount that has already been agreed with us, by email or in a proposal. Enter the correct amount and a reference where possible, so we can match your payment to the right engagement; a wrong amount or missing reference may delay that match. Card payments are processed by Stripe; by paying you also agree to Stripe's own terms for that transaction.</p>
+<p>Refunds are handled case by case: email <a href="mailto:support@intelloratech.net">support@intelloratech.net</a> with the reference or the Stripe receipt and we will sort it out promptly.</p>
+
+<h2>Project work</h2>
+<p>Scope, deliverables, timeline, pricing and payment schedule for any engagement are set out in a separate proposal or statement of work signed by both parties, which takes precedence over this page for that engagement. Standard mutual non-disclosure agreements are available on request before any substantive discussion.</p>
+
+<h2>Intellectual property</h2>
+<p>Unless a signed agreement says otherwise, work product created for a client under a paid engagement belongs to that client on final payment. The Intellora Tech name, mark and the content of this website remain ours.</p>
+
+<h2>Liability</h2>
+<p>We do good, careful work and stand behind it, but nothing on this website is a substitute for the specific warranties and liability terms in a signed engagement agreement, which govern in the event of any conflict with this page.</p>
+
+<h2>Changes to these terms</h2>
+<p>If these terms change in a way that matters, we will update the date at the top of this page. Terms already agreed in a signed engagement are not affected by a later change here.</p>
+
+<h2>Contact</h2>
+<p>Questions about these terms go to <a href="mailto:support@intelloratech.net">support@intelloratech.net</a>.</p>
+""",
+    """
+<p>Ces conditions couvrent votre utilisation de ce site et de la page de paiement à <a href="/payment/">/payment/</a>. Elles sont rédigées pour être lues, pas déchiffrées, et restent donc courtes.</p>
+
+<h2>Le site</h2>
+<p>Ce site présente ce que fait Intellora Tech, publie nos travaux de projet et nos articles, et vous permet de réserver un appel, poser une question ou régler une facture. Rien sur ce site ne constitue en soi une offre contraignante ; un projet démarre une fois que les deux parties ont convenu et signé une proposition ou un cahier des charges.</p>
+
+<h2>Payer via ce site</h2>
+<p>La page de paiement sert à régler une facture, un acompte ou une session technique réservée, pour un montant déjà convenu avec nous, par e-mail ou dans une proposition. Indiquez le montant exact et une référence si possible, afin que nous puissions rapprocher votre paiement de la bonne mission ; un montant erroné ou une référence manquante peut retarder ce rapprochement. Les paiements par carte sont traités par Stripe ; en payant, vous acceptez également les propres conditions de Stripe pour cette transaction.</p>
+<p>Les remboursements sont traités au cas par cas : écrivez à <a href="mailto:support@intelloratech.net">support@intelloratech.net</a> avec la référence ou le reçu Stripe et nous réglerons cela rapidement.</p>
+
+<h2>Travail de projet</h2>
+<p>Le périmètre, les livrables, le calendrier, la tarification et l'échéancier de paiement de toute mission sont fixés dans une proposition ou un cahier des charges signé séparément par les deux parties, qui prévaut sur cette page pour cette mission. Des accords de confidentialité mutuels standards sont disponibles sur demande avant toute discussion approfondie.</p>
+
+<h2>Propriété intellectuelle</h2>
+<p>Sauf accord signé contraire, le travail produit pour un client dans le cadre d'une mission payante lui appartient dès le paiement final. Le nom et la marque Intellora Tech, ainsi que le contenu de ce site, restent notre propriété.</p>
+
+<h2>Responsabilité</h2>
+<p>Nous effectuons un travail soigné dont nous répondons, mais rien sur ce site ne remplace les garanties et clauses de responsabilité spécifiques d'un accord de mission signé, qui prévaut en cas de conflit avec cette page.</p>
+
+<h2>Modifications de ces conditions</h2>
+<p>Si ces conditions changent de manière significative, nous mettrons à jour la date en haut de cette page. Les conditions déjà convenues dans une mission signée ne sont pas affectées par un changement ultérieur ici.</p>
+
+<h2>Contact</h2>
+<p>Les questions concernant ces conditions peuvent être adressées à <a href="mailto:support@intelloratech.net">support@intelloratech.net</a>.</p>
+""",
+    "Terms of service", "Conditions d'utilisation")
+
 # ------------------------------------------------------------- sitemap & robots
 urls = ["/", "/products/", "/projects/", "/blog/", "/about/", "/contact/", "/payment/",
-        "/tools/", "/tools/estimator/", "/tools/maturity/"]
+        "/tools/", "/tools/estimator/", "/tools/maturity/", "/privacy/", "/terms/"]
 urls += ["/products/%s/" % s for s, _, _, _, _, _ in PRODUCTS]
 urls += ["/blog/%s/" % p["slug"] for p in POSTS]
+urls += ["/projects/%s/" % p["slug"] for p in PROJECTS if p.get("slug")]
 
 sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 sitemap += "".join("  <url><loc>%s%s</loc></url>\n" % (SITE, u) for u in urls)
