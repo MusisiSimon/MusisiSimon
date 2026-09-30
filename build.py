@@ -51,6 +51,19 @@ MARK = (
     '</svg></span>'
 )
 
+# Footer contact-row icons: line style for mail (matches the theme toggle's
+# stroke icon), solid glyph for LinkedIn (its mark is conventionally solid).
+MAIL_ICON = (
+    '<svg class="ft-ic-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" '
+    'stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+    '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>'
+    '<path d="M22 6l-10 7L2 6"/></svg>'
+)
+LINKEDIN_ICON = (
+    '<svg class="ft-ic-svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+    '<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>'
+)
+
 NAV = [
     ("Products", "Produits", "/products/"),
     ("Projects", "Projets", "/projects/"),
@@ -281,7 +294,7 @@ def layout(path, title, desc, body, accent="emerald", nav_key=None, crumbs=None,
         <p class="brand">{MARK}Intellora Tech</p>
         <p class="ft-about">{bi(("A practice of specialists across data engineering, cloud architecture, governance, security, machine learning and databases, led by a principal engineer.",
                                   "Une pratique de spécialistes en ingénierie des données, architecture cloud, gouvernance, sécurité, machine learning et bases de données, dirigée par un ingénieur principal."))}</p>
-        <p class="mt4"><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="{LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a><br>{bi(("Distributed team · delivery worldwide", "Équipe distribuée · livraison dans le monde entier"))}</p>
+        <p class="mt4"><a href="mailto:{EMAIL}" class="ft-ic">{MAIL_ICON}{EMAIL}</a><br><a href="{LINKEDIN}" class="ft-ic" target="_blank" rel="noopener">{LINKEDIN_ICON}LinkedIn</a><br>{bi(("Distributed team · delivery worldwide", "Équipe distribuée · livraison dans le monde entier"))}</p>
       </div>
       <div>
         <h2>{bi(("Products", "Produits"))}</h2>

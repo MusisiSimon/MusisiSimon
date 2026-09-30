@@ -537,6 +537,8 @@ input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-m
 .ft a:hover{color:#fff}
 .ft .brand{color:#fff;margin-bottom:var(--s4)}
 .ft-about{max-width:34ch;line-height:1.6;font-size:.9375rem}
+.ft-ic{display:inline-flex;align-items:center;gap:.4375rem}
+.ft-ic-svg{flex:none}
 .ft-b{border-top:1px solid rgba(255,255,255,.12);padding-top:var(--s5);display:flex;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;font-size:.8125rem;color:#8496A6}
 .ft-legal{display:flex;gap:var(--s4)}
 .ft-legal a{color:#8496A6}
