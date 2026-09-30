@@ -15,6 +15,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://intelloratech.net"
 EMAIL = "support@intelloratech.net"
 PHONE = "+256 756 439980"
+LINKEDIN = "https://www.linkedin.com/company/intelloratech-smc-ltd/services/"
 PHONE_TEL = "tel:+256756439980"
 
 # Logo — a lineage graph: scattered sources converge through one governed
@@ -280,7 +281,7 @@ def layout(path, title, desc, body, accent="emerald", nav_key=None, crumbs=None,
         <p class="brand">{MARK}Intellora Tech</p>
         <p class="ft-about">{bi(("A practice of specialists across data engineering, cloud architecture, governance, security, machine learning and databases, led by a principal engineer.",
                                   "Une pratique de spécialistes en ingénierie des données, architecture cloud, gouvernance, sécurité, machine learning et bases de données, dirigée par un ingénieur principal."))}</p>
-        <p class="mt4"><a href="mailto:{EMAIL}">{EMAIL}</a><br>{bi(("Distributed team · delivery worldwide", "Équipe distribuée · livraison dans le monde entier"))}</p>
+        <p class="mt4"><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="{LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a><br>{bi(("Distributed team · delivery worldwide", "Équipe distribuée · livraison dans le monde entier"))}</p>
       </div>
       <div>
         <h2>{bi(("Products", "Produits"))}</h2>
@@ -2196,6 +2197,7 @@ contact_en = f"""
       <div class="rows">
         <div><div><p class="n">Email</p><p class="m">Replies within one business day</p></div><p class="d"><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
         <div><div><p class="n">Phone</p><p class="m">Direct line, business hours</p></div><p class="d"><a href="{PHONE_TEL}">{PHONE}</a></p></div>
+        <div><div><p class="n">LinkedIn</p><p class="m">Company updates and posts</p></div><p class="d"><a href="{LINKEDIN}" target="_blank" rel="noopener">Intellora Tech</a></p></div>
         <div><div><p class="n">Structure</p><p class="m">Specialists matched to your stack</p></div><p class="d">Distributed team</p></div>
         <div><div><p class="n">Working hours</p><p class="m">Calls scheduled in your timezone</p></div><p class="d">Your business hours</p></div>
         <div><div><p class="n">Languages</p><p class="m">Delivery and documentation</p></div><p class="d">English</p></div>
@@ -2268,6 +2270,7 @@ contact_fr = f"""
       <div class="rows">
         <div><div><p class="n">E-mail</p><p class="m">Réponse dans un jour ouvré</p></div><p class="d"><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
         <div><div><p class="n">Téléphone</p><p class="m">Ligne directe, heures de bureau</p></div><p class="d"><a href="{PHONE_TEL}">{PHONE}</a></p></div>
+        <div><div><p class="n">LinkedIn</p><p class="m">Actualités et publications de l'entreprise</p></div><p class="d"><a href="{LINKEDIN}" target="_blank" rel="noopener">Intellora Tech</a></p></div>
         <div><div><p class="n">Structure</p><p class="m">Des spécialistes adaptés à votre pile technique</p></div><p class="d">Équipe distribuée</p></div>
         <div><div><p class="n">Horaires de travail</p><p class="m">Appels programmés dans votre fuseau horaire</p></div><p class="d">Vos heures de bureau</p></div>
         <div><div><p class="n">Langues</p><p class="m">Livraison et documentation</p></div><p class="d">Anglais</p></div>
