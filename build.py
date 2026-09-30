@@ -973,6 +973,18 @@ product_page(
     [(("Well-Architected review", "Revue Well-Architected"),
       ("Structured review across operational excellence, security, reliability, performance, cost and sustainability, with a prioritised remediation plan.",
        "Revue structurée couvrant l'excellence opérationnelle, la sécurité, la fiabilité, la performance, le coût et la durabilité, avec un plan de remédiation prioritisé.")),
+     (("AWS Data Lake", "Data Lake AWS"),
+      ("S3-based lakes built with a real zone structure, raw through curated, governed by Lake Formation permissions and a Glue Catalog that keeps schema and ownership honest as sources multiply.",
+       "Des lakes basés sur S3 avec une véritable structure de zones, du brut au conformé, gouvernés par les permissions Lake Formation et un catalogue Glue qui garde le schéma et la propriété exacts à mesure que les sources se multiplient.")),
+     (("AWS Data Warehouse", "Data Warehouse AWS"),
+      ("Redshift architecture sized to the workload: RA3 nodes, distribution and sort keys chosen for how the warehouse is actually queried, workload management, and Spectrum where the lake and the warehouse need to act as one.",
+       "Architecture Redshift dimensionnée pour la charge réelle : nœuds RA3, clés de distribution et de tri choisies selon la façon dont l'entrepôt est réellement interrogé, gestion de charge, et Spectrum lorsque le lake et l'entrepôt doivent fonctionner comme un seul système.")),
+     (("ETL/ELT modernisation", "Modernisation ETL/ELT"),
+      ("Moving pipelines off brittle hand-rolled scripts or ageing on-premise ETL tools onto Glue, Step Functions and managed Airflow (MWAA), with the same logic made observable, testable and owned by someone other than whoever wrote it.",
+       "Migration des pipelines depuis des scripts artisanaux fragiles ou d'anciens outils ETL on-premise vers Glue, Step Functions et Airflow managé (MWAA), avec la même logique rendue observable, testable et prise en charge par quelqu'un d'autre que son auteur d'origine.")),
+     (("Managed data engineering", "Ingénierie des données managée"),
+      ("Ongoing ownership of the pipelines once they are live: on-call for failures, a monthly platform and cost review, and planned change instead of whoever is free picking up the incident.",
+       "Prise en charge continue des pipelines une fois en production : astreinte en cas d'incident, revue mensuelle de la plateforme et des coûts, et changements planifiés plutôt qu'un incident géré par qui est disponible.")),
      (("Landing zone &amp; multi-account design", "Landing zone &amp; conception multi-comptes"),
       ("Account structure, organisational units, guardrails, network topology and centralised logging built for growth.",
        "Structure de comptes, unités organisationnelles, garde-fous, topologie réseau et journalisation centralisée conçus pour la croissance.")),
@@ -988,7 +1000,7 @@ product_page(
      (("Resilience &amp; disaster recovery", "Résilience &amp; reprise après sinistre"),
       ("Recovery objectives agreed with the business, failover design and tested restore procedures.",
        "Objectifs de reprise convenus avec le métier, conception du basculement et procédures de restauration testées."))],
-    ["AWS", "Terraform", "CloudFormation", "S3", "Glue", "Redshift", "Lambda", "EKS"],
+    ["AWS", "Terraform", "CloudFormation", "S3", "Lake Formation", "Glue", "Redshift", "MWAA / Airflow", "Step Functions", "Lambda", "EKS"],
     ("CTO, Head of Platform, or a Finance lead who has seen the cloud bill trend line.",
      "Le CTO, le responsable plateforme, ou un responsable financier qui a vu la courbe de la facture cloud."),
     [("The monthly bill grows faster than usage does",
@@ -996,7 +1008,9 @@ product_page(
      ("A migration has stalled halfway and both estates now need running",
       "Une migration s'est arrêtée à mi-chemin et les deux environnements doivent désormais fonctionner en parallèle"),
      ("Nobody can say what happens if the primary region goes down",
-      "Personne ne peut dire ce qui se passe si la région principale tombe en panne")])
+      "Personne ne peut dire ce qui se passe si la région principale tombe en panne"),
+     ("The data lake has quietly become a data swamp nobody trusts",
+      "Le data lake est discrètement devenu un data swamp auquel plus personne ne fait confiance")])
 
 product_page(
     "project-delivery", ("Project &amp; Delivery Management", "Gestion de projet &amp; de livraison"), "slate", "slate",
@@ -1361,9 +1375,9 @@ tools_hub_en = """
       <span class="go">Open the estimator →</span>
     </a>
     <a href="/tools/maturity/" class="card card-accent k-emerald rv">
-      <p class="mono">Six questions</p>
+      <p class="mono">Seven questions</p>
       <h3>Data health check</h3>
-      <p>Answer six questions about your setup and get a plain description of where you stand, plus the two things worth fixing first.</p>
+      <p>Answer seven questions about your setup and get a plain description of where you stand, plus the two things worth fixing first.</p>
       <span class="go">Start the check →</span>
     </a>
   </div>
@@ -1385,9 +1399,9 @@ tools_hub_fr = """
       <span class="go">Ouvrir l'estimateur →</span>
     </a>
     <a href="/tools/maturity/" class="card card-accent k-emerald rv">
-      <p class="mono">Six questions</p>
+      <p class="mono">Sept questions</p>
       <h3>Diagnostic des données</h3>
-      <p>Répondez à six questions sur votre configuration et obtenez une description simple de votre situation, ainsi que les deux points à corriger en priorité.</p>
+      <p>Répondez à sept questions sur votre configuration et obtenez une description simple de votre situation, ainsi que les deux points à corriger en priorité.</p>
       <span class="go">Démarrer le diagnostic →</span>
     </a>
   </div>
@@ -1445,6 +1459,16 @@ estimator = f"""
         ("cloud", ("AWS cloud", "Cloud AWS"), ("Architecture, landing zone, FinOps.", "Architecture, landing zone, FinOps.")),
         ("delivery", ("Delivery &amp; PM", "Livraison &amp; PM"), ("PRINCE2, Agile/Scrum, PMBOK, PMO setup.", "PRINCE2, Agile/Scrum, PMBOK, mise en place d'un PMO.")),
     ], "g3")}
+    <div id="cloudFocusQ" hidden>
+      <p class="q-h mt6">{bi(("Which part of the AWS work?", "Quelle partie du travail AWS ?"))}</p>
+      {opts("cloudFocus", [
+          ("general", ("General cloud architecture", "Architecture cloud générale"), ("Landing zone, migration, FinOps, IaC, resilience.", "Landing zone, migration, FinOps, IaC, résilience.")),
+          ("datalake", ("AWS Data Lake", "Data Lake AWS"), ("S3 lake, zone structure, Lake Formation, Glue Catalog.", "Lake S3, structure de zones, Lake Formation, catalogue Glue.")),
+          ("datawarehouse", ("AWS Data Warehouse", "Data Warehouse AWS"), ("Redshift architecture, sizing and workload management.", "Architecture Redshift, dimensionnement et gestion de charge.")),
+          ("etlelt", ("ETL/ELT modernisation", "Modernisation ETL/ELT"), ("Off legacy scripts and onto Glue, Step Functions, MWAA.", "Hors des scripts hérités, vers Glue, Step Functions, MWAA.")),
+          ("manageddata", ("Managed data engineering", "Ingénierie des données managée"), ("Ongoing pipeline ownership, on-call, monthly review.", "Prise en charge continue des pipelines, astreinte, revue mensuelle.")),
+      ], "g3")}
+    </div>
     <div class="row mt6"><button class="btn btn-p" id="estN1" type="button" disabled>{bi(("Continue", "Continuer"))} <span class="ar" aria-hidden="true">→</span></button></div>
   </div>
 
@@ -1552,6 +1576,12 @@ QUESTIONS = [
       ("2", ("Scripted in places", "Scriptée par endroits")),
       ("3", ("Infrastructure as code for most of it", "Infrastructure as code pour l'essentiel")),
       ("4", ("Fully declarative with environment parity", "Entièrement déclarative avec parité des environnements"))]),
+    (("How is your data lake or warehouse organised on AWS?", "Comment votre data lake ou entrepôt est-il organisé sur AWS ?"),
+     [("", ("Choose one", "Choisissez une réponse")),
+      ("1", ("No lake or warehouse; teams query source systems directly", "Aucun lake ni entrepôt : les équipes interrogent directement les systèmes sources")),
+      ("2", ("A warehouse exists but ETL/ELT jobs are ad hoc scripts", "Un entrepôt existe mais les jobs ETL/ELT sont des scripts ad hoc")),
+      ("3", ("A structured lake or warehouse with scheduled, monitored pipelines", "Un lake ou entrepôt structuré avec des pipelines planifiés et surveillés")),
+      ("4", ("A governed lakehouse with managed, incrementally-loading pipelines", "Un lakehouse gouverné avec des pipelines gérés à chargement incrémental"))]),
     (("Where is machine learning today?", "Où en est le machine learning aujourd'hui ?"),
      [("", ("Choose one", "Choisissez une réponse")),
       ("1", ("Not started or exploratory only", "Pas commencé, ou seulement exploratoire")),
@@ -1569,7 +1599,7 @@ q_html = "".join(f"""
 maturity = f"""
 <section class="wrap page-head">
   <p class="eyebrow">{bi(("Data health check", "Diagnostic des données"))}</p>
-  <h1>{bi(("Six questions about your data setup.", "Six questions sur votre configuration de données."))}</h1>
+  <h1>{bi(("Seven questions about your data setup.", "Sept questions sur votre configuration de données."))}</h1>
   <p class="lead">{bi(("Answer honestly and you get a plain description of where you stand, what usually holds companies back at that point, and the two things we would fix first.",
                         "Répondez honnêtement et vous obtenez une description simple de votre situation, de ce qui freine généralement les entreprises à ce stade, et des deux points que nous corrigerions en premier."))}</p>
 </section>
@@ -1590,7 +1620,7 @@ maturity = f"""
     secondary=("Estimate the cost", "/tools/estimator/"))
 
 write("tools/maturity", layout("/tools/maturity/", "Data health check · Intellora Tech",
-                              "Six questions that show where your data setup stands and what is worth fixing first.",
+                              "Seven questions that show where your data setup stands and what is worth fixing first.",
                               maturity, accent="gold", nav_key="Tools",
                               crumbs=[(("Tools", "Outils"), "/tools/"), (("Data health check", "Diagnostic des données"), None)]))
 

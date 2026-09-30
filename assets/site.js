@@ -117,6 +117,13 @@
       cloud:      { p: 1.12, w: 1.05, l: 'AWS cloud architecture', lFr: 'Architecture cloud AWS' },
       delivery:   { p: 0.92, w: 1.10, l: 'Project & delivery management', lFr: 'Gestion de projet & de livraison' }
     };
+    var CLOUD_FOCUS = {
+      general:       { p: 1.00, w: 1.00, l: 'General cloud architecture', lFr: 'Architecture cloud générale' },
+      datalake:      { p: 1.08, w: 1.10, l: 'AWS Data Lake', lFr: 'Data Lake AWS' },
+      datawarehouse: { p: 1.06, w: 1.08, l: 'AWS Data Warehouse', lFr: 'Data Warehouse AWS' },
+      etlelt:        { p: 1.04, w: 1.12, l: 'ETL/ELT modernisation', lFr: 'Modernisation ETL/ELT' },
+      manageddata:   { p: 0.98, w: 1.20, l: 'Managed data engineering', lFr: 'Ingénierie des données managée' }
+    };
     var M = {
       cx: { std: { p: 1.00, w: 1.00, l: 'Standard complexity', lFr: 'Complexité standard' }, mod: { p: 1.45, w: 1.30, l: 'Moderate complexity', lFr: 'Complexité modérée' }, adv: { p: 2.05, w: 1.60, l: 'Advanced complexity', lFr: 'Complexité avancée' } },
       sz: { s: { p: 0.80, w: 0.80, l: 'Small scope', lFr: 'Petit périmètre' }, m: { p: 1.30, w: 1.25, l: 'Medium scope', lFr: 'Périmètre moyen' }, l: { p: 2.00, w: 1.75, l: 'Large scope', lFr: 'Grand périmètre' } },
@@ -130,26 +137,30 @@
       migrate:  [['Discovery and mapping', 'Découverte et cartographie', 25], ['Build and migrate', 'Construction et migration', 38], ['Parallel validation', 'Validation en parallèle', 24], ['Cutover and handover', 'Bascule et transfert', 13]]
     };
 
-    var st = { type: null, pillar: null, cx: null, sz: null, gv: null, tl: null };
+    var st = { type: null, pillar: null, cloudFocus: null, cx: null, sz: null, gv: null, tl: null };
     var step = 1;
+
+    function needsCloudFocus() { return st.pillar === 'cloud'; }
 
     function calc() {
       var b = BASE[st.type], pl = PILLAR[st.pillar];
-      var p = b.p * pl.p * M.cx[st.cx].p * M.sz[st.sz].p * M.gv[st.gv].p * M.tl[st.tl].p;
-      var w = b.w * pl.w * M.cx[st.cx].w * M.sz[st.sz].w * M.gv[st.gv].w * M.tl[st.tl].w;
+      var cf = needsCloudFocus() ? CLOUD_FOCUS[st.cloudFocus] : null;
+      var p = b.p * pl.p * (cf ? cf.p : 1) * M.cx[st.cx].p * M.sz[st.sz].p * M.gv[st.gv].p * M.tl[st.tl].p;
+      var w = b.w * pl.w * (cf ? cf.w : 1) * M.cx[st.cx].w * M.sz[st.sz].w * M.gv[st.gv].w * M.tl[st.tl].w;
       return { lo: p * 0.84, hi: p * 1.18, wLo: Math.max(2, Math.round(w * 0.85)), wHi: Math.round(w * 1.15) };
     }
 
     function paint() {
-      if (!st.type || !st.pillar || !st.cx || !st.sz || !st.gv || !st.tl) return;
+      if (!st.type || !st.pillar || (needsCloudFocus() && !st.cloudFocus) || !st.cx || !st.sz || !st.gv || !st.tl) return;
       var fr = getLang() === 'fr';
       var lab = function (o) { return fr ? o.lFr : o.l; };
       var r = calc(), b = BASE[st.type];
+      var cf = needsCloudFocus() ? CLOUD_FOCUS[st.cloudFocus] : null;
       $('#resRange').textContent = fmt(r.lo) + ' – ' + fmt(r.hi);
       $('#resDur').textContent = fr
         ? r.wLo + '–' + r.wHi + ' semaines · réalisé à distance · prix fixe une fois signé'
         : r.wLo + '–' + r.wHi + ' weeks · done remotely · fixed price once signed';
-      $('#resTags').innerHTML = [lab(b), lab(PILLAR[st.pillar]), lab(M.cx[st.cx]), lab(M.sz[st.sz]), lab(M.gv[st.gv]), lab(M.tl[st.tl])]
+      $('#resTags').innerHTML = [lab(b), lab(PILLAR[st.pillar])].concat(cf ? [lab(cf)] : []).concat([lab(M.cx[st.cx]), lab(M.sz[st.sz]), lab(M.gv[st.gv]), lab(M.tl[st.tl])])
         .map(function (t) { return '<span class="chip">' + t + '</span>'; }).join('');
       $('#resPhases').innerHTML = PH[st.type].map(function (p) {
         return '<div class="mb4"><div style="display:flex;justify-content:space-between;gap:.625rem;font-size:.875rem;margin-bottom:.375rem" class="ui">' +
@@ -160,12 +171,14 @@
       var sum = fr
         ? 'Estimation de prix, intelloratech.net\n\n' +
           'Ce que nous voulons : ' + lab(b) + '\nProduit principal : ' + lab(PILLAR[st.pillar]) + '\n' +
+          (cf ? 'Volet AWS : ' + lab(cf) + '\n' : '') +
           'Complexité : ' + lab(M.cx[st.cx]) + '\nTaille : ' + lab(M.sz[st.sz]) + '\n' +
           'Règles à respecter : ' + lab(M.gv[st.gv]) + '\nCalendrier : ' + lab(M.tl[st.tl]) + '\n\n' +
           'Prix estimé : ' + fmt(r.lo) + ' – ' + fmt(r.hi) + ' (' + curCode + ')\n' +
           'Durée estimée : ' + r.wLo + '–' + r.wHi + ' semaines\n\nNotre situation :\n'
         : 'Price estimate, intelloratech.net\n\n' +
           'What we want: ' + lab(b) + '\nMain product: ' + lab(PILLAR[st.pillar]) + '\n' +
+          (cf ? 'AWS focus: ' + lab(cf) + '\n' : '') +
           'How complex: ' + lab(M.cx[st.cx]) + '\nHow big: ' + lab(M.sz[st.sz]) + '\n' +
           'Rules to satisfy: ' + lab(M.gv[st.gv]) + '\nTiming: ' + lab(M.tl[st.tl]) + '\n\n' +
           'Estimated price: ' + fmt(r.lo) + ' – ' + fmt(r.hi) + ' (' + curCode + ')\n' +
@@ -197,10 +210,11 @@
 
     function gate() {
       var n1 = $('#estN1'), n2 = $('#estN2');
-      if (n1) n1.disabled = !(st.type && st.pillar);
+      if (n1) n1.disabled = !(st.type && st.pillar && (!needsCloudFocus() || st.cloudFocus));
       if (n2) n2.disabled = !(st.cx && st.sz && st.gv && st.tl);
     }
 
+    var cloudFocusQ = $('#cloudFocusQ');
     $$('[data-grp]', root).forEach(function (g) {
       g.addEventListener('click', function (e) {
         var c = e.target.closest('.opt');
@@ -208,12 +222,20 @@
         $$('.opt', g).forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
         c.setAttribute('aria-pressed', 'true');
         st[g.dataset.grp] = c.dataset.v;
+        if (g.dataset.grp === 'pillar' && cloudFocusQ) {
+          var show = needsCloudFocus();
+          cloudFocusQ.hidden = !show;
+          if (!show) {
+            st.cloudFocus = null;
+            $$('.opt', cloudFocusQ).forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+          }
+        }
         gate();
       });
     });
 
     var n1 = $('#estN1'), n2 = $('#estN2'), b2 = $('#estB2'), b3 = $('#estB3');
-    if (n1) n1.addEventListener('click', function () { if (st.type && st.pillar) go(2); });
+    if (n1) n1.addEventListener('click', function () { if (st.type && st.pillar && (!needsCloudFocus() || st.cloudFocus)) go(2); });
     if (n2) n2.addEventListener('click', function () { if (st.cx && st.sz && st.gv && st.tl) go(3); });
     if (b2) b2.addEventListener('click', function () { go(1); });
     if (b3) b3.addEventListener('click', function () { go(2); });
@@ -247,15 +269,15 @@
     if (!root) return;
     var qs = $$('[data-q]', root), out = $('#matOut'), btn = $('#matGo');
     var STAGE = [
-      { max: 11, n: 'Ad hoc', nFr: 'Improvisé',
+      { max: 13, n: 'Ad hoc', nFr: 'Improvisé',
         d: 'Data lives in operational systems and spreadsheets. Reporting is manual and answers disagree depending on who produced them. The first win is a single reliable pipeline and one agreed set of definitions.',
         dFr: 'Les données vivent dans les systèmes opérationnels et les feuilles de calcul. Le reporting est manuel et les réponses diffèrent selon qui les a produites. Le premier gain est un pipeline fiable unique et un ensemble de définitions convenu.',
         p: ['database', 'analytics'] },
-      { max: 17, n: 'Repeatable', nFr: 'Reproductible',
+      { max: 20, n: 'Repeatable', nFr: 'Reproductible',
         d: 'Pipelines exist but break quietly, and nobody can trace a number back to its source. The priority is orchestration you can trust and lineage you can show an auditor.',
         dFr: 'Des pipelines existent mais se cassent silencieusement, et personne ne peut retracer un chiffre jusqu\'à sa source. La priorité est une orchestration fiable et une traçabilité que vous pouvez montrer à un auditeur.',
         p: ['analytics', 'governance'] },
-      { max: 23, n: 'Governed', nFr: 'Gouverné',
+      { max: 27, n: 'Governed', nFr: 'Gouverné',
         d: 'The platform is reliable and documented. The next constraints are cost efficiency, access control, and preparing the data layer to support models rather than dashboards alone.',
         dFr: 'La plateforme est fiable et documentée. Les contraintes suivantes sont l\'efficacité des coûts, le contrôle d\'accès, et la préparation de la couche de données pour supporter des modèles plutôt que seulement des tableaux de bord.',
         p: ['cloud', 'security'] },
