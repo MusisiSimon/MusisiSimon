@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Data health check · Intellora Tech</title>
-<meta name="description" content="Seven questions that show where your data setup stands and what is worth fixing first.">
+<title>Brief builder · Intellora Tech</title>
+<meta name="description" content="Answer five short questions and get a structured project brief, built in your browser and ready to email.">
 
-<link rel="canonical" href="https://intelloratech.net/tools/maturity/">
+<link rel="canonical" href="https://intelloratech.net/tools/brief/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Data health check · Intellora Tech">
-<meta property="og:description" content="Seven questions that show where your data setup stands and what is worth fixing first.">
-<meta property="og:url" content="https://intelloratech.net/tools/maturity/">
+<meta property="og:title" content="Brief builder · Intellora Tech">
+<meta property="og:description" content="Answer five short questions and get a structured project brief, built in your browser and ready to email.">
+<meta property="og:url" content="https://intelloratech.net/tools/brief/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E6E5E'/%3E%3Cpath d='M8 8.5 L17 16 M8 23.5 L17 16 M17 16 L24.5 16' stroke='%23FBF9F5' stroke-width='1.9' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='.85'/%3E%3Ccircle cx='8' cy='8.5' r='2.5' fill='%23FBF9F5'/%3E%3Ccircle cx='8' cy='23.5' r='2.5' fill='%23FBF9F5'/%3E%3Ccircle cx='17' cy='16' r='2.1' fill='%23FBF9F5'/%3E%3Ccircle cx='25' cy='16' r='3.3' fill='%23F0C05A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
 <script src="/assets/theme.js"></script>
 <script src="/assets/lang.js"></script>
 </head>
-<body data-accent="gold">
+<body data-accent="plum">
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="hdr">
@@ -43,57 +43,94 @@
     <a href="/contact/" class="btn btn-p"><span data-en="Book a call" data-fr="Réserver un appel">Book a call</span></a>
   </div>
 </header>
-<div class="wrap"><nav class="crumb" aria-label="Breadcrumb"><a href="/"><span data-en="Home" data-fr="Accueil">Home</span></a><span aria-hidden="true">/</span><a href="/tools/"><span data-en="Tools" data-fr="Outils">Tools</span></a><span aria-hidden="true">/</span><span><span data-en="Data health check" data-fr="Diagnostic des données">Data health check</span></span></nav></div>
+<div class="wrap"><nav class="crumb" aria-label="Breadcrumb"><a href="/"><span data-en="Home" data-fr="Accueil">Home</span></a><span aria-hidden="true">/</span><a href="/tools/"><span data-en="Tools" data-fr="Outils">Tools</span></a><span aria-hidden="true">/</span><span><span data-en="Brief builder" data-fr="Générateur de brief">Brief builder</span></span></nav></div>
 <main id="main">
 
 <section class="wrap page-head">
-  <p class="eyebrow"><span data-en="Data health check" data-fr="Diagnostic des données">Data health check</span></p>
-  <h1><span data-en="Seven questions about your data setup." data-fr="Sept questions sur votre configuration de données.">Seven questions about your data setup.</span></h1>
-  <p class="lead"><span data-en="Answer honestly and you get a plain description of where you stand, what usually holds companies back at that point, and the two things we would fix first." data-fr="Répondez honnêtement et vous obtenez une description simple de votre situation, de ce qui freine généralement les entreprises à ce stade, et des deux points que nous corrigerions en premier.">Answer honestly and you get a plain description of where you stand, what usually holds companies back at that point, and the two things we would fix first.</span></p>
+  <p class="eyebrow"><span data-en="Brief builder" data-fr="Générateur de brief">Brief builder</span></p>
+  <h1><span data-en="Turn this into something you can send." data-fr="Transformez ceci en quelque chose que vous pouvez envoyer.">Turn this into something you can send.</span></h1>
+  <p class="lead"><span data-en="Answer five short questions and get a structured brief, ready to email us or forward to whoever holds the budget. Nothing is stored; it is built in your browser." data-fr="Répondez à cinq courtes questions et obtenez un brief structuré, prêt à nous envoyer par e-mail ou à transmettre à qui détient le budget. Rien n'est stocké ; il est construit dans votre navigateur.">Answer five short questions and get a structured brief, ready to email us or forward to whoever holds the budget. Nothing is stored; it is built in your browser.</span></p>
 </section>
 
-<section class="wrap" id="mat">
+<section class="wrap">
   <div class="grid c2">
     <div class="rv">
-  <div class="field" data-q>
-    <label for="q1"><span data-en="Where does reporting data come from today?" data-fr="D'où proviennent aujourd'hui les données de reporting ?">Where does reporting data come from today?</span></label>
-    <select id="q1"><option value="" data-en="Choose one" data-fr="Choisissez une réponse">Choose one</option><option value="1" data-en="Spreadsheets and direct queries on production" data-fr="Feuilles de calcul et requêtes directes en production">Spreadsheets and direct queries on production</option><option value="2" data-en="A reporting database refreshed on a schedule" data-fr="Une base de reporting actualisée selon un calendrier">A reporting database refreshed on a schedule</option><option value="3" data-en="A modelled warehouse with defined layers" data-fr="Un entrepôt modélisé avec des couches définies">A modelled warehouse with defined layers</option><option value="4" data-en="A governed platform with contracts between layers" data-fr="Une plateforme gouvernée avec des contrats entre les couches">A governed platform with contracts between layers</option></select>
-  </div>
-  <div class="field" data-q>
-    <label for="q2"><span data-en="If a number looks wrong, how long to trace it to source?" data-fr="Si un chiffre semble erroné, combien de temps pour en retrouver la source ?">If a number looks wrong, how long to trace it to source?</span></label>
-    <select id="q2"><option value="" data-en="Choose one" data-fr="Choisissez une réponse">Choose one</option><option value="1" data-en="Days, and often inconclusive" data-fr="Des jours, et souvent sans résultat concluant">Days, and often inconclusive</option><option value="2" data-en="Hours, by asking the right person" data-fr="Des heures, en demandant à la bonne personne">Hours, by asking the right person</option><option value="3" data-en="Minutes, with documentation" data-fr="Des minutes, grâce à la documentation">Minutes, with documentation</option><option value="4" data-en="Immediately, lineage is captured automatically" data-fr="Immédiatement, la traçabilité est captée automatiquement">Immediately, lineage is captured automatically</option></select>
-  </div>
-  <div class="field" data-q>
-    <label for="q3"><span data-en="How are pipeline failures detected?" data-fr="Comment les échecs de pipeline sont-ils détectés ?">How are pipeline failures detected?</span></label>
-    <select id="q3"><option value="" data-en="Choose one" data-fr="Choisissez une réponse">Choose one</option><option value="1" data-en="Someone notices a stale dashboard" data-fr="Quelqu'un remarque un tableau de bord obsolète">Someone notices a stale dashboard</option><option value="2" data-en="Job failure alerts" data-fr="Alertes d'échec de job">Job failure alerts</option><option value="3" data-en="Job and freshness alerts" data-fr="Alertes de job et de fraîcheur des données">Job and freshness alerts</option><option value="4" data-en="Data quality tests fail before consumers see it" data-fr="Les tests de qualité échouent avant que les utilisateurs ne le voient">Data quality tests fail before consumers see it</option></select>
-  </div>
-  <div class="field" data-q>
-    <label for="q4"><span data-en="Who can access sensitive data?" data-fr="Qui peut accéder aux données sensibles ?">Who can access sensitive data?</span></label>
-    <select id="q4"><option value="" data-en="Choose one" data-fr="Choisissez une réponse">Choose one</option><option value="1" data-en="Broad access, unclear boundaries" data-fr="Accès large, limites floues">Broad access, unclear boundaries</option><option value="2" data-en="Role-based, reviewed occasionally" data-fr="Basé sur les rôles, revu occasionnellement">Role-based, reviewed occasionally</option><option value="3" data-en="Least privilege with periodic review" data-fr="Moindre privilège avec revue périodique">Least privilege with periodic review</option><option value="4" data-en="Least privilege, row/column controls, full access logs" data-fr="Moindre privilège, contrôles ligne/colonne, journaux d'accès complets">Least privilege, row/column controls, full access logs</option></select>
-  </div>
-  <div class="field" data-q>
-    <label for="q5"><span data-en="How is infrastructure provisioned?" data-fr="Comment l'infrastructure est-elle provisionnée ?">How is infrastructure provisioned?</span></label>
-    <select id="q5"><option value="" data-en="Choose one" data-fr="Choisissez une réponse">Choose one</option><option value="1" data-en="Manually, by hand" data-fr="Manuellement, à la main">Manually, by hand</option><option value="2" data-en="Scripted in places" data-fr="Scriptée par endroits">Scripted in places</option><option value="3" data-en="Infrastructure as code for most of it" data-fr="Infrastructure as code pour l'essentiel">Infrastructure as code for most of it</option><option value="4" data-en="Fully declarative with environment parity" data-fr="Entièrement déclarative avec parité des environnements">Fully declarative with environment parity</option></select>
-  </div>
-  <div class="field" data-q>
-    <label for="q6"><span data-en="How is your data lake or warehouse organised on AWS?" data-fr="Comment votre data lake ou entrepôt est-il organisé sur AWS ?">How is your data lake or warehouse organised on AWS?</span></label>
-    <select id="q6"><option value="" data-en="Choose one" data-fr="Choisissez une réponse">Choose one</option><option value="1" data-en="No lake or warehouse; teams query source systems directly" data-fr="Aucun lake ni entrepôt : les équipes interrogent directement les systèmes sources">No lake or warehouse; teams query source systems directly</option><option value="2" data-en="A warehouse exists but ETL/ELT jobs are ad hoc scripts" data-fr="Un entrepôt existe mais les jobs ETL/ELT sont des scripts ad hoc">A warehouse exists but ETL/ELT jobs are ad hoc scripts</option><option value="3" data-en="A structured lake or warehouse with scheduled, monitored pipelines" data-fr="Un lake ou entrepôt structuré avec des pipelines planifiés et surveillés">A structured lake or warehouse with scheduled, monitored pipelines</option><option value="4" data-en="A governed lakehouse with managed, incrementally-loading pipelines" data-fr="Un lakehouse gouverné avec des pipelines gérés à chargement incrémental">A governed lakehouse with managed, incrementally-loading pipelines</option></select>
-  </div>
-  <div class="field" data-q>
-    <label for="q7"><span data-en="Where is machine learning today?" data-fr="Où en est le machine learning aujourd'hui ?">Where is machine learning today?</span></label>
-    <select id="q7"><option value="" data-en="Choose one" data-fr="Choisissez une réponse">Choose one</option><option value="1" data-en="Not started or exploratory only" data-fr="Pas commencé, ou seulement exploratoire">Not started or exploratory only</option><option value="2" data-en="Notebooks, nothing in production" data-fr="Des notebooks, rien en production">Notebooks, nothing in production</option><option value="3" data-en="One or two models deployed" data-fr="Un ou deux modèles déployés">One or two models deployed</option><option value="4" data-en="Models in production with monitoring and retraining" data-fr="Des modèles en production, avec surveillance et réentraînement">Models in production with monitoring and retraining</option></select>
-  </div>
-      <button class="btn btn-p" id="matGo" type="button"><span data-en="Show my result" data-fr="Afficher mon résultat">Show my result</span> <span class="ar" aria-hidden="true">→</span></button>
+      <div class="card" style="padding:var(--s6)">
+        <form id="brief-form" novalidate>
+          <div class="field">
+            <label for="bf-problem"><span data-en="What's broken? *" data-fr="Qu'est-ce qui ne va pas ? *">What's broken? *</span></label>
+            <textarea id="bf-problem" maxlength="600" required
+                      placeholder="e.g. Our Redshift costs doubled in six months and nobody can say why."
+                      data-ph-en="e.g. Our Redshift costs doubled in six months and nobody can say why."
+                      data-ph-fr="ex. Nos coûts Redshift ont doublé en six mois et personne ne sait pourquoi."></textarea>
+          </div>
+          <div class="field">
+            <label for="bf-stack"><span data-en="What do you run it on today?" data-fr="Sur quoi cela tourne-t-il aujourd'hui ?">What do you run it on today?</span></label>
+            <input type="text" id="bf-stack" maxlength="150"
+                   placeholder="e.g. AWS, Redshift, Airflow, Postgres"
+                   data-ph-en="e.g. AWS, Redshift, Airflow, Postgres"
+                   data-ph-fr="ex. AWS, Redshift, Airflow, Postgres">
+          </div>
+          <div class="field">
+            <label for="bf-area"><span data-en="Which area is this closest to?" data-fr="De quel domaine est-ce le plus proche ?">Which area is this closest to?</span></label>
+            <select id="bf-area">
+              <option value="Not sure" data-en="Not sure" data-fr="Je ne sais pas">Not sure</option>
+              <option value="Analytics &amp; BI" data-en="Analytics &amp; BI" data-fr="Analytique &amp; BI">Analytics &amp; BI</option><option value="Data Governance" data-en="Data Governance" data-fr="Gouvernance des données">Data Governance</option><option value="Security &amp; Data Protection" data-en="Security &amp; Data Protection" data-fr="Sécurité &amp; Protection des données">Security &amp; Data Protection</option><option value="AI &amp; Machine Learning" data-en="AI &amp; Machine Learning" data-fr="IA &amp; Machine Learning">AI &amp; Machine Learning</option><option value="Database Engineering" data-en="Database Engineering" data-fr="Ingénierie des bases de données">Database Engineering</option><option value="AWS Cloud Architecture" data-en="AWS Cloud Architecture" data-fr="Architecture cloud AWS">AWS Cloud Architecture</option><option value="Project &amp; Delivery Management" data-en="Project &amp; Delivery Management" data-fr="Gestion de projet &amp; de livraison">Project &amp; Delivery Management</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="bf-budget"><span data-en="Rough budget" data-fr="Budget approximatif">Rough budget</span></label>
+            <select id="bf-budget">
+              <option value="Not sure yet" data-en="Not sure yet" data-fr="Pas encore sûr">Not sure yet</option>
+              <option value="Under USD 5,000" data-en="Under USD 5,000" data-fr="Moins de 5 000 USD">Under USD 5,000</option>
+              <option value="USD 5,000 to 20,000" data-en="USD 5,000 to 20,000" data-fr="5 000 à 20 000 USD">USD 5,000 to 20,000</option>
+              <option value="USD 20,000 to 75,000" data-en="USD 20,000 to 75,000" data-fr="20 000 à 75 000 USD">USD 20,000 to 75,000</option>
+              <option value="USD 75,000+" data-en="USD 75,000+" data-fr="75 000 USD et plus">USD 75,000+</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="bf-timeline"><span data-en="Timeline" data-fr="Calendrier">Timeline</span></label>
+            <select id="bf-timeline">
+              <option value="Exploring, no deadline" data-en="Exploring, no deadline" data-fr="Je me renseigne, pas d’échéance">Exploring, no deadline</option>
+              <option value="Within the next quarter" data-en="Within the next quarter" data-fr="Dans le prochain trimestre">Within the next quarter</option>
+              <option value="Urgent" data-en="Urgent" data-fr="Urgent">Urgent</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="bf-email"><span data-en="Your email (optional)" data-fr="Votre e-mail (facultatif)">Your email (optional)</span></label>
+            <input type="email" id="bf-email" maxlength="150" placeholder="you@company.com">
+            <span class="hint"><span data-en="Only used inside the brief text itself, so whoever reads it knows how to reach you." data-fr="Utilisé uniquement dans le texte du brief lui-même, pour que son lecteur sache comment vous joindre.">Only used inside the brief text itself, so whoever reads it knows how to reach you.</span></span>
+          </div>
+          <button type="submit" class="btn btn-p" id="bf-build" style="width:100%;justify-content:center"><span data-en="Build my brief" data-fr="Générer mon brief">Build my brief</span> <span class="ar" aria-hidden="true">→</span></button>
+          <div id="bf-err" class="alert mt4" role="alert" hidden></div>
+        </form>
+      </div>
     </div>
-    <div class="rv"><div id="matOut" hidden></div></div>
+
+    <div class="rv">
+      <div id="bf-result" hidden>
+        <p class="mono mb4"><span data-en="Your brief" data-fr="Votre brief">Your brief</span></p>
+        <pre id="bf-text" class="brief-pre"></pre>
+        <div class="row mt5">
+          <a class="btn btn-p" id="bf-mail" href="mailto:support@intelloratech.net"><span data-en="Email this to us" data-fr="Nous l'envoyer par e-mail">Email this to us</span> <span class="ar" aria-hidden="true">→</span></a>
+          <button class="btn btn-s" id="bf-copy" type="button"><span data-en="Copy text" data-fr="Copier le texte">Copy text</span></button>
+          <span class="mono" id="bf-copied" hidden><span data-en="Copied" data-fr="Copié">Copied</span></span>
+        </div>
+      </div>
+      <div id="bf-placeholder">
+        <h2 class="mb4"><span data-en="Why bother?" data-fr="Pourquoi faire cela ?">Why bother?</span></h2>
+        <p class="soft"><span data-en="A structured brief gets a faster, more useful first reply than “can we chat sometime”. It also forces the one question that matters most: what, in one sentence, is actually broken." data-fr="Un brief structuré obtient une première réponse plus rapide et plus utile qu'un simple « peut-on discuter un jour ». Cela force aussi la seule question qui compte vraiment : qu'est-ce qui, en une phrase, ne va pas ?">A structured brief gets a faster, more useful first reply than “can we chat sometime”. It also forces the one question that matters most: what, in one sentence, is actually broken.</span></p>
+        <div class="callout mt6"><b><span data-en="Nothing is sent until you choose." data-fr="Rien n'est envoyé avant que vous ne le décidiez.">Nothing is sent until you choose.</span></b> <span data-en="The brief is built in your browser. Email it, copy it elsewhere, or close the tab." data-fr="Le brief est construit dans votre navigateur. Envoyez-le par e-mail, copiez-le ailleurs, ou fermez l'onglet.">The brief is built in your browser. Email it, copy it elsewhere, or close the tab.</span></div>
+      </div>
+    </div>
   </div>
-  <noscript><div class="callout mt6">This check needs JavaScript. <a href="/contact/">Book a call</a> and we will walk through the same questions with you.</div></noscript>
+  <noscript><div class="callout mt6">This tool needs JavaScript. Email <a href="mailto:support@intelloratech.net">support@intelloratech.net</a> directly with the same five answers instead.</div></noscript>
 </section>
 
 <section class="wrap section">
   <div class="section-tint ctr rv">
-    <h2 style="max-width:22ch;margin-inline:auto"><span data-en="Want the proper version?" data-fr="Vous voulez la version complète ?">Want the proper version?</span></h2>
-    <p class="lead" style="margin-inline:auto"><span data-en="A call replaces this with a real look at your systems." data-fr="Un appel remplace ceci par un vrai regard sur vos systèmes.">A call replaces this with a real look at your systems.</span></p>
+    <h2 style="max-width:22ch;margin-inline:auto"><span data-en="Prefer to just talk?" data-fr="Vous préférez simplement en parler ?">Prefer to just talk?</span></h2>
+    <p class="lead" style="margin-inline:auto"><span data-en="A free intro call covers the same ground in fifteen minutes." data-fr="Un appel d'introduction gratuit couvre le même terrain en quinze minutes.">A free intro call covers the same ground in fifteen minutes.</span></p>
     <div class="row ctr mt5" style="justify-content:center">
       <a href="/contact/" class="btn btn-p"><span data-en="Book a call" data-fr="Réserver un appel">Book a call</span> <span class="ar" aria-hidden="true">→</span></a>
       <a href="/tools/estimator/" class="btn btn-s"><span data-en="Estimate the cost" data-fr="Estimer le coût">Estimate the cost</span></a>

@@ -336,6 +336,228 @@
     document.addEventListener('langchange', render);
   })();
 
+  /* ---------- product finder ---------- */
+  (function () {
+    var root = $('#finder');
+    if (!root) return;
+
+    var SYMPTOM = {
+      numbers:  { slug: 'analytics-bi', pair: 'data-governance',
+        en: 'Almost always a definition problem wearing a technical costume: two dashboards built by two people, each making a different reasonable judgement call about what counts.',
+        fr: 'Presque toujours un problème de définition déguisé en problème technique : deux tableaux de bord construits par deux personnes, faisant chacune un choix raisonnable mais différent sur ce qui compte.' },
+      evidence: { slug: 'data-governance', pair: 'analytics-bi',
+        en: 'Governance that exists only as policy, never wired into the pipeline, cannot produce evidence on demand. It needs to be running infrastructure.',
+        fr: "Une gouvernance qui n'existe que comme politique, jamais intégrée au pipeline, ne peut pas produire de preuves à la demande. Elle doit être une infrastructure vivante." },
+      access:   { slug: 'security', pair: 'data-governance',
+        en: 'This is data-platform security specifically: how the warehouse, pipelines and analytics layer are protected, segmented, encrypted and evidenced.',
+        fr: "Il s'agit spécifiquement de la sécurité de la plateforme de données : comment l'entrepôt, les pipelines et la couche analytique sont protégés, segmentés, chiffrés et documentés." },
+      models:   { slug: 'ai-machine-learning', pair: 'database-engineering',
+        en: 'Most organisations asking for models actually need the data layer underneath fixed first. We will tell you that rather than build something impressive on unreliable inputs.',
+        fr: "La plupart des organisations qui demandent des modèles ont en réalité besoin que la couche de données sous-jacente soit réparée en premier. Nous vous le dirons plutôt que de construire quelque chose d'impressionnant sur des données peu fiables." },
+      database: { slug: 'database-engineering', pair: 'aws-cloud',
+        en: 'Tuning a query is almost always cheaper than buying more hardware. This is where the fastest wins usually are.',
+        fr: "Optimiser une requête coûte presque toujours moins cher qu'acheter du matériel supplémentaire. C'est souvent là que se trouvent les gains les plus rapides." },
+      cloud:    { slug: 'aws-cloud', pair: 'database-engineering',
+        en: 'Most cloud cost problems are architecture problems, which is why the review and the savings work end up being the same project.',
+        fr: "La plupart des problèmes de coût cloud sont des problèmes d'architecture, c'est pourquoi la revue et le travail d'économies finissent par être le même projet." },
+      delivery: { slug: 'project-delivery', pair: 'data-governance',
+        en: 'Good engineering does not survive bad delivery. Every project needs a named methodology chosen for the shape of the work, not applied by default.',
+        fr: "Une bonne ingénierie ne survit pas à une mauvaise gestion de projet. Chaque projet a besoin d'une méthodologie nommée, choisie pour la nature du travail, jamais appliquée par défaut." }
+    };
+
+    var PNAME = {
+      'analytics-bi':         ['Analytics & BI', 'Analytique & BI'],
+      'data-governance':      ['Data Governance', 'Gouvernance des données'],
+      'security':             ['Security & Data Protection', 'Sécurité & Protection des données'],
+      'ai-machine-learning':  ['AI & Machine Learning', 'IA & Machine Learning'],
+      'database-engineering': ['Database Engineering', 'Ingénierie des bases de données'],
+      'aws-cloud':            ['AWS Cloud Architecture', 'Architecture cloud AWS'],
+      'project-delivery':     ['Project & Delivery Management', 'Gestion de projet & de livraison']
+    };
+
+    var CTA = {
+      explore: {
+        en: 'No rush. Start by reading the product page, or run the price estimator to see roughly what this kind of work costs.',
+        fr: "Rien d'urgent. Commencez par lire la page du produit, ou lancez l'estimateur de prix pour voir ce que ce type de travail coûte généralement.",
+        primary: { en: 'Read the product page', fr: 'Lire la page du produit', href: null },
+        secondary: { en: 'Try the price estimator', fr: "Essayer l'estimateur de prix", href: '/tools/estimator/' }
+      },
+      ready: {
+        en: 'Good, that is usually enough to get a fixed-price estimate within one call.',
+        fr: "Bien : c'est généralement suffisant pour obtenir une estimation à prix fixe en un seul appel.",
+        primary: { en: 'Estimate the cost', fr: 'Estimer le coût', href: '/tools/estimator/' },
+        secondary: { en: 'Book a call', fr: 'Réserver un appel', href: '/contact/' }
+      },
+      urgent: {
+        en: 'Skip the tools. Book the call and describe it directly; we read every message the same day.',
+        fr: "Ignorez les outils. Réservez l'appel et décrivez-le directement ; nous lisons chaque message le jour même.",
+        primary: { en: 'Book a call now', fr: 'Réserver un appel maintenant', href: '/contact/' },
+        secondary: { en: 'See the product page', fr: 'Voir la page du produit', href: null }
+      }
+    };
+
+    var st = { symptom: null, urgency: null };
+    var step = 1;
+
+    function go(n) {
+      step = n;
+      $$('[data-pane]', root).forEach(function (p) { p.hidden = (+p.dataset.pane !== n); });
+      $$('[data-stepname]', root).forEach(function (s) {
+        s.setAttribute('aria-current', +s.dataset.stepname === n ? 'step' : 'false');
+      });
+      var bar = $('#finderBar');
+      if (bar) bar.style.width = (n * 33.34) + '%';
+      var y = root.getBoundingClientRect().top + window.pageYOffset - 90;
+      window.scrollTo({ top: y, behavior: RM ? 'auto' : 'smooth' });
+    }
+
+    function render() {
+      if (!st.symptom || !st.urgency) return;
+      var fr = getLang() === 'fr';
+      var s = SYMPTOM[st.symptom];
+      var pname = PNAME[s.slug][fr ? 1 : 0];
+      var pairName = PNAME[s.pair][fr ? 1 : 0];
+      var c = CTA[st.urgency];
+      var primaryHref = c.primary.href || ('/products/' + s.slug + '/');
+      var secondaryHref = c.secondary.href || ('/products/' + s.slug + '/');
+      $('#finderResult').innerHTML =
+        '<div class="card" style="border-color:var(--accent)">' +
+        '<p class="mono mb4">' + (fr ? 'Meilleure correspondance' : 'Best fit') + '</p>' +
+        '<h3 style="color:var(--accent)">' + pname + '</h3>' +
+        '<p class="mb5">' + (fr ? s.fr : s.en) + '</p>' +
+        '<p class="soft mb5">' + (fr ? c.fr : c.en) + '</p>' +
+        '<div class="row mb5">' +
+        '<a class="btn btn-p" href="' + primaryHref + '">' + (fr ? c.primary.fr : c.primary.en) + ' <span class="ar" aria-hidden="true">→</span></a>' +
+        '<a class="btn btn-s" href="' + secondaryHref + '">' + (fr ? c.secondary.fr : c.secondary.en) + '</a>' +
+        '</div>' +
+        '<p class="mono mt6 mb3">' + (fr ? 'Souvent associé à' : 'Often paired with') + '</p>' +
+        '<div class="chips"><a class="chip" href="/products/' + s.pair + '/">' + pairName + '</a></div>' +
+        '</div>';
+    }
+    document.addEventListener('langchange', function () { if (step === 3) render(); });
+
+    $$('[data-grp]', root).forEach(function (g) {
+      g.addEventListener('click', function (e) {
+        var c = e.target.closest('.opt');
+        if (!c) return;
+        $$('.opt', g).forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+        c.setAttribute('aria-pressed', 'true');
+        st[g.dataset.grp] = c.dataset.v;
+        if (g.dataset.grp === 'symptom') go(2);
+        else if (g.dataset.grp === 'urgency') { render(); go(3); }
+      });
+    });
+
+    var fb2 = $('#finderB2'), fb3 = $('#finderB3');
+    if (fb2) fb2.addEventListener('click', function () { go(1); });
+    if (fb3) fb3.addEventListener('click', function () {
+      st.symptom = null; st.urgency = null;
+      $$('.opt', root).forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+      go(1);
+    });
+  })();
+
+  /* ---------- glossary search ---------- */
+  (function () {
+    var root = $('#glossList');
+    if (!root) return;
+    var input = $('#glossSearch');
+    if (!input) return;
+
+    function apply() {
+      var fr = getLang() === 'fr';
+      var q = input.value.trim().toLowerCase();
+      var scope = $('.i18n[lang="' + (fr ? 'fr' : 'en') + '"]', root);
+      if (!scope) return;
+      var items = $$('.gloss-item', scope);
+      var shown = 0;
+      items.forEach(function (it) {
+        var match = !q || it.dataset.term.indexOf(q) !== -1 || it.dataset.def.indexOf(q) !== -1;
+        it.classList.toggle('is-hidden', !match);
+        if (match) shown++;
+      });
+      var empty = $('#glossEmpty');
+      if (empty) empty.hidden = shown !== 0;
+    }
+
+    input.addEventListener('input', apply);
+    document.addEventListener('langchange', apply);
+  })();
+
+  /* ---------- brief builder ---------- */
+  (function () {
+    var form = $('#brief-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var fr = getLang() === 'fr';
+      var problem = $('#bf-problem').value.trim();
+      var errBox = $('#bf-err');
+      if (!problem) {
+        errBox.textContent = fr ? 'Décrivez ce qui ne va pas avant de continuer.' : 'Describe what is broken before continuing.';
+        errBox.hidden = false;
+        return;
+      }
+      errBox.hidden = true;
+
+      var stack = $('#bf-stack').value.trim();
+      var area = $('#bf-area').options[$('#bf-area').selectedIndex].text;
+      var budget = $('#bf-budget').options[$('#bf-budget').selectedIndex].text;
+      var timeline = $('#bf-timeline').options[$('#bf-timeline').selectedIndex].text;
+      var email = $('#bf-email').value.trim();
+
+      var lines = fr ? [
+        'Brief de projet, intelloratech.net', '',
+        'Ce qui ne va pas :', problem, '',
+        stack ? 'Fonctionne sur : ' + stack : null,
+        'Domaine concerné : ' + area,
+        'Budget approximatif : ' + budget,
+        'Calendrier : ' + timeline,
+        email ? 'Contact : ' + email : null
+      ] : [
+        'Project brief, intelloratech.net', '',
+        "What's broken:", problem, '',
+        stack ? 'Runs on: ' + stack : null,
+        'Closest area: ' + area,
+        'Rough budget: ' + budget,
+        'Timeline: ' + timeline,
+        email ? 'Contact: ' + email : null
+      ];
+      var text = lines.filter(function (l) { return l !== null; }).join('\n');
+
+      $('#bf-text').textContent = text;
+      $('#bf-result').hidden = false;
+      $('#bf-placeholder').hidden = true;
+
+      var subject = fr ? 'Brief de projet' : 'Project brief';
+      $('#bf-mail').href = 'mailto:support@intelloratech.net?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
+
+      $('#bf-result').scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'nearest' });
+    });
+
+    var bcp = $('#bf-copy');
+    if (bcp) bcp.addEventListener('click', function () {
+      var t = $('#bf-text').textContent || '';
+      var done = function () {
+        var c = $('#bf-copied');
+        if (!c) return;
+        c.hidden = false;
+        setTimeout(function () { c.hidden = true; }, 2600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, done);
+      else {
+        var ta = document.createElement('textarea');
+        ta.value = t;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        ta.remove();
+        done();
+      }
+    });
+  })();
+
   /* ---------- payment form ---------- */
   (function () {
     var form = $('#pay-form');

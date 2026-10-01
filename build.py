@@ -151,6 +151,138 @@ PRODUCTS = [
      "La discipline qui permet aux six autres d'être livrés à temps et dans le budget."),
 ]
 
+GLOSSARY = [
+    ("ETL", "Extract, Transform, Load",
+     "Data is pulled from a source, reshaped to fit the destination, then loaded in. The traditional order for moving data into a warehouse.",
+     "Les données sont extraites d'une source, remises en forme pour la destination, puis chargées. L'ordre traditionnel pour alimenter un entrepôt de données.",
+     "database-engineering"),
+    ("ELT", "Extract, Load, Transform",
+     "Raw data lands first, and the transformation happens afterwards, inside the warehouse itself. The more common pattern on modern cloud platforms.",
+     "Les données brutes arrivent d'abord, et la transformation se fait ensuite, à l'intérieur même de l'entrepôt. Le schéma le plus courant sur les plateformes cloud modernes.",
+     "aws-cloud"),
+    ("Data lake", "Un data lake",
+     "A single store for raw data in its native format, structured and unstructured alike, before anyone decides exactly how it will be used.",
+     "Un entrepôt unique pour les données brutes dans leur format natif, structurées ou non, avant que quiconque ne décide précisément de leur usage.",
+     "aws-cloud"),
+    ("Data warehouse", "Un entrepôt de données",
+     "A store built around how the business asks questions: modelled, structured, and optimised for reporting rather than for capturing every raw detail.",
+     "Un entrepôt conçu autour des questions posées par l'activité : modélisé, structuré, et optimisé pour le reporting plutôt que pour capturer chaque détail brut.",
+     "aws-cloud"),
+    ("Data lakehouse", "Un data lakehouse",
+     "A lake and a warehouse combined: the flexibility of raw storage with the structure and performance guarantees of a warehouse on top.",
+     "Un lake et un entrepôt combinés : la flexibilité du stockage brut avec la structure et les garanties de performance d'un entrepôt par-dessus.",
+     "aws-cloud"),
+    ("Data pipeline", "Un pipeline de données",
+     "The automated sequence that moves data from source to destination: extract, transform, validate, load, on a schedule or in response to an event.",
+     "La séquence automatisée qui déplace les données de la source à la destination : extraction, transformation, validation, chargement, sur un calendrier ou en réponse à un événement.",
+     "database-engineering"),
+    ("Data lineage", "La traçabilité (lineage)",
+     "The record of where a piece of data came from and every transformation it passed through on the way to a report. What an auditor asks for first.",
+     "L'historique de la provenance d'une donnée et de chaque transformation qu'elle a subie avant d'atteindre un rapport. Ce qu'un auditeur demande en premier.",
+     "data-governance"),
+    ("Data governance", "La gouvernance des données",
+     "Who owns which data, who can change its definition, and what evidence proves the rules were actually followed, not just written down.",
+     "Qui possède quelles données, qui peut en changer la définition, et quelles preuves montrent que les règles ont réellement été suivies, pas seulement écrites.",
+     "data-governance"),
+    ("Data catalog", "Un catalogue de données",
+     "A searchable inventory of what data exists, what it means, who owns it and how fresh it is, so people stop asking in Slack.",
+     "Un inventaire consultable des données existantes, de leur signification, de leur propriétaire et de leur fraîcheur, pour que les gens arrêtent de demander sur Slack.",
+     "data-governance"),
+    ("Data quality", "La qualité des données",
+     "Whether data is accurate, complete, consistent and timely enough for the decision being made with it. Usually enforced with automated checks.",
+     "La question de savoir si les données sont exactes, complètes, cohérentes et assez récentes pour la décision prise avec elles. Généralement vérifiée par des contrôles automatisés.",
+     "data-governance"),
+    ("Master data management", "La gestion des données de référence (MDM)",
+     "Keeping one agreed, trustworthy version of a core entity, a customer, a product, a supplier, instead of five slightly different copies across systems.",
+     "Conserver une version unique, convenue et fiable d'une entité centrale, un client, un produit, un fournisseur, au lieu de cinq copies légèrement différentes selon les systèmes.",
+     "data-governance"),
+    ("Semantic layer", "Une couche sémantique",
+     "The place a metric is defined once, so every dashboard and report reads the same definition instead of recalculating it slightly differently.",
+     "L'endroit où un indicateur est défini une seule fois, pour que chaque tableau de bord et rapport lise la même définition au lieu de la recalculer légèrement différemment.",
+     "analytics-bi"),
+    ("Data mart", "Un datamart",
+     "A smaller, focused slice of the warehouse built for one department or subject area, so they aren't querying the entire estate for one answer.",
+     "Une tranche plus petite et ciblée de l'entrepôt, construite pour un seul département ou domaine, pour qu'il n'interroge pas tout le patrimoine pour une seule réponse.",
+     "analytics-bi"),
+    ("Schema", "Un schéma",
+     "The structure of a dataset: table names, columns, data types and how they relate. What a schema change breaks when nobody is warned first.",
+     "La structure d'un jeu de données : noms de tables, colonnes, types de données et leurs relations. Ce qu'un changement de schéma casse quand personne n'est prévenu.",
+     "database-engineering"),
+    ("Schema drift", "La dérive de schéma",
+     "A source system silently adds, removes or retypes a column, and anything downstream that assumed the old shape quietly breaks or miscounts.",
+     "Un système source ajoute, supprime ou retype silencieusement une colonne, et tout ce qui est en aval et supposait l'ancienne structure casse ou se trompe discrètement.",
+     "data-governance"),
+    ("Change data capture", "La capture de changement de données (CDC)",
+     "Streaming only the rows that changed, rather than re-reading an entire table each time. How near-real-time pipelines stay fast at scale.",
+     "Diffuser uniquement les lignes modifiées, plutôt que de relire une table entière à chaque fois. Comment les pipelines quasi temps réel restent rapides à grande échelle.",
+     "aws-cloud"),
+    ("Orchestration", "L'orchestration",
+     "The scheduler that decides what runs, in what order, and what happens on failure, Airflow and similar tools, rather than a chain of cron jobs.",
+     "Le planificateur qui décide ce qui s'exécute, dans quel ordre, et que faire en cas d'échec, Airflow et outils similaires, plutôt qu'une chaîne de tâches cron.",
+     "aws-cloud"),
+    ("Data observability", "L'observabilité des données",
+     "Monitoring not just whether a job ran, but whether the data it produced is actually correct, fresh and complete.",
+     "Surveiller non seulement si un job s'est exécuté, mais si les données qu'il a produites sont réellement correctes, récentes et complètes.",
+     "data-governance"),
+    ("High availability", "La haute disponibilité (HA)",
+     "A system designed to keep running, or fail over automatically, when a component breaks, instead of going down until someone notices.",
+     "Un système conçu pour continuer à fonctionner, ou basculer automatiquement, quand un composant tombe en panne, plutôt que de s'arrêter jusqu'à ce que quelqu'un le remarque.",
+     "database-engineering"),
+    ("Disaster recovery", "La reprise après sinistre (DR)",
+     "The tested plan, and the tested backups, for getting back up after a serious failure. Untested backups are not a recovery plan.",
+     "Le plan testé, et les sauvegardes testées, pour redémarrer après une panne grave. Des sauvegardes non testées ne sont pas un plan de reprise.",
+     "database-engineering"),
+    ("Replication", "La réplication",
+     "Keeping a live copy of a database in sync with the original, for failover, read scaling, or feeding another system in near real time.",
+     "Maintenir une copie en direct d'une base de données synchronisée avec l'originale, pour le basculement, la montée en charge en lecture, ou alimenter un autre système quasiment en temps réel.",
+     "database-engineering"),
+    ("Landing zone", "Une landing zone",
+     "The governed, pre-built account and network structure a cloud workload moves into, so every new environment starts from the same secure baseline.",
+     "La structure de comptes et de réseau gouvernée et préconstruite dans laquelle une charge de travail cloud s'installe, pour que chaque nouvel environnement parte de la même base sécurisée.",
+     "aws-cloud"),
+    ("FinOps", "Le FinOps",
+     "The discipline of treating cloud cost as an engineering problem: tagging, right-sizing and architecture decisions, not just a bill to complain about.",
+     "La discipline qui traite le coût cloud comme un problème d'ingénierie : étiquetage, dimensionnement et décisions d'architecture, pas seulement une facture à déplorer.",
+     "aws-cloud"),
+    ("Infrastructure as code", "L'infrastructure as code",
+     "Infrastructure defined in version-controlled files (Terraform, CloudFormation) instead of clicked together by hand, so it can be reviewed and repeated.",
+     "Une infrastructure définie dans des fichiers versionnés (Terraform, CloudFormation) plutôt que construite à la main en cliquant, pour qu'elle puisse être revue et reproduite.",
+     "aws-cloud"),
+    ("Well-Architected Framework", "Le Well-Architected Framework",
+     "AWS's own structured review across operational excellence, security, reliability, performance, cost and sustainability.",
+     "La revue structurée propre à AWS couvrant l'excellence opérationnelle, la sécurité, la fiabilité, la performance, le coût et la durabilité.",
+     "aws-cloud"),
+    ("Feature store", "Un feature store",
+     "A central place that stores the inputs machine learning models train on, so the same feature is defined identically for training and for live predictions.",
+     "Un emplacement central qui stocke les variables sur lesquelles les modèles de machine learning s'entraînent, pour qu'une même variable soit définie à l'identique à l'entraînement et en production.",
+     "ai-machine-learning"),
+    ("MLOps", "Le MLOps",
+     "The deployment pipelines, monitoring and retraining schedules that keep a model working in production, the operational half of machine learning.",
+     "Les pipelines de déploiement, la surveillance et les calendriers de réentraînement qui maintiennent un modèle fonctionnel en production, la moitié opérationnelle du machine learning.",
+     "ai-machine-learning"),
+    ("Model drift", "La dérive de modèle",
+     "A model's accuracy quietly degrading over time as the real world stops matching the data it was trained on, until nobody trusts its answers.",
+     "La précision d'un modèle qui se dégrade silencieusement avec le temps, le monde réel cessant de correspondre aux données sur lesquelles il a été entraîné, jusqu'à ce que plus personne ne fasse confiance à ses réponses.",
+     "ai-machine-learning"),
+    ("RAG", "RAG (génération augmentée par récupération)",
+     "Retrieval-augmented generation: an AI model answers by first retrieving relevant passages from your own documents, then citing them, rather than guessing from memory.",
+     "Retrieval-augmented generation : un modèle d'IA répond en récupérant d'abord des passages pertinents dans vos propres documents, puis en les citant, plutôt qu'en devinant de mémoire.",
+     "ai-machine-learning"),
+    ("Row-level security", "La sécurité au niveau ligne",
+     "Restricting which rows of a table a given user can see, so two people querying the same table get different results based on who they are.",
+     "Restreindre les lignes d'une table qu'un utilisateur donné peut voir, pour que deux personnes interrogeant la même table obtiennent des résultats différents selon leur identité.",
+     "security"),
+    ("PII", "Les données personnelles (PII)",
+     "Personally identifiable information: anything that can identify a specific person, the category of data that drives most privacy obligations.",
+     "Informations personnelles identifiables : tout ce qui peut identifier une personne précise, la catégorie de données à l'origine de la plupart des obligations de confidentialité.",
+     "security"),
+    ("OLTP vs OLAP", "OLTP vs OLAP",
+     "OLTP systems handle many small transactions fast (an order being placed); OLAP systems handle large analytical queries over history (a quarterly report). Rarely the same database.",
+     "Les systèmes OLTP gèrent de nombreuses petites transactions rapidement (une commande passée) ; les systèmes OLAP gèrent de grandes requêtes analytiques sur l'historique (un rapport trimestriel). Rarement la même base de données.",
+     "database-engineering"),
+]
+
+
 POSTS = [
     {
         "slug": "why-two-dashboards-disagree",
@@ -305,8 +437,11 @@ def layout(path, title, desc, body, accent="emerald", nav_key=None, crumbs=None,
         <ul>
           <li><a href="/projects/">{bi(("Projects", "Projets"))}</a></li>
           <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tools/finder/">{bi(("Product finder", "Trouver le bon produit"))}</a></li>
           <li><a href="/tools/estimator/">{bi(("Price estimator", "Estimateur de prix"))}</a></li>
           <li><a href="/tools/maturity/">{bi(("Data health check", "Diagnostic des données"))}</a></li>
+          <li><a href="/tools/glossary/">{bi(("Glossary", "Glossaire"))}</a></li>
+          <li><a href="/tools/brief/">{bi(("Brief builder", "Générateur de brief"))}</a></li>
         </ul>
       </div>
       <div>
@@ -765,7 +900,7 @@ HEAD_FR = {
 }
 
 
-def product_page(slug, name, colour, accent, headline, intro, services, tech, budget, triggers, tech_label="Technologies"):
+def product_page(slug, name, colour, accent, headline, intro, services, tech, budget, triggers, tech_label="Technologies", extra=None):
     name_en, name_fr = pair(name)
     headline_en, headline_fr = pair(headline)
     intro_en, intro_fr = pair(intro)
@@ -804,8 +939,9 @@ def product_page(slug, name, colour, accent, headline, intro, services, tech, bu
   </div>
 </section>"""
 
+    extra_block = blocks(extra[0], extra[1]) if extra else ""
     body = blocks(build(name_en, headline_en, intro_en, tech_label_en, budget_en, 0),
-                  build(name_fr, headline_fr, intro_fr, tech_label_fr, budget_fr, 1)) + cta(
+                  build(name_fr, headline_fr, intro_fr, tech_label_fr, budget_fr, 1)) + extra_block + cta(
         ("Is this the piece you need?", "Est-ce la pièce qu'il vous faut ?"),
         ("Twenty minutes on a call is usually enough to know whether this is the right starting point.",
          "Vingt minutes au téléphone suffisent généralement à savoir si c'est le bon point de départ."),
@@ -945,6 +1081,60 @@ product_page(
      ("An AI initiative was announced before the data layer was ready",
       "Une initiative IA a été annoncée avant que la couche de données ne soit prête")])
 
+DB_PLATFORMS = [
+    ("OR", "Oracle", "deep",
+     ("RAC & Data Guard", "RAC & Data Guard"),
+     ("GoldenGate replication", "Réplication GoldenGate"),
+     ("19c → 23ai upgrades", "Montées 19c → 23ai")),
+    ("PG", "PostgreSQL", "emerald",
+     ("Streaming replication", "Réplication en continu"),
+     ("Partitioning & indexing", "Partitionnement & indexation"),
+     ("pgBackRest & WAL archiving", "pgBackRest & archivage WAL")),
+    ("MS", "SQL Server", "indigo",
+     ("AlwaysOn Availability Groups", "Groupes de disponibilité AlwaysOn"),
+     ("Log shipping & replication", "Transfert de journaux & réplication"),
+     ("Query Store tuning", "Optimisation via Query Store")),
+    ("MY", "MySQL &amp; MariaDB", "gold",
+     ("InnoDB Cluster / Group Replication", "InnoDB Cluster / réplication de groupe"),
+     ("Backup automation", "Automatisation des sauvegardes"),
+     ("Schema migration", "Migration de schéma")),
+    ("MO", "MongoDB", "plum",
+     ("Replica sets & sharding", "Replica sets & sharding"),
+     ("Aggregation pipeline tuning", "Optimisation du pipeline d'agrégation"),
+     ("Index strategy", "Stratégie d'indexation")),
+    ("RE", "Redis", "coral",
+     ("Sentinel & Cluster mode", "Mode Sentinel & Cluster"),
+     ("Persistence (RDB/AOF) strategy", "Stratégie de persistance (RDB/AOF)"),
+     ("Cache invalidation patterns", "Schémas d'invalidation de cache")),
+]
+
+def db_platform_cards(i):
+    return "".join("""
+      <div class="card card-accent k-{colour} plat-card rv">
+        <span class="plat-badge">{code}</span>
+        <h3>{name}</h3>
+        <div class="chips mt4">{chips}</div>
+      </div>""".format(
+        colour=colour, code=code, name=re.sub("&amp;", "&", name),
+        chips="".join('<span class="chip">%s</span>' % pair(c)[i] for c in caps))
+    for code, name, colour, *caps in DB_PLATFORMS)
+
+db_platforms_en = f"""
+<section class="wrap section">
+  <p class="eyebrow">Depth by platform</p>
+  <h2 class="mb4">Six engines. One team that has actually run every one of them in production.</h2>
+  <p class="lead mb6">Not a line in a tech-stack list: each of these is a platform we have tuned, replicated, failed over and upgraded under a live workload.</p>
+  <div class="grid c3">{db_platform_cards(0)}</div>
+</section>"""
+
+db_platforms_fr = f"""
+<section class="wrap section">
+  <p class="eyebrow">Profondeur par plateforme</p>
+  <h2 class="mb4">Six moteurs. Une équipe qui les a tous réellement exploités en production.</h2>
+  <p class="lead mb6">Pas une simple ligne dans une liste technique : chacune de ces plateformes, nous l'avons optimisée, répliquée, basculée et mise à niveau sous charge réelle.</p>
+  <div class="grid c3">{db_platform_cards(1)}</div>
+</section>"""
+
 product_page(
     "database-engineering", ("Database Engineering", "Ingénierie des bases de données"), "coral", "coral",
     ("The deepest part of our practice.", "Le socle historique de notre pratique."),
@@ -976,7 +1166,8 @@ product_page(
      ("An unsupported database version is becoming an audit finding",
       "Une version de base de données non supportée devient un constat d'audit"),
      ("Nobody has tested whether the backups actually restore",
-      "Personne n'a testé si les sauvegardes se restaurent réellement")])
+      "Personne n'a testé si les sauvegardes se restaurent réellement")],
+    extra=(db_platforms_en, db_platforms_fr))
 
 product_page(
     "aws-cloud", ("AWS Cloud Architecture", "Architecture cloud AWS"), "gold", "gold",
@@ -1373,15 +1564,21 @@ case_study_page(
 
 
 # ------------------------------------------------------------------ tools hub
-tools_hub_en = """
+tools_hub_en = f"""
 <section class="wrap page-head">
   <p class="eyebrow">Tools</p>
-  <h1>Two free tools, two minutes each.</h1>
-  <p class="lead">Both are free, need no sign-up, and give you something you can act on, or forward to whoever holds the budget.</p>
+  <h1>Five free tools, a few minutes each.</h1>
+  <p class="lead">All free, none need a sign-up, and each gives you something you can act on, or forward to whoever holds the budget.</p>
 </section>
 
 <section class="wrap">
-  <div class="grid c2">
+  <div class="grid c3">
+    <a href="/tools/finder/" class="card card-accent k-indigo rv">
+      <p class="mono">Two questions</p>
+      <h3>Product finder</h3>
+      <p>Not sure which of the seven products fits? Answer two questions and get pointed at the right one.</p>
+      <span class="go">Find my product →</span>
+    </a>
     <a href="/tools/estimator/" class="card card-accent k-gold rv">
       <p class="mono">Six questions</p>
       <h3>Price estimator</h3>
@@ -1394,18 +1591,36 @@ tools_hub_en = """
       <p>Answer seven questions about your setup and get a plain description of where you stand, plus the two things worth fixing first.</p>
       <span class="go">Start the check →</span>
     </a>
+    <a href="/tools/glossary/" class="card card-accent k-slate rv">
+      <p class="mono">{len(GLOSSARY)} terms</p>
+      <h3>Glossary</h3>
+      <p>Data engineering and cloud terms explained in plain English, each linked to where we can help.</p>
+      <span class="go">Browse the glossary →</span>
+    </a>
+    <a href="/tools/brief/" class="card card-accent k-plum rv">
+      <p class="mono">Five questions</p>
+      <h3>Brief builder</h3>
+      <p>Turn what's broken into a structured brief you can email us or forward on, built in your browser.</p>
+      <span class="go">Build a brief →</span>
+    </a>
   </div>
 </section>"""
 
-tools_hub_fr = """
+tools_hub_fr = f"""
 <section class="wrap page-head">
   <p class="eyebrow">Outils</p>
-  <h1>Deux outils gratuits, deux minutes chacun.</h1>
-  <p class="lead">Les deux sont gratuits, ne demandent aucune inscription, et vous donnent quelque chose sur quoi agir, ou à transmettre à qui détient le budget.</p>
+  <h1>Cinq outils gratuits, quelques minutes chacun.</h1>
+  <p class="lead">Tous gratuits, aucun ne demande d'inscription, et chacun vous donne quelque chose sur quoi agir, ou à transmettre à qui détient le budget.</p>
 </section>
 
 <section class="wrap">
-  <div class="grid c2">
+  <div class="grid c3">
+    <a href="/tools/finder/" class="card card-accent k-indigo rv">
+      <p class="mono">Deux questions</p>
+      <h3>Trouver le bon produit</h3>
+      <p>Vous ne savez pas lequel des sept produits convient ? Répondez à deux questions et on vous indique le bon.</p>
+      <span class="go">Trouver mon produit →</span>
+    </a>
     <a href="/tools/estimator/" class="card card-accent k-gold rv">
       <p class="mono">Six questions</p>
       <h3>Estimateur de prix</h3>
@@ -1417,6 +1632,18 @@ tools_hub_fr = """
       <h3>Diagnostic des données</h3>
       <p>Répondez à sept questions sur votre configuration et obtenez une description simple de votre situation, ainsi que les deux points à corriger en priorité.</p>
       <span class="go">Démarrer le diagnostic →</span>
+    </a>
+    <a href="/tools/glossary/" class="card card-accent k-slate rv">
+      <p class="mono">{len(GLOSSARY)} termes</p>
+      <h3>Glossaire</h3>
+      <p>Des termes d'ingénierie des données et de cloud expliqués en langage clair, chacun relié à ce qui peut vous aider.</p>
+      <span class="go">Parcourir le glossaire →</span>
+    </a>
+    <a href="/tools/brief/" class="card card-accent k-plum rv">
+      <p class="mono">Cinq questions</p>
+      <h3>Générateur de brief</h3>
+      <p>Transformez ce qui ne va pas en un brief structuré à nous envoyer ou à transmettre, construit dans votre navigateur.</p>
+      <span class="go">Générer un brief →</span>
     </a>
   </div>
 </section>"""
@@ -1637,6 +1864,201 @@ write("tools/maturity", layout("/tools/maturity/", "Data health check · Intello
                               "Seven questions that show where your data setup stands and what is worth fixing first.",
                               maturity, accent="gold", nav_key="Tools",
                               crumbs=[(("Tools", "Outils"), "/tools/"), (("Data health check", "Diagnostic des données"), None)]))
+
+# -------------------------------------------------------------- product finder
+finder = f"""
+<section class="wrap page-head">
+  <p class="eyebrow">{bi(("Product finder", "Trouver le bon produit"))}</p>
+  <h1>{bi(("Not sure which one you need?", "Vous ne savez pas lequel il vous faut ?"))}</h1>
+  <p class="lead">{bi(("Two quick questions, then we point at the right starting place. No inbox required.",
+                        "Deux questions rapides, puis nous indiquons le bon point de départ. Aucune boîte mail requise."))}</p>
+</section>
+
+<section class="wrap" id="finder">
+  <div class="steps">
+    <span data-stepname="1" aria-current="step">{bi(("1 · What's wrong", "1 · Le problème"))}</span>
+    <span data-stepname="2" aria-current="false">{bi(("2 · Readiness", "2 · Préparation"))}</span>
+    <span data-stepname="3" aria-current="false">{bi(("3 · Result", "3 · Résultat"))}</span>
+  </div>
+  <div class="track"><i id="finderBar"></i></div>
+
+  <div data-pane="1">
+    <p class="q-h">{bi(("What's actually bothering you right now?", "Qu'est-ce qui vous pose problème en ce moment ?"))}</p>
+    {opts("symptom", [
+        ("numbers", ("Two reports disagree, or nobody trusts the numbers", "Deux rapports se contredisent, ou plus personne ne fait confiance aux chiffres"), ("Dashboards, metrics or definitions that don't line up.", "Des tableaux de bord, indicateurs ou définitions qui ne concordent pas.")),
+        ("evidence", ("We can't produce an audit trail or lineage fast enough", "Nous ne pouvons pas produire de piste d'audit ou de traçabilité assez vite"), ("An auditor, regulator or investor asked, and assembling the answer took too long.", "Un auditeur, régulateur ou investisseur a demandé, et réunir la réponse a pris trop de temps.")),
+        ("access", ("A security questionnaire or access audit we can't pass", "Un questionnaire de sécurité ou un audit d'accès que nous ne pouvons pas réussir"), ("Access control, encryption or evidence gaps on the data platform.", "Des lacunes de contrôle d'accès, de chiffrement ou de preuves sur la plateforme de données.")),
+        ("models", ("A model works in a notebook but never ships", "Un modèle fonctionne dans un notebook mais ne part jamais en production"), ("AI or ML work stuck before production, or degrading quietly once there.", "Un travail d'IA ou de ML bloqué avant la production, ou qui se dégrade silencieusement une fois en place.")),
+        ("database", ("Queries are slow, or backups have never been tested", "Les requêtes sont lentes, ou les sauvegardes n'ont jamais été testées"), ("Database performance, high availability or recovery risk.", "Performance de la base de données, haute disponibilité ou risque de reprise.")),
+        ("cloud", ("The cloud bill keeps climbing or a migration stalled", "La facture cloud ne cesse de grimper ou une migration s'est arrêtée"), ("AWS architecture, cost, or a data lake nobody trusts any more.", "Architecture AWS, coût, ou un data lake auquel plus personne ne fait confiance.")),
+        ("delivery", ("Projects run late, over budget, with no clear method", "Les projets sont en retard, dépassent le budget, sans méthode claire"), ("No named methodology, or a steering update that is a Slack thread.", "Aucune méthodologie nommée, ou une mise à jour de pilotage qui tient dans un fil Slack.")),
+    ], "g2")}
+  </div>
+
+  <div data-pane="2" hidden>
+    <p class="q-h">{bi(("How ready are you to act on it?", "Dans quelle mesure êtes-vous prêt à agir ?"))}</p>
+    {opts("urgency", [
+        ("explore", ("Just exploring", "Je me renseigne"), ("No deadline yet, want to understand the options.", "Pas d'échéance pour l'instant, je veux comprendre les options.")),
+        ("ready", ("Have budget, ready to move", "J'ai un budget, prêt à avancer"), ("Know roughly what we want to spend, want a starting point.", "Je sais à peu près ce que je veux dépenser, je veux un point de départ.")),
+        ("urgent", ("Urgent, something's broken", "Urgent, quelque chose est cassé"), ("This needs attention now.", "Cela demande une attention immédiate.")),
+    ], "g3")}
+    <div class="row mt6"><button class="btn btn-g" id="finderB2" type="button">{bi(("← Back", "← Retour"))}</button></div>
+  </div>
+
+  <div data-pane="3" hidden>
+    <div id="finderResult"></div>
+    <div class="row mt5"><button class="btn btn-g" id="finderB3" type="button">{bi(("← Start again", "← Recommencer"))}</button></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <noscript><div class="callout">This tool needs JavaScript. <a href="/products/">Browse all seven products</a> or <a href="/contact/">email us</a> and describe the problem in a paragraph.</div></noscript>
+</section>
+""" + cta(
+    ("Still not sure?", "Toujours pas sûr ?"),
+    ("A paragraph on what's broken is enough. We will tell you honestly which product fits, or whether none of them do.",
+     "Un paragraphe sur ce qui ne va pas suffit. Nous vous dirons honnêtement quel produit convient, ou si aucun ne convient."),
+    secondary=("See all products", "/products/"))
+
+write("tools/finder", layout("/tools/finder/", "Product finder · Intellora Tech",
+                             "Two questions about what's actually wrong, and we point at the right product to start with.",
+                             finder, accent="indigo", nav_key="Tools",
+                             crumbs=[(("Tools", "Outils"), "/tools/"), (("Product finder", "Trouver le bon produit"), None)]))
+
+# ------------------------------------------------------------------- glossary
+
+PROD_NAME = {s: (n, nf) for s, n, nf, _, _, _ in PRODUCTS}
+
+def gloss_html(i):
+    return "".join(f"""
+    <div class="gloss-item" data-term="{esc((t if not i else t_fr).lower())}" data-def="{esc((d if not i else d_fr).lower())}">
+      <p class="n">{t if not i else t_fr}</p>
+      <p class="m">{d if not i else d_fr}</p>
+      <a class="chip mt3" href="/products/{slug}/">{pair(PROD_NAME[slug])[i]}</a>
+    </div>""" for t, t_fr, d, d_fr, slug in GLOSSARY)
+
+glossary = f"""
+<section class="wrap page-head">
+  <p class="eyebrow">{bi(("Glossary", "Glossaire"))}</p>
+  <h1>{bi(("Data engineering, in plain English.", "L'ingénierie des données, en langage clair."))}</h1>
+  <p class="lead">{bi((f"{len(GLOSSARY)} terms we use on this site and in real project conversations, explained without the jargon that usually surrounds them.",
+                        f"{len(GLOSSARY)} termes que nous utilisons sur ce site et dans de vraies conversations de projet, expliqués sans le jargon qui les entoure habituellement."))}</p>
+</section>
+
+<section class="wrap">
+  <div class="field" style="max-width:26rem">
+    <label for="glossSearch">{bi(("Search terms", "Rechercher un terme"))}</label>
+    <input type="text" id="glossSearch" placeholder="{esc('e.g. lineage, RAG, FinOps')}" autocomplete="off">
+  </div>
+  <div id="glossList">{blocks(f'<div class="gloss-grid">{gloss_html(0)}</div>', f'<div class="gloss-grid">{gloss_html(1)}</div>')}</div>
+  <p class="soft mt5" id="glossEmpty" hidden>{bi(("No terms match that search.", "Aucun terme ne correspond à cette recherche."))}</p>
+</section>
+""" + cta(
+    ("Still sounds like a foreign language?", "Cela ressemble encore à une langue étrangère ?"),
+    ("Describe the problem in your own words. We will translate it, not the other way around.",
+     "Décrivez le problème avec vos propres mots. C'est nous qui traduirons, pas l'inverse."),
+    secondary=("See all products", "/products/"))
+
+write("tools/glossary", layout("/tools/glossary/", "Glossary · Intellora Tech",
+                               f"{len(GLOSSARY)} data engineering and cloud terms explained in plain English, each linked to where we can help.",
+                               glossary, accent="slate", nav_key="Tools",
+                               crumbs=[(("Tools", "Outils"), "/tools/"), (("Glossary", "Glossaire"), None)]))
+
+# --------------------------------------------------------------- brief builder
+brief = f"""
+<section class="wrap page-head">
+  <p class="eyebrow">{bi(("Brief builder", "Générateur de brief"))}</p>
+  <h1>{bi(("Turn this into something you can send.", "Transformez ceci en quelque chose que vous pouvez envoyer."))}</h1>
+  <p class="lead">{bi(("Answer five short questions and get a structured brief, ready to email us or forward to whoever holds the budget. Nothing is stored; it is built in your browser.",
+                        "Répondez à cinq courtes questions et obtenez un brief structuré, prêt à nous envoyer par e-mail ou à transmettre à qui détient le budget. Rien n'est stocké ; il est construit dans votre navigateur."))}</p>
+</section>
+
+<section class="wrap">
+  <div class="grid c2">
+    <div class="rv">
+      <div class="card" style="padding:var(--s6)">
+        <form id="brief-form" novalidate>
+          <div class="field">
+            <label for="bf-problem">{bi(("What's broken? *", "Qu'est-ce qui ne va pas ? *"))}</label>
+            <textarea id="bf-problem" maxlength="600" required
+                      placeholder="{esc('e.g. Our Redshift costs doubled in six months and nobody can say why.')}"
+                      data-ph-en="{esc('e.g. Our Redshift costs doubled in six months and nobody can say why.')}"
+                      data-ph-fr="{esc('ex. Nos coûts Redshift ont doublé en six mois et personne ne sait pourquoi.')}"></textarea>
+          </div>
+          <div class="field">
+            <label for="bf-stack">{bi(("What do you run it on today?", "Sur quoi cela tourne-t-il aujourd'hui ?"))}</label>
+            <input type="text" id="bf-stack" maxlength="150"
+                   placeholder="{esc('e.g. AWS, Redshift, Airflow, Postgres')}"
+                   data-ph-en="{esc('e.g. AWS, Redshift, Airflow, Postgres')}"
+                   data-ph-fr="{esc('ex. AWS, Redshift, Airflow, Postgres')}">
+          </div>
+          <div class="field">
+            <label for="bf-area">{bi(("Which area is this closest to?", "De quel domaine est-ce le plus proche ?"))}</label>
+            <select id="bf-area">
+              <option value="{esc('Not sure')}" data-en="{esc('Not sure')}" data-fr="{esc('Je ne sais pas')}">Not sure</option>
+              {"".join('<option value="%s" data-en="%s" data-fr="%s">%s</option>' % (esc(n), esc(n), esc(nf), n) for _, n, nf, _, _, _ in PRODUCTS)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="bf-budget">{bi(("Rough budget", "Budget approximatif"))}</label>
+            <select id="bf-budget">
+              <option value="{esc('Not sure yet')}" data-en="{esc('Not sure yet')}" data-fr="{esc('Pas encore sûr')}">Not sure yet</option>
+              <option value="{esc('Under USD 5,000')}" data-en="{esc('Under USD 5,000')}" data-fr="{esc('Moins de 5 000 USD')}">Under USD 5,000</option>
+              <option value="{esc('USD 5,000 to 20,000')}" data-en="{esc('USD 5,000 to 20,000')}" data-fr="{esc('5 000 à 20 000 USD')}">USD 5,000 to 20,000</option>
+              <option value="{esc('USD 20,000 to 75,000')}" data-en="{esc('USD 20,000 to 75,000')}" data-fr="{esc('20 000 à 75 000 USD')}">USD 20,000 to 75,000</option>
+              <option value="{esc('USD 75,000+')}" data-en="{esc('USD 75,000+')}" data-fr="{esc('75 000 USD et plus')}">USD 75,000+</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="bf-timeline">{bi(("Timeline", "Calendrier"))}</label>
+            <select id="bf-timeline">
+              <option value="{esc('Exploring, no deadline')}" data-en="{esc('Exploring, no deadline')}" data-fr="{esc('Je me renseigne, pas d’échéance')}">Exploring, no deadline</option>
+              <option value="{esc('Within the next quarter')}" data-en="{esc('Within the next quarter')}" data-fr="{esc('Dans le prochain trimestre')}">Within the next quarter</option>
+              <option value="{esc('Urgent')}" data-en="{esc('Urgent')}" data-fr="{esc('Urgent')}">Urgent</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="bf-email">{bi(("Your email (optional)", "Votre e-mail (facultatif)"))}</label>
+            <input type="email" id="bf-email" maxlength="150" placeholder="you@company.com">
+            <span class="hint">{bi(("Only used inside the brief text itself, so whoever reads it knows how to reach you.",
+                                     "Utilisé uniquement dans le texte du brief lui-même, pour que son lecteur sache comment vous joindre."))}</span>
+          </div>
+          <button type="submit" class="btn btn-p" id="bf-build" style="width:100%;justify-content:center">{bi(("Build my brief", "Générer mon brief"))} <span class="ar" aria-hidden="true">→</span></button>
+          <div id="bf-err" class="alert mt4" role="alert" hidden></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="rv">
+      <div id="bf-result" hidden>
+        <p class="mono mb4">{bi(("Your brief", "Votre brief"))}</p>
+        <pre id="bf-text" class="brief-pre"></pre>
+        <div class="row mt5">
+          <a class="btn btn-p" id="bf-mail" href="mailto:{EMAIL}">{bi(("Email this to us", "Nous l'envoyer par e-mail"))} <span class="ar" aria-hidden="true">→</span></a>
+          <button class="btn btn-s" id="bf-copy" type="button">{bi(("Copy text", "Copier le texte"))}</button>
+          <span class="mono" id="bf-copied" hidden>{bi(("Copied", "Copié"))}</span>
+        </div>
+      </div>
+      <div id="bf-placeholder">
+        <h2 class="mb4">{bi(("Why bother?", "Pourquoi faire cela ?"))}</h2>
+        <p class="soft">{bi(("A structured brief gets a faster, more useful first reply than “can we chat sometime”. It also forces the one question that matters most: what, in one sentence, is actually broken.",
+                              "Un brief structuré obtient une première réponse plus rapide et plus utile qu'un simple « peut-on discuter un jour ». Cela force aussi la seule question qui compte vraiment : qu'est-ce qui, en une phrase, ne va pas ?"))}</p>
+        <div class="callout mt6"><b>{bi(("Nothing is sent until you choose.", "Rien n'est envoyé avant que vous ne le décidiez."))}</b> {bi(("The brief is built in your browser. Email it, copy it elsewhere, or close the tab.",
+                                                                                                              "Le brief est construit dans votre navigateur. Envoyez-le par e-mail, copiez-le ailleurs, ou fermez l'onglet."))}</div>
+      </div>
+    </div>
+  </div>
+  <noscript><div class="callout mt6">This tool needs JavaScript. Email <a href="mailto:{EMAIL}">{EMAIL}</a> directly with the same five answers instead.</div></noscript>
+</section>
+""" + cta(
+    ("Prefer to just talk?", "Vous préférez simplement en parler ?"),
+    ("A free intro call covers the same ground in fifteen minutes.", "Un appel d'introduction gratuit couvre le même terrain en quinze minutes."),
+    secondary=("Estimate the cost", "/tools/estimator/"))
+
+write("tools/brief", layout("/tools/brief/", "Brief builder · Intellora Tech",
+                            "Answer five short questions and get a structured project brief, built in your browser and ready to email.",
+                            brief, accent="plum", nav_key="Tools",
+                            crumbs=[(("Tools", "Outils"), "/tools/"), (("Brief builder", "Générateur de brief"), None)]))
 
 # ------------------------------------------------------------------------ blog
 def post_cards_html(i):
@@ -2572,7 +2994,8 @@ legal_page(
 
 # ------------------------------------------------------------- sitemap & robots
 urls = ["/", "/products/", "/projects/", "/blog/", "/about/", "/contact/", "/payment/",
-        "/tools/", "/tools/estimator/", "/tools/maturity/", "/privacy/", "/terms/"]
+        "/tools/", "/tools/estimator/", "/tools/maturity/", "/tools/finder/", "/tools/glossary/", "/tools/brief/",
+        "/privacy/", "/terms/"]
 urls += ["/products/%s/" % s for s, _, _, _, _, _ in PRODUCTS]
 urls += ["/blog/%s/" % p["slug"] for p in POSTS]
 urls += ["/projects/%s/" % p["slug"] for p in PROJECTS if p.get("slug")]
