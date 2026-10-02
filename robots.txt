@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /payment/success/
+Disallow: /payment/cancel/
+
+Sitemap: https://intelloratech.net/sitemap.xml
