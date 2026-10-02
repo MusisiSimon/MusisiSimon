@@ -437,7 +437,6 @@ def layout(path, title, desc, body, accent="emerald", nav_key=None, crumbs=None,
         <ul>
           <li><a href="/projects/">{bi(("Projects", "Projets"))}</a></li>
           <li><a href="/blog/">Blog</a></li>
-          <li><a href="/tools/finder/">{bi(("Product finder", "Trouver le bon produit"))}</a></li>
           <li><a href="/tools/estimator/">{bi(("Price estimator", "Estimateur de prix"))}</a></li>
           <li><a href="/tools/maturity/">{bi(("Data health check", "Diagnostic des données"))}</a></li>
           <li><a href="/tools/glossary/">{bi(("Glossary", "Glossaire"))}</a></li>
@@ -1567,18 +1566,12 @@ case_study_page(
 tools_hub_en = f"""
 <section class="wrap page-head">
   <p class="eyebrow">Tools</p>
-  <h1>Five free tools, a few minutes each.</h1>
+  <h1>Four free tools, a few minutes each.</h1>
   <p class="lead">All free, none need a sign-up, and each gives you something you can act on, or forward to whoever holds the budget.</p>
 </section>
 
 <section class="wrap">
-  <div class="grid c3">
-    <a href="/tools/finder/" class="card card-accent k-indigo rv">
-      <p class="mono">Two questions</p>
-      <h3>Product finder</h3>
-      <p>Not sure which of the seven products fits? Answer two questions and get pointed at the right one.</p>
-      <span class="go">Find my product →</span>
-    </a>
+  <div class="grid c2">
     <a href="/tools/estimator/" class="card card-accent k-gold rv">
       <p class="mono">Six questions</p>
       <h3>Price estimator</h3>
@@ -1609,18 +1602,12 @@ tools_hub_en = f"""
 tools_hub_fr = f"""
 <section class="wrap page-head">
   <p class="eyebrow">Outils</p>
-  <h1>Cinq outils gratuits, quelques minutes chacun.</h1>
+  <h1>Quatre outils gratuits, quelques minutes chacun.</h1>
   <p class="lead">Tous gratuits, aucun ne demande d'inscription, et chacun vous donne quelque chose sur quoi agir, ou à transmettre à qui détient le budget.</p>
 </section>
 
 <section class="wrap">
-  <div class="grid c3">
-    <a href="/tools/finder/" class="card card-accent k-indigo rv">
-      <p class="mono">Deux questions</p>
-      <h3>Trouver le bon produit</h3>
-      <p>Vous ne savez pas lequel des sept produits convient ? Répondez à deux questions et on vous indique le bon.</p>
-      <span class="go">Trouver mon produit →</span>
-    </a>
+  <div class="grid c2">
     <a href="/tools/estimator/" class="card card-accent k-gold rv">
       <p class="mono">Six questions</p>
       <h3>Estimateur de prix</h3>
@@ -1864,66 +1851,6 @@ write("tools/maturity", layout("/tools/maturity/", "Data health check · Intello
                               "Seven questions that show where your data setup stands and what is worth fixing first.",
                               maturity, accent="gold", nav_key="Tools",
                               crumbs=[(("Tools", "Outils"), "/tools/"), (("Data health check", "Diagnostic des données"), None)]))
-
-# -------------------------------------------------------------- product finder
-finder = f"""
-<section class="wrap page-head">
-  <p class="eyebrow">{bi(("Product finder", "Trouver le bon produit"))}</p>
-  <h1>{bi(("Not sure which one you need?", "Vous ne savez pas lequel il vous faut ?"))}</h1>
-  <p class="lead">{bi(("Two quick questions, then we point at the right starting place. No inbox required.",
-                        "Deux questions rapides, puis nous indiquons le bon point de départ. Aucune boîte mail requise."))}</p>
-</section>
-
-<section class="wrap" id="finder">
-  <div class="steps">
-    <span data-stepname="1" aria-current="step">{bi(("1 · What's wrong", "1 · Le problème"))}</span>
-    <span data-stepname="2" aria-current="false">{bi(("2 · Readiness", "2 · Préparation"))}</span>
-    <span data-stepname="3" aria-current="false">{bi(("3 · Result", "3 · Résultat"))}</span>
-  </div>
-  <div class="track"><i id="finderBar"></i></div>
-
-  <div data-pane="1">
-    <p class="q-h">{bi(("What's actually bothering you right now?", "Qu'est-ce qui vous pose problème en ce moment ?"))}</p>
-    {opts("symptom", [
-        ("numbers", ("Two reports disagree, or nobody trusts the numbers", "Deux rapports se contredisent, ou plus personne ne fait confiance aux chiffres"), ("Dashboards, metrics or definitions that don't line up.", "Des tableaux de bord, indicateurs ou définitions qui ne concordent pas.")),
-        ("evidence", ("We can't produce an audit trail or lineage fast enough", "Nous ne pouvons pas produire de piste d'audit ou de traçabilité assez vite"), ("An auditor, regulator or investor asked, and assembling the answer took too long.", "Un auditeur, régulateur ou investisseur a demandé, et réunir la réponse a pris trop de temps.")),
-        ("access", ("A security questionnaire or access audit we can't pass", "Un questionnaire de sécurité ou un audit d'accès que nous ne pouvons pas réussir"), ("Access control, encryption or evidence gaps on the data platform.", "Des lacunes de contrôle d'accès, de chiffrement ou de preuves sur la plateforme de données.")),
-        ("models", ("A model works in a notebook but never ships", "Un modèle fonctionne dans un notebook mais ne part jamais en production"), ("AI or ML work stuck before production, or degrading quietly once there.", "Un travail d'IA ou de ML bloqué avant la production, ou qui se dégrade silencieusement une fois en place.")),
-        ("database", ("Queries are slow, or backups have never been tested", "Les requêtes sont lentes, ou les sauvegardes n'ont jamais été testées"), ("Database performance, high availability or recovery risk.", "Performance de la base de données, haute disponibilité ou risque de reprise.")),
-        ("cloud", ("The cloud bill keeps climbing or a migration stalled", "La facture cloud ne cesse de grimper ou une migration s'est arrêtée"), ("AWS architecture, cost, or a data lake nobody trusts any more.", "Architecture AWS, coût, ou un data lake auquel plus personne ne fait confiance.")),
-        ("delivery", ("Projects run late, over budget, with no clear method", "Les projets sont en retard, dépassent le budget, sans méthode claire"), ("No named methodology, or a steering update that is a Slack thread.", "Aucune méthodologie nommée, ou une mise à jour de pilotage qui tient dans un fil Slack.")),
-    ], "g2")}
-  </div>
-
-  <div data-pane="2" hidden>
-    <p class="q-h">{bi(("How ready are you to act on it?", "Dans quelle mesure êtes-vous prêt à agir ?"))}</p>
-    {opts("urgency", [
-        ("explore", ("Just exploring", "Je me renseigne"), ("No deadline yet, want to understand the options.", "Pas d'échéance pour l'instant, je veux comprendre les options.")),
-        ("ready", ("Have budget, ready to move", "J'ai un budget, prêt à avancer"), ("Know roughly what we want to spend, want a starting point.", "Je sais à peu près ce que je veux dépenser, je veux un point de départ.")),
-        ("urgent", ("Urgent, something's broken", "Urgent, quelque chose est cassé"), ("This needs attention now.", "Cela demande une attention immédiate.")),
-    ], "g3")}
-    <div class="row mt6"><button class="btn btn-g" id="finderB2" type="button">{bi(("← Back", "← Retour"))}</button></div>
-  </div>
-
-  <div data-pane="3" hidden>
-    <div id="finderResult"></div>
-    <div class="row mt5"><button class="btn btn-g" id="finderB3" type="button">{bi(("← Start again", "← Recommencer"))}</button></div>
-  </div>
-</section>
-
-<section class="wrap">
-  <noscript><div class="callout">This tool needs JavaScript. <a href="/products/">Browse all seven products</a> or <a href="/contact/">email us</a> and describe the problem in a paragraph.</div></noscript>
-</section>
-""" + cta(
-    ("Still not sure?", "Toujours pas sûr ?"),
-    ("A paragraph on what's broken is enough. We will tell you honestly which product fits, or whether none of them do.",
-     "Un paragraphe sur ce qui ne va pas suffit. Nous vous dirons honnêtement quel produit convient, ou si aucun ne convient."),
-    secondary=("See all products", "/products/"))
-
-write("tools/finder", layout("/tools/finder/", "Product finder · Intellora Tech",
-                             "Two questions about what's actually wrong, and we point at the right product to start with.",
-                             finder, accent="indigo", nav_key="Tools",
-                             crumbs=[(("Tools", "Outils"), "/tools/"), (("Product finder", "Trouver le bon produit"), None)]))
 
 # ------------------------------------------------------------------- glossary
 
@@ -2994,7 +2921,7 @@ legal_page(
 
 # ------------------------------------------------------------- sitemap & robots
 urls = ["/", "/products/", "/projects/", "/blog/", "/about/", "/contact/", "/payment/",
-        "/tools/", "/tools/estimator/", "/tools/maturity/", "/tools/finder/", "/tools/glossary/", "/tools/brief/",
+        "/tools/", "/tools/estimator/", "/tools/maturity/", "/tools/glossary/", "/tools/brief/",
         "/privacy/", "/terms/"]
 urls += ["/products/%s/" % s for s, _, _, _, _, _ in PRODUCTS]
 urls += ["/blog/%s/" % p["slug"] for p in POSTS]
